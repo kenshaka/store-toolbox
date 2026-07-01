@@ -885,11 +885,11 @@ function DiscountPromotionProfitContent() {
 
         <section>
           <h2 className="text-2xl font-bold text-stone-900">
-            八、用折扣活動虧不虧計算器快速試算
+            八、用折扣活動損益計算器快速試算
           </h2>
 
           <p className="mt-4">
-            你可以使用本站的折扣活動虧不虧計算器，輸入商品原價、活動售價、
+            你可以使用本站的折扣活動損益計算器，輸入商品原價、活動售價、
             單品成本、原本每日銷量與活動後預估每日銷量，快速比較原本每日毛利和活動後每日毛利。
           </p>
 
@@ -898,7 +898,7 @@ function DiscountPromotionProfitContent() {
               href="/tools/discount-profit-calculator"
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用折扣活動虧不虧計算器
+              使用折扣活動損益計算器
             </Link>
           </div>
         </section>
