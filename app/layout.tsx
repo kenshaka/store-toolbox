@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import JsonLd from "@/components/json-ld";
+import Script from "next/script";
 import { getWebsiteStructuredData } from "@/lib/structured-data";
 import SiteFooter from "../components/site-footer";
 import SiteHeader from "../components/site-header";
 import "./globals.css";
+
+const gaMeasurementId = "G-EQXRCDDHPT";
 
 export const metadata: Metadata = {
   title: {
@@ -47,12 +49,27 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant-TW">
       <body className="bg-stone-50 text-stone-900 antialiased">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaMeasurementId}');
+            `,
+          }}
+        />
         <JsonLd data={getWebsiteStructuredData()} />
         <SiteHeader />
         {children}
         <SiteFooter />
       </body>
-      <GoogleAnalytics gaId="G-EQXRCDDHPT" />
     </html>
   );
 }
