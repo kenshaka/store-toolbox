@@ -55,6 +55,26 @@ export default function Home() {
             開店小工具箱會把常見的促銷活動變成簡單的計算器，讓你在推出活動前先有基本判斷。
           </p>
         </div>
+        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">
+            最新文章
+          </p>
+          <h2 className="mt-2 text-2xl font-bold">
+            餐飲活動怎麼算才不會虧？
+          </h2>
+
+          <p className="mt-4 leading-7 text-stone-700">
+            從滿 150 元加購 40 元的活動範例開始，學會計算加購毛利、
+            加購率與每日增加毛利，避免促銷做得很熱鬧卻沒有真正賺錢。
+          </p>
+
+          <Link
+            href="/blog/add-on-promotion-example"
+            className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+          >
+            閱讀：滿額加購活動怎麼算
+          </Link>
+        </section>
       </section>
     </main>
   );
