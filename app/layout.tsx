@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import JsonLd from "@/components/json-ld";
 import { getWebsiteStructuredData } from "@/lib/structured-data";
 import SiteFooter from "../components/site-footer";
@@ -51,6 +52,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
       </body>
+      <GoogleAnalytics gaId="G-EQXRCDDHPT" />
     </html>
   );
 }
