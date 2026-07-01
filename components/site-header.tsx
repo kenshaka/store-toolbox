@@ -22,6 +22,10 @@ const navItems = [
     label: "文章",
     href: "/blog",
   },
+  {
+    label: "關於",
+    href: "/about",
+  },
 ];
 
 export default function SiteHeader() {

@@ -286,6 +286,30 @@ export function getToolsIndexStructuredData() {
   ];
 }
 
+export function getAboutStructuredData() {
+  return [
+    getBreadcrumbJsonLd([
+      { name: siteName, path: "" },
+      { name: "關於本站", path: "/about" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "關於開店小工具箱",
+      url: absoluteUrl("/about"),
+      description:
+        "開店小工具箱是一個提供小店、餐飲店、小吃店與飲料店使用的免費營運試算工具網站，協助店家在定價與促銷前先估算毛利、成本與活動損益。",
+      inLanguage: "zh-Hant-TW",
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+      },
+      publisher,
+    },
+  ];
+}
+
 export function getToolStructuredData(toolKey: keyof typeof tools) {
   const tool = tools[toolKey];
 

@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tools/discount-profit-calculator",
     "/blog",
     ...blogRoutes,
+    "/about",
     "/privacy",
     "/terms",
   ];

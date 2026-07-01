@@ -13,6 +13,9 @@ export default function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-4 text-sm text-stone-500">
+            <Link href="/about" className="hover:text-orange-700 hover:underline">
+              關於本站
+            </Link>
             <Link href="/privacy" className="hover:text-orange-700 hover:underline">
               隱私權政策
             </Link>
