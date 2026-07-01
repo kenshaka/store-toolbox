@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "餐飲經營文章",
@@ -25,16 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-const articles = [
-  {
-    title: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
-    description:
-      "用餐飲店常見的滿 150 元加購 40 元活動為例，教你試算加購商品毛利、加購率、每日增加毛利與活動是否值得做。",
-    href: "/blog/add-on-promotion-example",
-    category: "餐飲促銷活動",
-    date: "2026 年 7 月 1 日",
-  },
-];
 
 export default function BlogPage() {
   return (
@@ -57,10 +48,10 @@ export default function BlogPage() {
         </div>
 
         <div className="mt-10 grid gap-6">
-          {articles.map((article) => (
+          {posts.map((article) => (
             <Link
-              key={article.href}
-              href={article.href}
+              key={article.slug}
+              href={`/blog/${article.slug}`}
               className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <div className="flex flex-wrap items-center gap-3 text-sm text-stone-500">
