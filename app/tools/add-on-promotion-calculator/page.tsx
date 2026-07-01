@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type NumberInputProps = {
@@ -233,6 +234,58 @@ export default function AddOnPromotionCalculatorPage() {
             本工具僅供活動試算，實際結果會受到來客數、商品吸引力、門市動線、
             員工推薦能力、季節與成本變動等因素影響。
           </p>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+          <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
+          <p className="mt-4 leading-7 text-stone-700">
+            搭配實際活動範例，了解加購商品毛利、加購率與每日增加毛利該怎麼評估。
+          </p>
+          <Link
+            href="/blog/add-on-promotion-example"
+            className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+          >
+            滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算
+          </Link>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">常見問題</h2>
+          <div className="mt-5 grid gap-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q1：滿額加購活動適合所有餐飲店嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                不一定。若加購商品毛利太低、製作流程太複雜，或尖峰時段會拖慢出餐速度，就要先小規模測試。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q2：加購率要怎麼估算？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                剛開始可以用 10%、20%、30% 做保守、中間、樂觀三種情境。活動上線後，再用實際訂單紀錄修正。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q3：加購商品成本要包含哪些？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                建議至少包含食材、杯瓶、包材、封膜、袋子與直接耗材。成本算得越完整，試算結果越接近真實狀況。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q4：滿額門檻要怎麼設定？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以從平均客單價往上加一點點。若平均客單價是 120 元，滿 150 元通常比滿 200 元更容易讓客人達成。
+              </p>
+            </div>
+          </div>
         </section>
       </section>
     </main>

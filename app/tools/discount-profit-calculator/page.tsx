@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type NumberInputProps = {
@@ -297,6 +298,58 @@ export default function DiscountProfitCalculatorPage() {
             本工具僅供促銷活動試算。實際結果仍會受到來客數、備料、人力、
             客人回購率、活動曝光、平台抽成與成本變動等因素影響。
           </p>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+          <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
+          <p className="mt-4 leading-7 text-stone-700">
+            用打折範例了解活動價、單品成本、銷量增加與打平銷量如何影響每日毛利。
+          </p>
+          <Link
+            href="/blog/discount-promotion-profit"
+            className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+          >
+            折扣活動怎麼算才不會虧？餐飲店打折促銷前要先算這幾個數字
+          </Link>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">常見問題</h2>
+          <div className="mt-5 grid gap-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q1：打折後銷量增加就一定比較賺嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                不一定。若每份毛利下降太多，即使銷量增加，每日總毛利也可能比原本更低。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q2：活動價低於成本可以嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                一般不建議。除非是清庫存、引流或搭配其他高毛利商品，否則低於成本會讓每一份銷售都造成損失。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q3：需要多賣幾份才打平？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以用原本每日毛利除以活動每份毛利，得到活動後至少要賣出的份數，再和原本銷量比較。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q4：折扣活動適合用在什麼情況？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                比較適合用在新品測試、離峰時段拉客、庫存消化或短期曝光。若長期打折，可能會影響客人對原價的接受度。
+              </p>
+            </div>
+          </div>
         </section>
       </section>
     </main>

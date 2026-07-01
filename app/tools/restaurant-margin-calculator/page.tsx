@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type NumberInputProps = {
@@ -254,6 +255,58 @@ export default function RestaurantMarginCalculatorPage() {
             本工具僅供餐飲商品定價與毛利試算。實際經營仍需考慮人事、租金、
             水電、設備折舊、耗損、稅務與平台合約條件。
           </p>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+          <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
+          <p className="mt-4 leading-7 text-stone-700">
+            用定價範例了解食材成本、包材成本、平台抽成與目標毛利率如何影響商品售價。
+          </p>
+          <Link
+            href="/blog/restaurant-margin-how-to-calculate"
+            className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+          >
+            餐飲毛利率怎麼算？小吃店、飲料店定價前一定要看的毛利公式
+          </Link>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">常見問題</h2>
+          <div className="mt-5 grid gap-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q1：餐飲毛利率和淨利率差在哪？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                毛利率只看商品售價扣掉直接成本後的比例；淨利率還要再扣掉人事、租金、水電、設備、行銷與稅務等成本。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q2：包材成本要算進去嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                建議要算。外帶與外送商品常常會用到餐盒、杯子、袋子、封膜與醬料盒，不算包材會高估毛利率。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q3：外送平台抽成要怎麼算？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以用商品售價乘上平台抽成比例。若售價 100 元、抽成 30%，平台抽成金額就是 30 元。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q4：毛利率太低怎麼改善？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以檢查食材份量、包材規格、菜單定價、套餐搭配與外送售價，不一定只能單純漲價。
+              </p>
+            </div>
+          </div>
         </section>
       </section>
     </main>
