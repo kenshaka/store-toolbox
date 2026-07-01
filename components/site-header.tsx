@@ -13,6 +13,10 @@ const navItems = [
     label: "折扣試算",
     href: "/tools/discount-profit-calculator",
   },
+  {
+    label: "文章",
+    href: "/blog",
+  },
 ];
 
 export default function SiteHeader() {

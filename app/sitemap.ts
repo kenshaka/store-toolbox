@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tools/add-on-promotion-calculator",
     "/tools/restaurant-margin-calculator",
     "/tools/discount-profit-calculator",
+    "/blog",
     "/blog/add-on-promotion-example",
     "/privacy",
     "/terms",
