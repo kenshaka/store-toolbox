@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "開店小工具箱" }],
   creator: "開店小工具箱",
+  verification: {
+    google: "7h4UCCg5sFtqIh2i73rOb4gG36E3hZFuJuvRG9CLdbo",
+  },
   openGraph: {
     title: "開店小工具箱｜餐飲毛利、滿額加購、折扣活動試算工具",
     description:
