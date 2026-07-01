@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { addOnVsDiscountPromotionPost } from "@/content/posts/add-on-vs-discount-promotion";
+import { drinkShopMarginPost } from "@/content/posts/drink-shop-margin";
+import { foodDeliveryPlatformFeePost } from "@/content/posts/food-delivery-platform-fee";
+import { foodPricingFormulaPost } from "@/content/posts/food-pricing-formula";
+import { restaurantPromotionCostPost } from "@/content/posts/restaurant-promotion-cost";
 import { addOnPromotionExamplePost } from "@/content/posts/add-on-promotion-example";
 import { discountPromotionProfitPost } from "@/content/posts/discount-promotion-profit";
 import { restaurantMarginHowToCalculatePost } from "@/content/posts/restaurant-margin-how-to-calculate";
@@ -10,6 +15,11 @@ export const posts: BlogPost[] = [
   addOnPromotionExamplePost,
   restaurantMarginHowToCalculatePost,
   discountPromotionProfitPost,
+  foodPricingFormulaPost,
+  drinkShopMarginPost,
+  addOnVsDiscountPromotionPost,
+  foodDeliveryPlatformFeePost,
+  restaurantPromotionCostPost,
 ];
 
 export function getPostBySlug(slug: string) {
