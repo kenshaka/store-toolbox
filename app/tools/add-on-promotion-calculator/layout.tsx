@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
+import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "滿額加購活動計算器",
@@ -28,5 +30,10 @@ export default function AddOnPromotionCalculatorLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <>
+      <JsonLd data={getToolStructuredData("addOnPromotionCalculator")} />
+      {children}
+    </>
+  );
 }

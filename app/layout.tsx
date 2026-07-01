@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
+import { getWebsiteStructuredData } from "@/lib/structured-data";
 import SiteFooter from "../components/site-footer";
 import SiteHeader from "../components/site-header";
 import "./globals.css";
@@ -44,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant-TW">
       <body className="bg-stone-50 text-stone-900 antialiased">
+        <JsonLd data={getWebsiteStructuredData()} />
         <SiteHeader />
         {children}
         <SiteFooter />

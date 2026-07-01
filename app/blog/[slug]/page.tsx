@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
+import { getBlogPostStructuredData } from "@/lib/structured-data";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostMetadata, posts } from "@/lib/posts";
 
@@ -37,5 +39,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const PostContent = post.Content;
 
-  return <PostContent />;
+  return (
+    <>
+      <JsonLd data={getBlogPostStructuredData(post)} />
+      <PostContent />
+    </>
+  );
 }

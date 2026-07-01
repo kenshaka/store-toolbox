@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
+import { getBlogIndexStructuredData } from "@/lib/structured-data";
 import Link from "next/link";
 import { posts } from "@/lib/posts";
 
@@ -29,7 +31,9 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="bg-stone-50 text-stone-900">
+    <>
+      <JsonLd data={getBlogIndexStructuredData(posts)} />
+      <main className="bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-5xl px-6 py-12">
         <div>
           <p className="text-sm font-semibold text-orange-700">
@@ -95,6 +99,7 @@ export default function BlogPage() {
           </Link>
         </section>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
