@@ -1,0 +1,261 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+type NumberInputProps = {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+  suffix?: string;
+  help?: string;
+};
+
+function formatMoney(value: number) {
+  return new Intl.NumberFormat("zh-TW", {
+    style: "currency",
+    currency: "TWD",
+    maximumFractionDigits: 0,
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
+function formatPercent(value: number) {
+  if (!Number.isFinite(value)) return "0.0%";
+  return `${value.toFixed(1)}%`;
+}
+
+function NumberInput({
+  label,
+  value,
+  onChange,
+  suffix = "元",
+  help,
+}: NumberInputProps) {
+  return (
+    <label className="block">
+      <span className="text-sm font-medium text-stone-800">{label}</span>
+      <div className="mt-2 flex overflow-hidden rounded-xl border border-stone-300 bg-white focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-200">
+        <input
+          type="number"
+          value={value}
+          min="0"
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="w-full px-4 py-3 outline-none"
+        />
+        <span className="flex items-center bg-stone-100 px-4 text-sm text-stone-600">
+          {suffix}
+        </span>
+      </div>
+      {help ? <p className="mt-1 text-xs text-stone-500">{help}</p> : null}
+    </label>
+  );
+}
+
+export default function RestaurantMarginCalculatorPage() {
+  const [price, setPrice] = useState(100);
+  const [foodCost, setFoodCost] = useState(35);
+  const [packagingCost, setPackagingCost] = useState(5);
+  const [platformFeeRate, setPlatformFeeRate] = useState(0);
+  const [targetMarginRate, setTargetMarginRate] = useState(60);
+
+  const result = useMemo(() => {
+    const totalCost = foodCost + packagingCost;
+    const grossProfit = price - totalCost;
+    const marginRate = price > 0 ? (grossProfit / price) * 100 : 0;
+
+    const platformFee = price * (platformFeeRate / 100);
+    const profitAfterPlatformFee = price - totalCost - platformFee;
+    const marginAfterPlatformFee =
+      price > 0 ? (profitAfterPlatformFee / price) * 100 : 0;
+
+    const suggestedPrice =
+      targetMarginRate >= 100
+        ? 0
+        : totalCost / (1 - targetMarginRate / 100);
+
+    let verdict = "可以接受";
+    let verdictDetail = "目前毛利率有基本空間，但仍要注意人事、租金、水電與耗損。";
+
+    if (marginRate < 40) {
+      verdict = "毛利偏低";
+      verdictDetail =
+        "這個售價扣掉食材與包材後，毛利空間偏低。若還有租金、人事與外送抽成，可能會很吃緊。";
+    } else if (marginRate >= 60) {
+      verdict = "毛利不錯";
+      verdictDetail =
+        "單看食材與包材成本，這個商品毛利率不錯，可以作為主力商品或活動搭配商品。";
+    }
+
+    if (platformFeeRate > 0 && marginAfterPlatformFee < 30) {
+      verdict = "外送要小心";
+      verdictDetail =
+        "加入平台抽成後，毛利率明顯下降。若是外送平台販售，建議重新設定外送售價。";
+    }
+
+    return {
+      totalCost,
+      grossProfit,
+      marginRate,
+      platformFee,
+      profitAfterPlatformFee,
+      marginAfterPlatformFee,
+      suggestedPrice,
+      verdict,
+      verdictDetail,
+    };
+  }, [price, foodCost, packagingCost, platformFeeRate, targetMarginRate]);
+
+  return (
+    <main className="min-h-screen bg-stone-50 text-stone-900">
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        <div>
+          <p className="text-sm font-semibold text-orange-700">
+            餐飲定價試算工具
+          </p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+            餐飲毛利率計算器
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
+            輸入商品售價、食材成本、包材成本與平台抽成，
+            快速計算餐點毛利、毛利率，以及是否達到你的目標毛利。
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
+            <h2 className="text-2xl font-bold">輸入商品資料</h2>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <NumberInput
+                label="商品售價"
+                value={price}
+                onChange={setPrice}
+                help="例如：一份餐點售價 100 元"
+              />
+
+              <NumberInput
+                label="食材成本"
+                value={foodCost}
+                onChange={setFoodCost}
+                help="主食、配料、醬料等直接成本"
+              />
+
+              <NumberInput
+                label="包材成本"
+                value={packagingCost}
+                onChange={setPackagingCost}
+                help="餐盒、杯子、袋子、封膜等成本"
+              />
+
+              <NumberInput
+                label="平台抽成"
+                value={platformFeeRate}
+                onChange={setPlatformFeeRate}
+                suffix="%"
+                help="沒有外送平台就填 0"
+              />
+
+              <NumberInput
+                label="目標毛利率"
+                value={targetMarginRate}
+                onChange={setTargetMarginRate}
+                suffix="%"
+                help="用來反推建議售價，例如 60%"
+              />
+            </div>
+          </div>
+
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+            <h2 className="text-2xl font-bold">試算結果</h2>
+
+            <div className="mt-6 space-y-4">
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">總直接成本</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatMoney(result.totalCost)}
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">單品毛利</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatMoney(result.grossProfit)}
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">毛利率</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatPercent(result.marginRate)}
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">平台抽成金額</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.platformFee)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">抽成後毛利</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.profitAfterPlatformFee)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">抽成後毛利率</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatPercent(result.marginAfterPlatformFee)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">目標毛利建議售價</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.suggestedPrice)}
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-orange-500 p-4 text-stone-950">
+                <p className="text-sm font-semibold">商品判斷</p>
+                <p className="mt-1 text-3xl font-black">{result.verdict}</p>
+                <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">計算公式</h2>
+
+          <div className="mt-5 space-y-3 text-stone-700">
+            <p>總直接成本 = 食材成本 + 包材成本</p>
+            <p>單品毛利 = 商品售價 − 總直接成本</p>
+            <p>毛利率 = 單品毛利 ÷ 商品售價 × 100%</p>
+            <p>平台抽成金額 = 商品售價 × 平台抽成比例</p>
+            <p>抽成後毛利 = 商品售價 − 總直接成本 − 平台抽成金額</p>
+            <p>目標毛利建議售價 = 總直接成本 ÷ 目標成本率</p>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
+            <h3 className="font-bold">範例</h3>
+            <p className="mt-3 leading-7 text-stone-700">
+              如果一份餐點售價 100 元，食材成本 35 元、包材成本 5 元，
+              總直接成本就是 40 元，單品毛利為 60 元，毛利率為 60%。
+              如果再加入 30% 的外送平台抽成，抽成金額為 30 元，
+              抽成後毛利只剩 30 元，抽成後毛利率為 30%。
+            </p>
+          </div>
+
+          <p className="mt-6 text-sm leading-6 text-stone-500">
+            本工具僅供餐飲商品定價與毛利試算。實際經營仍需考慮人事、租金、
+            水電、設備折舊、耗損、稅務與平台合約條件。
+          </p>
+        </section>
+      </section>
+    </main>
+  );
+}
