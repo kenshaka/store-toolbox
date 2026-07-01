@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     "",
+    "/tools",
     "/tools/add-on-promotion-calculator",
     "/tools/restaurant-margin-calculator",
     "/tools/discount-profit-calculator",

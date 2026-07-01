@@ -251,6 +251,41 @@ export function getBlogPostStructuredData(post: BlogPost) {
   ];
 }
 
+export function getToolsIndexStructuredData() {
+  const toolList = Object.values(tools);
+
+  return [
+    getBreadcrumbJsonLd([
+      { name: siteName, path: "" },
+      { name: "開店工具總覽", path: "/tools" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "開店工具總覽",
+      url: absoluteUrl("/tools"),
+      description:
+        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含滿額加購活動、餐飲毛利率與折扣活動損益試算。",
+      inLanguage: "zh-Hant-TW",
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+      },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: toolList.map((tool, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: absoluteUrl(tool.path),
+          name: tool.name,
+          description: tool.description,
+        })),
+      },
+    },
+  ];
+}
+
 export function getToolStructuredData(toolKey: keyof typeof tools) {
   const tool = tools[toolKey];
 

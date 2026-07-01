@@ -3,6 +3,10 @@ import TrackedLink from "@/components/tracked-link";
 
 const navItems = [
   {
+    label: "工具",
+    href: "/tools",
+  },
+  {
     label: "滿額加購",
     href: "/tools/add-on-promotion-calculator",
   },
