@@ -3,6 +3,7 @@ import Link from "next/link";
 import JsonLd from "@/components/json-ld";
 import TrackedLink from "@/components/tracked-link";
 import { getToolsIndexStructuredData } from "@/lib/structured-data";
+import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "開店工具總覽",
@@ -28,38 +29,6 @@ export const metadata: Metadata = {
   },
 };
 
-const tools = [
-  {
-    title: "滿額加購活動計算器",
-    description:
-      "輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算滿額加購活動是否划算。",
-    href: "/tools/add-on-promotion-calculator",
-    articleTitle: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
-    articleHref: "/blog/add-on-promotion-example",
-    category: "餐飲促銷活動",
-    toolId: "add_on_promotion",
-  },
-  {
-    title: "餐飲毛利率計算器",
-    description:
-      "輸入商品售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利與建議售價。",
-    href: "/tools/restaurant-margin-calculator",
-    articleTitle: "餐飲毛利率怎麼算？小吃店、飲料店定價前一定要看的毛利公式",
-    articleHref: "/blog/restaurant-margin-how-to-calculate",
-    category: "餐飲定價與毛利",
-    toolId: "restaurant_margin",
-  },
-  {
-    title: "折扣活動損益計算器",
-    description:
-      "輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，判斷打折促銷後毛利是增加還是減少。",
-    href: "/tools/discount-profit-calculator",
-    articleTitle: "折扣活動怎麼算才不會虧？餐飲店打折促銷前要先算這幾個數字",
-    articleHref: "/blog/discount-promotion-profit",
-    category: "折扣活動試算",
-    toolId: "discount_profit",
-  },
-];
 
 const useCases = [
   "設計滿額加購活動前，先確認加購價和成本是否有毛利。",

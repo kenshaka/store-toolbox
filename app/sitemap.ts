@@ -1,17 +1,17 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/posts";
+import { tools } from "@/lib/tools";
 
 const siteUrl = "https://store-toolbox.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const toolRoutes = tools.map((tool) => tool.href);
   const blogRoutes = posts.map((post) => `/blog/${post.slug}`);
 
   const routes = [
     "",
     "/tools",
-    "/tools/add-on-promotion-calculator",
-    "/tools/restaurant-margin-calculator",
-    "/tools/discount-profit-calculator",
+    ...toolRoutes,
     "/blog",
     ...blogRoutes,
     "/about",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
+import { tools } from "@/lib/tools";
 
 export default function Home() {
   const latestPosts = posts.slice(0, 3);
@@ -22,53 +23,24 @@ export default function Home() {
         </p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
-          <TrackedLink
-            href="/tools/add-on-promotion-calculator"
-            eventName="select_tool"
-            eventParams={{
-              tool_id: "add_on_promotion",
-              tool_name: "滿額加購活動計算器",
-              link_location: "home_card",
-            }}
-            className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <h2 className="text-xl font-bold">滿額加購活動計算器</h2>
-            <p className="mt-3 text-sm leading-6 text-stone-600">
-              輸入滿額門檻、加購價與商品成本，快速試算加購活動是否划算。
-            </p>
-          </TrackedLink>
-
-          <TrackedLink
-            href="/tools/restaurant-margin-calculator"
-            eventName="select_tool"
-            eventParams={{
-              tool_id: "restaurant_margin",
-              tool_name: "餐飲毛利率計算器",
-              link_location: "home_card",
-            }}
-            className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <h2 className="text-xl font-bold">餐飲毛利率計算器</h2>
-            <p className="mt-3 text-sm leading-6 text-stone-600">
-              輸入售價與成本，計算單品毛利、毛利率與定價是否合理。
-            </p>
-          </TrackedLink>
-
-          <TrackedLink
-            href="/tools/discount-profit-calculator"
-            eventName="select_tool"
-            eventParams={{
-              tool_id: "discount_profit",
-              tool_name: "折扣活動損益計算器",
-              link_location: "home_card",
-            }}
-            className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <h2 className="text-xl font-bold">折扣活動損益計算器</h2>
-            <p className="mt-3 text-sm leading-6 text-stone-600">
-              試算打折後還剩多少毛利，以及需要多賣幾份才不會虧。
-            </p>
-          </TrackedLink>
+          {tools.map((tool) => (
+            <TrackedLink
+              key={tool.href}
+              href={tool.href}
+              eventName="select_tool"
+              eventParams={{
+                tool_id: tool.toolId,
+                tool_name: tool.title,
+                link_location: "home_card",
+              }}
+              className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <h2 className="text-xl font-bold">{tool.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-stone-600">
+                {tool.homeDescription}
+              </p>
+            </TrackedLink>
+          ))}
         </div>
 
         <div className="mt-14 rounded-2xl bg-white p-6 shadow-sm">
