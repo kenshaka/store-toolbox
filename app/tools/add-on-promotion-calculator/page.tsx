@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
   label: string;
@@ -58,6 +59,21 @@ export default function AddOnPromotionCalculatorPage() {
   const [averageOrder, setAverageOrder] = useState(120);
   const [addOnRate, setAddOnRate] = useState(30);
   const [dailyOrders, setDailyOrders] = useState(80);
+
+
+  const trackedFieldsRef = useRef<Set<string>>(new Set());
+
+  function trackCalculatorField(fieldName: string) {
+    if (trackedFieldsRef.current.has(fieldName)) {
+      return;
+    }
+
+    trackedFieldsRef.current.add(fieldName);
+    trackEvent("use_calculator", {
+      tool_id: "add_on_promotion",
+      field_name: fieldName,
+    });
+  }
 
   const result = useMemo(() => {
     const profitPerAddOn = addOnPrice - addOnCost;
@@ -116,35 +132,50 @@ export default function AddOnPromotionCalculatorPage() {
               <NumberInput
                 label="單筆消費滿額門檻"
                 value={threshold}
-                onChange={setThreshold}
+                onChange={(value) => {
+                  trackCalculatorField("threshold");
+                  setThreshold(value);
+                }}
                 help="例如：滿 150 元可以加購"
               />
 
               <NumberInput
                 label="加購商品售價"
                 value={addOnPrice}
-                onChange={setAddOnPrice}
+                onChange={(value) => {
+                  trackCalculatorField("add_on_price");
+                  setAddOnPrice(value);
+                }}
                 help="例如：飲料加購價 40 元"
               />
 
               <NumberInput
                 label="加購商品成本"
                 value={addOnCost}
-                onChange={setAddOnCost}
+                onChange={(value) => {
+                  trackCalculatorField("add_on_cost");
+                  setAddOnCost(value);
+                }}
                 help="包含食材、包材等直接成本"
               />
 
               <NumberInput
                 label="原本平均客單價"
                 value={averageOrder}
-                onChange={setAverageOrder}
+                onChange={(value) => {
+                  trackCalculatorField("average_order");
+                  setAverageOrder(value);
+                }}
                 help="用來判斷客人距離滿額還差多少"
               />
 
               <NumberInput
                 label="預估加購率"
                 value={addOnRate}
-                onChange={setAddOnRate}
+                onChange={(value) => {
+                  trackCalculatorField("add_on_rate");
+                  setAddOnRate(value);
+                }}
                 suffix="%"
                 help="例如：100 筆訂單中約 30 筆會加購"
               />
@@ -152,7 +183,10 @@ export default function AddOnPromotionCalculatorPage() {
               <NumberInput
                 label="每日訂單數"
                 value={dailyOrders}
-                onChange={setDailyOrders}
+                onChange={(value) => {
+                  trackCalculatorField("daily_orders");
+                  setDailyOrders(value);
+                }}
                 suffix="單"
                 help="估算每日與每月增加毛利"
               />

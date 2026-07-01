@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import TrackedLink from "@/components/tracked-link";
 import type { ReactNode } from "react";
 
 export type BlogPost = {
@@ -242,12 +242,18 @@ function AddOnPromotionExampleContent() {
           </p>
 
           <div className="mt-6">
-            <Link
+            <TrackedLink
               href="/tools/add-on-promotion-calculator"
+              eventName="click_article_cta"
+              eventParams={{
+                article_slug: "add-on-promotion-example",
+                destination: "/tools/add-on-promotion-calculator",
+                tool_id: "add_on_promotion",
+              }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
               使用滿額加購活動計算器
-            </Link>
+            </TrackedLink>
           </div>
         </section>
 
@@ -575,12 +581,18 @@ function RestaurantMarginHowToCalculateContent() {
           </p>
 
           <div className="mt-6">
-            <Link
+            <TrackedLink
               href="/tools/restaurant-margin-calculator"
+              eventName="click_article_cta"
+              eventParams={{
+                article_slug: "restaurant-margin-how-to-calculate",
+                destination: "/tools/restaurant-margin-calculator",
+                tool_id: "restaurant_margin",
+              }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
               使用餐飲毛利率計算器
-            </Link>
+            </TrackedLink>
           </div>
         </section>
 
@@ -894,12 +906,18 @@ function DiscountPromotionProfitContent() {
           </p>
 
           <div className="mt-6">
-            <Link
+            <TrackedLink
               href="/tools/discount-profit-calculator"
+              eventName="click_article_cta"
+              eventParams={{
+                article_slug: "discount-promotion-profit",
+                destination: "/tools/discount-profit-calculator",
+                tool_id: "discount_profit",
+              }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
               使用折扣活動損益計算器
-            </Link>
+            </TrackedLink>
           </div>
         </section>
 

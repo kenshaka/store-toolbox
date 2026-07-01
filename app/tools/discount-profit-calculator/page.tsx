@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
   label: string;
@@ -57,6 +58,21 @@ export default function DiscountProfitCalculatorPage() {
   const [productCost, setProductCost] = useState(40);
   const [originalDailySales, setOriginalDailySales] = useState(50);
   const [discountDailySales, setDiscountDailySales] = useState(80);
+
+
+  const trackedFieldsRef = useRef<Set<string>>(new Set());
+
+  function trackCalculatorField(fieldName: string) {
+    if (trackedFieldsRef.current.has(fieldName)) {
+      return;
+    }
+
+    trackedFieldsRef.current.add(fieldName);
+    trackEvent("use_calculator", {
+      tool_id: "discount_profit",
+      field_name: fieldName,
+    });
+  }
 
   const result = useMemo(() => {
     const originalProfitPerItem = originalPrice - productCost;
@@ -154,28 +170,40 @@ export default function DiscountProfitCalculatorPage() {
               <NumberInput
                 label="商品原價"
                 value={originalPrice}
-                onChange={setOriginalPrice}
+                onChange={(value) => {
+                  trackCalculatorField("original_price");
+                  setOriginalPrice(value);
+                }}
                 help="例如：原本售價 100 元"
               />
 
               <NumberInput
                 label="活動售價"
                 value={discountPrice}
-                onChange={setDiscountPrice}
+                onChange={(value) => {
+                  trackCalculatorField("discount_price");
+                  setDiscountPrice(value);
+                }}
                 help="例如：打折後售價 80 元"
               />
 
               <NumberInput
                 label="單品成本"
                 value={productCost}
-                onChange={setProductCost}
+                onChange={(value) => {
+                  trackCalculatorField("product_cost");
+                  setProductCost(value);
+                }}
                 help="食材、包材等直接成本"
               />
 
               <NumberInput
                 label="原本每日銷量"
                 value={originalDailySales}
-                onChange={setOriginalDailySales}
+                onChange={(value) => {
+                  trackCalculatorField("original_daily_sales");
+                  setOriginalDailySales(value);
+                }}
                 suffix="份"
                 help="沒有活動時，每天大約賣幾份"
               />
@@ -183,7 +211,10 @@ export default function DiscountProfitCalculatorPage() {
               <NumberInput
                 label="活動後預估每日銷量"
                 value={discountDailySales}
-                onChange={setDiscountDailySales}
+                onChange={(value) => {
+                  trackCalculatorField("discount_daily_sales");
+                  setDiscountDailySales(value);
+                }}
                 suffix="份"
                 help="活動開始後，預估每天會賣幾份"
               />

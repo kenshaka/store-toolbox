@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
   label: string;
@@ -57,6 +58,21 @@ export default function RestaurantMarginCalculatorPage() {
   const [packagingCost, setPackagingCost] = useState(5);
   const [platformFeeRate, setPlatformFeeRate] = useState(0);
   const [targetMarginRate, setTargetMarginRate] = useState(60);
+
+
+  const trackedFieldsRef = useRef<Set<string>>(new Set());
+
+  function trackCalculatorField(fieldName: string) {
+    if (trackedFieldsRef.current.has(fieldName)) {
+      return;
+    }
+
+    trackedFieldsRef.current.add(fieldName);
+    trackEvent("use_calculator", {
+      tool_id: "restaurant_margin",
+      field_name: fieldName,
+    });
+  }
 
   const result = useMemo(() => {
     const totalCost = foodCost + packagingCost;
@@ -129,28 +145,40 @@ export default function RestaurantMarginCalculatorPage() {
               <NumberInput
                 label="商品售價"
                 value={price}
-                onChange={setPrice}
+                onChange={(value) => {
+                  trackCalculatorField("price");
+                  setPrice(value);
+                }}
                 help="例如：一份餐點售價 100 元"
               />
 
               <NumberInput
                 label="食材成本"
                 value={foodCost}
-                onChange={setFoodCost}
+                onChange={(value) => {
+                  trackCalculatorField("food_cost");
+                  setFoodCost(value);
+                }}
                 help="主食、配料、醬料等直接成本"
               />
 
               <NumberInput
                 label="包材成本"
                 value={packagingCost}
-                onChange={setPackagingCost}
+                onChange={(value) => {
+                  trackCalculatorField("packaging_cost");
+                  setPackagingCost(value);
+                }}
                 help="餐盒、杯子、袋子、封膜等成本"
               />
 
               <NumberInput
                 label="平台抽成"
                 value={platformFeeRate}
-                onChange={setPlatformFeeRate}
+                onChange={(value) => {
+                  trackCalculatorField("platform_fee_rate");
+                  setPlatformFeeRate(value);
+                }}
                 suffix="%"
                 help="沒有外送平台就填 0"
               />
@@ -158,7 +186,10 @@ export default function RestaurantMarginCalculatorPage() {
               <NumberInput
                 label="目標毛利率"
                 value={targetMarginRate}
-                onChange={setTargetMarginRate}
+                onChange={(value) => {
+                  trackCalculatorField("target_margin_rate");
+                  setTargetMarginRate(value);
+                }}
                 suffix="%"
                 help="用來反推建議售價，例如 60%"
               />

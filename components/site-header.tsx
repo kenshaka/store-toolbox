@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TrackedLink from "@/components/tracked-link";
 
 const navItems = [
   {
@@ -34,13 +35,15 @@ export default function SiteHeader() {
 
         <nav className="flex flex-wrap gap-3 text-sm font-medium text-stone-600">
           {navItems.map((item) => (
-            <Link
+            <TrackedLink
               key={item.href}
               href={item.href}
+              eventName="click_nav"
+              eventParams={{ nav_item: item.label, destination: item.href }}
               className="rounded-full px-3 py-2 transition hover:bg-orange-50 hover:text-orange-700"
             >
               {item.label}
-            </Link>
+            </TrackedLink>
           ))}
         </nav>
       </div>

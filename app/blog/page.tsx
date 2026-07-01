@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/json-ld";
 import { getBlogIndexStructuredData } from "@/lib/structured-data";
 import Link from "next/link";
+import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
@@ -91,12 +92,18 @@ export default function BlogPage() {
             加購率與預估每日增加毛利。
           </p>
 
-          <Link
+          <TrackedLink
             href="/tools/add-on-promotion-calculator"
+            eventName="click_article_cta"
+            eventParams={{
+              article_slug: "blog_index",
+              destination: "/tools/add-on-promotion-calculator",
+              tool_id: "add_on_promotion",
+            }}
             className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
           >
             使用滿額加購活動計算器
-          </Link>
+          </TrackedLink>
         </section>
       </section>
       </main>
