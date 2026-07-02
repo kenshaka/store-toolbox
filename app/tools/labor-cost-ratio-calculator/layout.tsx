@@ -1,0 +1,40 @@
+import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
+import { getToolStructuredData } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "人事成本占比試算器",
+  description:
+    "免費人事成本占比試算器，輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，快速估算人事成本占營業額比例。",
+  keywords: [
+    "人事成本占比試算器",
+    "人事成本計算",
+    "餐飲人事成本",
+    "薪資占營業額",
+    "小吃店人事成本",
+    "飲料店人事成本",
+    "排班成本",
+    "餐飲營業額",
+  ],
+  openGraph: {
+    title: "人事成本占比試算器｜開店小工具箱",
+    description:
+      "輸入營業額、正職薪資、兼職時數與老闆薪資，快速估算人事成本占比與目標營業額。",
+    type: "website",
+    locale: "zh_TW",
+    siteName: "開店小工具箱",
+  },
+};
+
+export default function LaborCostRatioCalculatorLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <>
+      <JsonLd data={getToolStructuredData("laborCostRatioCalculator")} />
+      {children}
+    </>
+  );
+}

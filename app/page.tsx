@@ -18,11 +18,11 @@ export default function Home() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-          幫餐飲店、小吃店、飲料店快速試算滿額加購、餐飲毛利率、外送平台抽成、菜單漲價與折扣活動，
-          讓你在做定價或促銷前先知道活動會不會賺錢。
+          幫餐飲店、小吃店、飲料店快速試算餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比，
+          讓你在做定價、促銷或開店前先知道數字是否合理。
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {tools.map((tool) => (
             <TrackedLink
               key={tool.href}
@@ -46,8 +46,8 @@ export default function Home() {
         <div className="mt-14 rounded-2xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">這個網站可以幫你做什麼？</h2>
           <p className="mt-4 leading-7 text-stone-700">
-            商店在做活動時，除了看「客人會不會買」，還要計算「活動做完到底賺不賺」。
-            開店小工具箱會把常見的促銷活動變成簡單的計算器，讓你在推出活動前先有基本判斷。
+            商店在做定價、促銷或開店規劃時，除了看「客人會不會買」，還要計算「毛利、固定成本和人事成本撐不撐得住」。
+            開店小工具箱會把常見的經營問題變成簡單的計算器，讓你在投入成本或推出活動前先有基本判斷。
           </p>
         </div>
 
@@ -75,9 +75,9 @@ export default function Home() {
             </div>
 
             <div className="rounded-2xl bg-stone-100 p-5">
-              <h3 className="font-bold">小店經營文章</h3>
+              <h3 className="font-bold">整店營運試算</h3>
               <p className="mt-3 text-sm leading-6 text-stone-700">
-                搭配實際情境說明常見公式，幫助小店老闆理解每個工具背後的計算邏輯。
+                用開店成本、損益兩平與人事成本占比工具，估算開店前資金、每月打平營業額與排班壓力。
               </p>
             </div>
           </div>
@@ -92,9 +92,9 @@ export default function Home() {
           </h2>
 
           <p className="mt-4 leading-7 text-stone-700">
-            如果你正在設計滿額加購、折扣促銷、菜單定價、外送平台售價或商品組合，
+            如果你正在設計滿額加購、折扣促銷、菜單定價、外送平台售價、開店預算或排班人力，
             可以先用這些免費工具快速試算。網站目前特別適合小吃店、飲料店、外帶店、攤商、
-            餐飲創業者，以及想在活動前先確認毛利的小店老闆。
+            餐飲創業者，以及想在投入成本前先確認毛利與營運壓力的小店老闆。
           </p>
         </section>
 
@@ -150,8 +150,8 @@ export default function Home() {
         <section className="mt-8 rounded-2xl bg-stone-900 p-6 text-white shadow-sm">
           <h2 className="text-2xl font-bold">使用前提醒</h2>
           <p className="mt-4 leading-7 text-stone-300">
-            本站工具適合用來做活動前的初步試算，實際經營仍需考慮人事、租金、水電、
-            原物料波動、平台抽成、備料損耗與現場執行狀況。建議把試算結果當作決策參考，
+            本站工具適合用來做活動、定價與開店前的初步試算，實際經營仍需考慮人事、租金、水電、
+            原物料波動、平台抽成、備料損耗、淡旺季與現場執行狀況。建議把試算結果當作決策參考，
             再搭配實際銷售紀錄調整活動方案。
           </p>
         </section>

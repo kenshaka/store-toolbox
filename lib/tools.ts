@@ -8,7 +8,10 @@ export type ToolKey =
   | "restaurantMarginCalculator"
   | "foodDeliveryFeeCalculator"
   | "menuPriceIncreaseCalculator"
-  | "discountProfitCalculator";
+  | "discountProfitCalculator"
+  | "breakEvenCalculator"
+  | "startupCostCalculator"
+  | "laborCostRatioCalculator";
 
 export type Tool = {
   key: ToolKey;
@@ -222,6 +225,123 @@ export const tools = [
         question: "折扣活動適合用在什麼情況？",
         answer:
           "比較適合用在新品曝光、離峰時段引流、庫存壓力、或毛利率較高且出餐流程穩定的商品。",
+      },
+    ],
+  },
+  {
+    key: "breakEvenCalculator",
+    toolId: "break_even",
+    navLabel: "損益兩平",
+    title: "開店損益兩平試算器",
+    category: "整店營運試算",
+    href: "/tools/break-even-calculator",
+    homeDescription:
+      "輸入固定成本、客單價與毛利率，估算每天要賣幾筆才不虧。",
+    description:
+      "輸入每月租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算損益兩平月營業額、每日營業額與每日訂單數。",
+    structuredDescription:
+      "免費開店損益兩平試算器，輸入每月租金、人事成本、水電瓦斯、固定支出、平均客單價、平均毛利率與營業天數，快速估算餐飲店、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆才不虧。",
+    articleTitle: "餐飲店毛利率多少才合理？不同品項毛利率怎麼看",
+    articleHref: "/blog/restaurant-margin-benchmark",
+    keywords: ["開店損益兩平試算器", "損益兩平計算", "開店營業額試算"],
+    faqs: [
+      {
+        question: "損益兩平是什麼意思？",
+        answer:
+          "損益兩平是指營業額產生的毛利剛好足以支付租金、人事、水電等固定成本，此時店家不賺也不虧。",
+      },
+      {
+        question: "為什麼要用毛利率計算損益兩平？",
+        answer:
+          "因為營業額不會全部變成可用來支付固定成本的錢。扣除食材、包材、平台抽成等變動成本後，剩下的毛利才是用來支付固定成本和利潤的來源。",
+      },
+      {
+        question: "平均客單價會影響什麼？",
+        answer:
+          "平均客單價會影響每天需要幾筆訂單才打平。客單價越高，在相同毛利率下，每天需要的訂單數通常越少。",
+      },
+      {
+        question: "損益兩平算出來後就可以開店嗎？",
+        answer:
+          "不一定。損益兩平只是基本門檻，實際仍要評估商圈人流、尖峰出餐能力、淡旺季、周轉金與現場執行狀況。",
+      },
+    ],
+  },
+  {
+    key: "startupCostCalculator",
+    toolId: "startup_cost",
+    navLabel: "開店成本",
+    title: "開店成本試算器",
+    category: "開店預算試算",
+    href: "/tools/startup-cost-calculator",
+    homeDescription:
+      "輸入押金、裝潢、設備與周轉金，估算開店前要準備多少資金。",
+    description:
+      "輸入押金與預付租金、裝潢、設備、初期備料、開幕行銷、開幕前人事與周轉金月數，快速估算開一家小店需要準備多少啟動資金。",
+    structuredDescription:
+      "免費開店成本試算器，輸入押金與預付租金、裝潢、設備、初期備料、登記雜支、開幕行銷、開幕前人事與周轉金月數，快速估算餐飲店、小吃店、飲料店開店前需要準備多少啟動資金。",
+    articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+    articleHref: "/blog/restaurant-food-cost-items",
+    keywords: ["開店成本試算器", "開店預算", "餐飲開店成本"],
+    faqs: [
+      {
+        question: "開店成本通常包含哪些項目？",
+        answer:
+          "常見項目包含押金與預付租金、裝潢、設備、初期備料、包材、登記雜支、開幕行銷、開幕前人事訓練與周轉金。",
+      },
+      {
+        question: "周轉金要抓幾個月比較安全？",
+        answer:
+          "建議至少抓 2 到 3 個月固定營運成本。若商圈來客不穩、裝潢費用高或開幕初期需要測試行銷，周轉金可以抓更保守。",
+      },
+      {
+        question: "裝潢和設備占比太高有什麼風險？",
+        answer:
+          "裝潢設備花太多會壓縮備料、人事、行銷與周轉金，導致正式營業後現金緩衝不足。",
+      },
+      {
+        question: "這個工具可以取代正式預算表嗎？",
+        answer:
+          "不能。這個工具適合做開店前初步估算，正式投入前仍需要逐項詢價、確認租約條件與保留追加預算。",
+      },
+    ],
+  },
+  {
+    key: "laborCostRatioCalculator",
+    toolId: "labor_cost_ratio",
+    navLabel: "人事占比",
+    title: "人事成本占比試算器",
+    category: "人事成本試算",
+    href: "/tools/labor-cost-ratio-calculator",
+    homeDescription:
+      "輸入營業額、薪資與兼職時數，估算人事成本占營業額比例。",
+    description:
+      "輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算人事成本占比與符合目標占比所需營業額。",
+    structuredDescription:
+      "免費人事成本占比試算器，輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資、額外人事負擔與目標人事成本占比，快速估算餐飲店、小吃店、飲料店的人事成本占營業額比例。",
+    articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+    articleHref: "/blog/restaurant-food-cost-items",
+    keywords: ["人事成本占比試算器", "人事成本計算", "薪資占營業額"],
+    faqs: [
+      {
+        question: "人事成本占比怎麼算？",
+        answer:
+          "可以用每月人事成本合計除以每月營業額，再乘以 100%。人事成本應包含正職、兼職、老闆工時與額外人事負擔。",
+      },
+      {
+        question: "老闆薪資要算進人事成本嗎？",
+        answer:
+          "建議要算。若老闆長時間在店裡工作卻完全不計入成本，容易高估店的實際獲利能力。",
+      },
+      {
+        question: "人事成本占比越低越好嗎？",
+        answer:
+          "不一定。占比太低可能代表人手過緊、尖峰服務品質下降或老闆工時被低估。要同時看營業額、服務品質與現場負荷。",
+      },
+      {
+        question: "如果人事占比太高怎麼辦？",
+        answer:
+          "可以檢查排班、尖離峰人力配置、出餐流程、菜單複雜度，也可以思考是否需要提高客單價或增加營業額。",
       },
     ],
   },
