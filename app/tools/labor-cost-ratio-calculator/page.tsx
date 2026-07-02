@@ -200,6 +200,7 @@ export default function LaborCostRatioCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入人事資料</h2>
             <ApplyExampleButton
+              toolId="labor_cost_ratio"
               description="先用月營收 60 萬、正職加兼職的人事範例，快速查看薪資占比是否偏高。"
               onApply={applyExampleValues}
             />

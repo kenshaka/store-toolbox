@@ -200,6 +200,7 @@ export default function DiscountProfitCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
             <ApplyExampleButton
+              toolId="discount_profit"
               description="先用「100 元商品打 85 元、銷量增加」的範例，快速比較折扣前後的毛利變化。"
               onApply={applyExampleValues}
             />

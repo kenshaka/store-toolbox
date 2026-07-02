@@ -205,6 +205,7 @@ export default function BreakEvenCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入營運資料</h2>
             <ApplyExampleButton
+              toolId="break_even"
               description="先用一間小型餐飲店的固定成本範例，快速估算每月與每日損益兩平門檻。"
               onApply={applyExampleValues}
             />

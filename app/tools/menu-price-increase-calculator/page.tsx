@@ -209,6 +209,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入漲價資料</h2>
             <ApplyExampleButton
+              toolId="menu_price_increase"
               description="先用「100 元餐點漲 10 元」的範例，快速查看漲價後毛利與銷量變化。"
               onApply={applyExampleValues}
             />

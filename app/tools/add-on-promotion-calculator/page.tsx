@@ -162,6 +162,7 @@ export default function AddOnPromotionCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
             <ApplyExampleButton
+              toolId="add_on_promotion"
               description="先用「滿 150 元、40 元加購」的常見活動範例，快速查看加購率與成本對毛利的影響。"
               onApply={applyExampleValues}
             />

@@ -191,6 +191,7 @@ export default function StartupCostCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入開店成本</h2>
             <ApplyExampleButton
+              toolId="startup_cost"
               description="先用小型店面開辦成本範例，快速估算裝潢設備、備料與周轉金總需求。"
               onApply={applyExampleValues}
             />

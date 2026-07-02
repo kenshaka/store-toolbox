@@ -204,6 +204,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入外送資料</h2>
             <ApplyExampleButton
+              toolId="food_delivery_fee"
               description="先用「內用 120 元、外送 150 元、平台抽成 30%」的範例，快速查看外送單還賺不賺。"
               onApply={applyExampleValues}
             />

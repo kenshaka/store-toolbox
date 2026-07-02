@@ -175,6 +175,7 @@ export default function RestaurantMarginCalculatorPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入商品資料</h2>
             <ApplyExampleButton
+              toolId="restaurant_margin"
               description="先用一份 120 元餐點的成本範例，快速查看單品毛利率與建議售價。"
               onApply={applyExampleValues}
             />
