@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -130,6 +132,31 @@ export default function StartupCostCalculatorPage() {
     monthlyOperatingCost,
     reserveMonths,
   ]);
+
+
+  const resultSummaryText = [
+    "開店成本試算結果",
+    "",
+    `押金與預付租金：${formatMoney(rentDeposit)}`,
+    `裝潢工程費：${formatMoney(renovationCost)}`,
+    `設備器具費：${formatMoney(equipmentCost)}`,
+    `初期備料與包材：${formatMoney(initialInventory)}`,
+    `登記與開辦雜支：${formatMoney(licenseAndSetup)}`,
+    `開幕行銷費：${formatMoney(openingMarketing)}`,
+    `開幕前人事訓練：${formatMoney(preOpeningLabor)}`,
+    `每月固定營運成本：${formatMoney(monthlyOperatingCost)}`,
+    `預留周轉金月數：${reserveMonths} 個月`,
+    "",
+    `一次性開辦費：${formatMoney(result.setupCost)}`,
+    `裝潢設備合計：${formatMoney(result.equipmentAndRenovationCost)}`,
+    `預留周轉金：${formatMoney(result.workingCapital)}`,
+    `建議準備總資金：${formatMoney(result.totalStartupCost)}`,
+    `周轉金占比：約 ${formatPercent(result.workingCapitalRate)}`,
+    `判斷建議：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -272,6 +299,12 @@ export default function StartupCostCalculatorPage() {
                   {formatMoney(result.totalStartupCost)}
                 </p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="startup_cost"
+              />
             </div>
           </aside>
         </div>

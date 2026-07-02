@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -143,6 +145,33 @@ export default function FoodDeliveryFeeCalculatorPage() {
     shopSubsidy,
     dailyOrders,
   ]);
+
+
+  const resultSummaryText = [
+    "外送平台抽成試算結果",
+    "",
+    `內用／自取售價：${formatMoney(basePrice)}`,
+    `外送平台售價：${formatMoney(deliveryPrice)}`,
+    `食材成本：${formatMoney(foodCost)}`,
+    `包材成本：${formatMoney(packagingCost)}`,
+    `平台抽成比例：${formatPercent(platformFeeRate)}`,
+    `店家負擔折扣／補貼：${formatMoney(shopSubsidy)}`,
+    `預估每日外送訂單數：${dailyOrders} 單`,
+    "",
+    `平台抽成金額：${formatMoney(result.platformFee)}`,
+    `抽成後實收金額：${formatMoney(result.netRevenueAfterFee)}`,
+    `每筆外送毛利：${formatMoney(result.deliveryProfitPerOrder)}`,
+    `外送毛利率：${formatPercent(result.deliveryMarginRate)}`,
+    `內用／自取每份毛利：${formatMoney(result.baseProfitPerOrder)}`,
+    `外送與內用毛利差：${formatMoney(result.profitDifferencePerOrder)}`,
+    `每日外送毛利：${formatMoney(result.dailyProfit)}`,
+    `每月外送毛利：約 ${formatMoney(result.monthlyProfit)}`,
+    `維持內用毛利的外送價：${formatMoney(result.requiredDeliveryPrice)}`,
+    `外送判斷：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -318,6 +347,12 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="food_delivery_fee"
+              />
             </div>
           </aside>
         </div>

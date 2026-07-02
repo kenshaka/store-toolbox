@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -140,6 +142,31 @@ export default function LaborCostRatioCalculatorPage() {
     extraBurdenRate,
     targetLaborRatio,
   ]);
+
+
+  const resultSummaryText = [
+    "人事成本占比試算結果",
+    "",
+    `每月營業額：${formatMoney(monthlyRevenue)}`,
+    `正職人數：${fullTimeStaff} 人`,
+    `正職平均月薪：${formatMoney(fullTimeSalary)}`,
+    `兼職每月總時數：${partTimeHours} 小時`,
+    `兼職時薪：${formatMoney(partTimeHourlyWage)}`,
+    `老闆每月基本薪資：${formatMoney(ownerSalary)}`,
+    `額外人事負擔比例：${formatPercent(extraBurdenRate)}`,
+    `目標人事成本占比：${formatPercent(targetLaborRatio)}`,
+    "",
+    `正職成本：${formatMoney(result.fullTimeCost)}`,
+    `兼職成本：${formatMoney(result.partTimeCost)}`,
+    `每月人事成本合計：${formatMoney(result.totalLaborCost)}`,
+    `人事成本占比：${formatPercent(result.laborRatio)}`,
+    `符合目標所需月營業額：${formatMoney(result.requiredRevenueForTarget)}`,
+    `與目標預算差距：${formatMoney(result.laborBudgetGap)}`,
+    `判斷建議：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -272,6 +299,12 @@ export default function LaborCostRatioCalculatorPage() {
                   {formatMoney(result.requiredRevenueForTarget)}
                 </p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="labor_cost_ratio"
+              />
             </div>
           </aside>
         </div>

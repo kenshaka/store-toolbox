@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -33,6 +34,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -144,6 +146,32 @@ export default function BreakEvenCalculatorPage() {
     operatingDays,
     targetMonthlyProfit,
   ]);
+
+
+  const resultSummaryText = [
+    "開店損益兩平試算結果",
+    "",
+    `每月租金：${formatMoney(monthlyRent)}`,
+    `每月人事成本：${formatMoney(monthlyLabor)}`,
+    `每月水電瓦斯：${formatMoney(utilities)}`,
+    `其他固定支出：${formatMoney(otherFixedCosts)}`,
+    `平均客單價：${formatMoney(averageOrderValue)}`,
+    `平均毛利率：${grossMarginRate.toFixed(1)}%`,
+    `每月營業天數：${operatingDays} 天`,
+    `目標每月利潤：${formatMoney(targetMonthlyProfit)}`,
+    "",
+    `每月固定成本：${formatMoney(result.fixedCost)}`,
+    `損益兩平月營業額：${formatMoney(result.breakEvenMonthlyRevenue)}`,
+    `損益兩平每日營業額：${formatMoney(result.breakEvenDailyRevenue)}`,
+    `每天至少訂單數：${formatNumber(result.breakEvenDailyOrders)} 筆`,
+    `目標月營業額：${formatMoney(result.targetMonthlyRevenue)}`,
+    `目標每日營業額：${formatMoney(result.targetDailyRevenue)}`,
+    `目標每日訂單數：${formatNumber(result.targetDailyOrders)} 筆`,
+    `判斷建議：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -281,6 +309,12 @@ export default function BreakEvenCalculatorPage() {
                   {formatNumber(result.breakEvenDailyOrders)} 筆
                 </p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="break_even"
+              />
             </div>
           </aside>
         </div>

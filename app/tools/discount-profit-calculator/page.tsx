@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -145,6 +147,29 @@ export default function DiscountProfitCalculatorPage() {
     originalDailySales,
     discountDailySales,
   ]);
+
+
+  const resultSummaryText = [
+    "折扣活動損益試算結果",
+    "",
+    `商品原價：${formatMoney(originalPrice)}`,
+    `活動售價：${formatMoney(discountPrice)}`,
+    `單品成本：${formatMoney(productCost)}`,
+    `原本每日銷量：${originalDailySales} 份`,
+    `活動後預估每日銷量：${discountDailySales} 份`,
+    "",
+    `折扣幅度：${formatPercent(result.discountRate)}`,
+    `原本每份毛利：${formatMoney(result.originalProfitPerItem)}`,
+    `活動每份毛利：${formatMoney(result.discountProfitPerItem)}`,
+    `原本每日毛利：${formatMoney(result.originalDailyProfit)}`,
+    `活動每日毛利：${formatMoney(result.discountDailyProfit)}`,
+    `每日毛利差額：${formatMoney(result.dailyProfitDifference)}`,
+    `打平所需銷量：${result.breakEvenSales} 份`,
+    `活動判斷：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -298,6 +323,12 @@ export default function DiscountProfitCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="discount_profit"
+              />
             </div>
           </aside>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -149,6 +151,33 @@ export default function MenuPriceIncreaseCalculatorPage() {
     currentDailySales,
     estimatedDailySales,
   ]);
+
+
+  const resultSummaryText = [
+    "菜單漲價試算結果",
+    "",
+    `目前售價：${formatMoney(currentPrice)}`,
+    `目前單品成本：${formatMoney(currentCost)}`,
+    `成本上漲後單品成本：${formatMoney(newCost)}`,
+    `預計調漲金額：${formatMoney(increaseAmount)}`,
+    `目前每日銷量：${currentDailySales} 份`,
+    `漲價後預估每日銷量：${estimatedDailySales} 份`,
+    "",
+    `漲價後售價：${formatMoney(result.newPrice)}`,
+    `漲價幅度：約 ${formatPercent(result.increaseRate)}`,
+    `目前每份毛利：${formatMoney(result.currentProfitPerItem)}`,
+    `漲價後每份毛利：${formatMoney(result.newProfitPerItem)}`,
+    `漲價後毛利率：${formatPercent(result.newMarginRate)}`,
+    `目前每日毛利：${formatMoney(result.currentDailyProfit)}`,
+    `漲價後每日毛利：${formatMoney(result.newDailyProfit)}`,
+    `每日毛利差額：${formatMoney(result.dailyProfitDifference)}`,
+    `每月毛利差額：約 ${formatMoney(result.monthlyProfitDifference)}`,
+    `打平所需每日銷量：${result.breakEvenDailySales} 份`,
+    `漲價判斷：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -322,6 +351,12 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="menu_price_increase"
+              />
             </div>
           </aside>
         </div>

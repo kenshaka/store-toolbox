@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -120,6 +122,29 @@ export default function RestaurantMarginCalculatorPage() {
       verdictDetail,
     };
   }, [price, foodCost, packagingCost, platformFeeRate, targetMarginRate]);
+
+
+  const resultSummaryText = [
+    "餐飲毛利率試算結果",
+    "",
+    `商品售價：${formatMoney(price)}`,
+    `食材成本：${formatMoney(foodCost)}`,
+    `包材成本：${formatMoney(packagingCost)}`,
+    `平台抽成：${formatPercent(platformFeeRate)}`,
+    `目標毛利率：${formatPercent(targetMarginRate)}`,
+    "",
+    `總直接成本：${formatMoney(result.totalCost)}`,
+    `單品毛利：${formatMoney(result.grossProfit)}`,
+    `毛利率：${formatPercent(result.marginRate)}`,
+    `平台抽成金額：${formatMoney(result.platformFee)}`,
+    `抽成後毛利：${formatMoney(result.profitAfterPlatformFee)}`,
+    `抽成後毛利率：${formatPercent(result.marginAfterPlatformFee)}`,
+    `目標毛利建議售價：${formatMoney(result.suggestedPrice)}`,
+    `商品判斷：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -256,6 +281,12 @@ export default function RestaurantMarginCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="restaurant_margin"
+              />
             </div>
           </aside>
         </div>

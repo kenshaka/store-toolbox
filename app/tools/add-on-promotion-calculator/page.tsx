@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 
@@ -32,6 +33,7 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-stone-800">{label}</span>
@@ -108,6 +110,28 @@ export default function AddOnPromotionCalculatorPage() {
       verdictDetail,
     };
   }, [threshold, addOnPrice, addOnCost, averageOrder, addOnRate, dailyOrders]);
+
+
+  const resultSummaryText = [
+    "滿額加購活動試算結果",
+    "",
+    `單筆消費滿額門檻：${formatMoney(threshold)}`,
+    `加購商品售價：${formatMoney(addOnPrice)}`,
+    `加購商品成本：${formatMoney(addOnCost)}`,
+    `原本平均客單價：${formatMoney(averageOrder)}`,
+    `預估加購率：${formatPercent(addOnRate)}`,
+    `每日訂單數：${dailyOrders} 單`,
+    "",
+    `每份加購毛利：${formatMoney(result.profitPerAddOn)}`,
+    `加購商品毛利率：${formatPercent(result.marginRate)}`,
+    `預估每日加購單數：${result.estimatedAddOnOrders.toFixed(1)} 單`,
+    `預估每日增加毛利：${formatMoney(result.dailyExtraProfit)}`,
+    `預估每月增加毛利：${formatMoney(result.monthlyExtraProfit)}`,
+    `活動判斷：${result.verdict}`,
+    result.verdictDetail,
+    "",
+    "本結果由開店小工具箱產生，僅供經營試算參考。",
+  ].join("\n");
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -239,6 +263,12 @@ export default function AddOnPromotionCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
+
+
+              <CopyResultButton
+                text={resultSummaryText}
+                toolId="add_on_promotion"
+              />
             </div>
           </aside>
         </div>
