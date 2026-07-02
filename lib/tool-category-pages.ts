@@ -228,6 +228,7 @@ export function getToolCategoryPageMetadata(
     openGraph: {
       title: `${page.title}工具｜開店小工具箱`,
       description: page.lead,
+      url: page.href,
       type: "website",
       locale: "zh_TW",
       siteName: "開店小工具箱",

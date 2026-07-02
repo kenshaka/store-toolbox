@@ -301,10 +301,13 @@ export function getGeneralFaqStructuredData(faqs: FaqItem[]) {
 
 export function getToolStructuredData(toolKey: ToolKey) {
   const tool = getToolByKey(toolKey);
+  const category = getToolCategoryBySlug(tool.categorySlug);
 
   return [
     getBreadcrumbJsonLd([
       { name: siteName, path: "" },
+      { name: "開店工具總覽", path: "/tools" },
+      { name: `${category.title}工具`, path: category.href },
       { name: tool.title, path: tool.href },
     ]),
     {

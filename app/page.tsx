@@ -98,36 +98,6 @@ export default function Home() {
 
         <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
           <p className="text-sm font-semibold text-orange-700">
-            工具分類
-          </p>
-          <h2 className="mt-2 text-2xl font-bold">
-            依照你現在遇到的經營問題選工具
-          </h2>
-
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {toolsByCategory.map((category) => (
-              <Link
-                key={category.slug}
-                href={category.href}
-                className="rounded-2xl bg-stone-100 p-5 transition hover:bg-orange-50"
-              >
-                <h3 className="font-bold">{category.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-stone-700">
-                  {category.description}
-                </p>
-                <p className="mt-4 text-sm text-stone-600">
-                  {category.tools.map((tool) => tool.navLabel).join("、")}
-                </p>
-                <p className="mt-4 text-sm font-bold text-orange-700">
-                  查看分類頁 →
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
-          <p className="text-sm font-semibold text-orange-700">
             適合誰使用
           </p>
           <h2 className="mt-2 text-2xl font-bold">

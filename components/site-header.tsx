@@ -1,19 +1,18 @@
 import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
-import { tools } from "@/lib/tools";
 
 const navItems = [
   {
     label: "工具",
     href: "/tools",
   },
-  ...tools.map((tool) => ({
-    label: tool.navLabel,
-    href: tool.href,
-  })),
   {
     label: "文章",
     href: "/blog",
+  },
+  {
+    label: "常見問題",
+    href: "/faq",
   },
   {
     label: "關於",

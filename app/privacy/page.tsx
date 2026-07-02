@@ -7,7 +7,23 @@ export const metadata: Metadata = {
   },
   title: "隱私權政策",
   description:
-    "開店小工具箱的隱私權政策，說明本網站如何處理使用者資料、Cookie、第三方服務與廣告相關資訊。",
+    "開店小工具箱的隱私權政策，說明本網站如何處理使用者資料、Cookie、第三方服務、流量分析與廣告相關資訊。",
+  openGraph: {
+    title: "隱私權政策｜開店小工具箱",
+    description:
+      "說明開店小工具箱如何處理使用者資料、Cookie、第三方服務與流量分析。",
+    type: "website",
+    locale: "zh_TW",
+    siteName: "開店小工具箱",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "開店小工具箱：餐飲毛利、開店成本、損益兩平試算工具",
+      },
+    ],
+  },
 };
 
 export default function PrivacyPage() {
@@ -24,7 +40,7 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="mt-4 text-sm text-stone-500">
-            最後更新日期：2026 年 7 月 1 日
+            最後更新日期：2026 年 7 月 2 日
           </p>
 
           <div className="mt-8 space-y-8 leading-8 text-stone-700">
@@ -34,8 +50,8 @@ export default function PrivacyPage() {
               </h2>
               <p className="mt-3">
                 開店小工具箱是一個提供餐飲店、小吃店、飲料店等商店老闆使用的線上試算工具網站。
-                本網站目前提供滿額加購活動計算器、餐飲毛利率計算器、折扣活動試算工具等內容，
-                協助使用者進行基礎營運與促銷活動試算。
+                本網站目前提供餐飲毛利率、滿額加購、折扣活動、菜單漲價、外送平台抽成、開店成本、損益兩平與人事成本占比等試算工具，
+                協助使用者進行基礎定價、促銷活動、通路成本與開店營運試算。
               </p>
             </section>
 

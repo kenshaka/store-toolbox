@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/json-ld";
 import { getBlogIndexStructuredData } from "@/lib/structured-data";
 import Link from "next/link";
-import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
   },
   title: "餐飲經營文章",
   description:
-    "開店小工具箱的餐飲經營文章，整理滿額加購、餐飲毛利、折扣活動、定價試算與小店促銷活動的實用教學。",
+    "開店小工具箱的餐飲經營文章，整理餐飲毛利、滿額加購、折扣活動、菜單漲價、外送平台抽成、開店成本與小店營運試算的實用教學。",
   keywords: [
     "餐飲經營",
     "餐飲毛利",
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "餐飲經營文章｜開店小工具箱",
     description:
-      "整理餐飲毛利、滿額加購、折扣活動與小店促銷試算的實用文章。",
+      "整理餐飲毛利、滿額加購、折扣活動、外送抽成、菜單漲價與開店成本試算的實用文章。",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",
@@ -58,8 +57,8 @@ export default function BlogPage() {
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             整理餐飲店、小吃店、飲料店常見的營運問題，
-            包含滿額加購、餐飲毛利、折扣活動、菜單定價與促銷試算，
-            幫助小店老闆在做活動前先把數字算清楚。
+            包含滿額加購、餐飲毛利、折扣活動、菜單漲價、外送平台抽成與開店成本，
+            幫助小店老闆在定價、促銷或開店規劃前先把數字算清楚。
           </p>
         </div>
 
@@ -94,27 +93,19 @@ export default function BlogPage() {
 
         <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">
-            推薦先從哪裡開始？
+            文章看完後，可以直接搭配工具試算
           </h2>
 
           <p className="mt-4 leading-7 text-stone-700">
-            如果你正在設計店內促銷活動，可以先看滿額加購文章，
-            再搭配本站的滿額加購活動計算器，快速試算加購價、成本、
-            加購率與預估每日增加毛利。
+            每篇文章都會盡量連回對應的試算工具。如果你想先從工具開始，也可以回到工具總覽，依照單品定價、活動促銷、通路成本與整店經營選擇適合的工具。
           </p>
 
-          <TrackedLink
-            href="/tools/add-on-promotion-calculator"
-            eventName="click_article_cta"
-            eventParams={{
-              article_slug: "blog_index",
-              destination: "/tools/add-on-promotion-calculator",
-              tool_id: "add_on_promotion",
-            }}
+          <Link
+            href="/tools"
             className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
           >
-            使用滿額加購活動計算器
-          </TrackedLink>
+            查看所有工具
+          </Link>
         </section>
       </section>
       </main>

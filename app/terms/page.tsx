@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   title: "使用條款",
   description:
     "開店小工具箱的使用條款，說明本網站服務內容、試算工具限制、免責聲明、智慧財產權與使用者責任。",
+  openGraph: {
+    title: "使用條款｜開店小工具箱",
+    description:
+      "說明開店小工具箱的服務內容、試算工具限制、免責聲明與使用者責任。",
+    type: "website",
+    locale: "zh_TW",
+    siteName: "開店小工具箱",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "開店小工具箱：餐飲毛利、開店成本、損益兩平試算工具",
+      },
+    ],
+  },
 };
 
 export default function TermsPage() {
@@ -24,7 +40,7 @@ export default function TermsPage() {
           </h1>
 
           <p className="mt-4 text-sm text-stone-500">
-            最後更新日期：2026 年 7 月 1 日
+            最後更新日期：2026 年 7 月 2 日
           </p>
 
           <div className="mt-8 space-y-8 leading-8 text-stone-700">
@@ -45,8 +61,8 @@ export default function TermsPage() {
               </h2>
               <p className="mt-3">
                 開店小工具箱提供餐飲店、小吃店、飲料店與商店經營者使用的線上試算工具與相關內容，
-                包含但不限於滿額加購活動計算器、商品毛利率計算器、折扣活動試算工具、
-                經營教學文章與活動試算範例。
+                包含但不限於餐飲毛利率、滿額加購、折扣活動、菜單漲價、外送平台抽成、開店成本、損益兩平與人事成本占比等試算工具，
+                以及餐飲定價、促銷活動與開店營運相關文章。
               </p>
               <p className="mt-3">
                 本網站提供的內容主要用於一般資訊參考與初步試算，並不構成會計、稅務、法律、

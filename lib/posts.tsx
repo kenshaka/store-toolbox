@@ -53,6 +53,7 @@ export function getPostMetadata(post: BlogPost): Metadata {
     openGraph: {
       title: post.openGraphTitle,
       description: post.openGraphDescription,
+      url: `/blog/${post.slug}`,
       type: "article",
       locale: "zh_TW",
       siteName: "開店小工具箱",

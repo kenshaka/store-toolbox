@@ -13,6 +13,12 @@ export default function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-4 text-sm text-stone-500">
+            <Link href="/tools" className="hover:text-orange-700 hover:underline">
+              工具總覽
+            </Link>
+            <Link href="/blog" className="hover:text-orange-700 hover:underline">
+              餐飲文章
+            </Link>
             <Link href="/about" className="hover:text-orange-700 hover:underline">
               關於本站
             </Link>
