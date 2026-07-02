@@ -139,26 +139,26 @@ function FoodDeliveryPlatformFeeContent() {
 
         <section>
           <h2 className="text-2xl font-bold text-stone-900">
-            六、用餐飲毛利率計算器快速試算
+            六、用外送平台抽成試算器快速試算
           </h2>
 
           <p className="mt-4">
-            你可以使用本站的餐飲毛利率計算器，輸入商品售價、食材成本、包材成本和平台抽成率，
-            快速比較內用、外帶、外送不同通路的毛利差異。
+            你可以使用本站的外送平台抽成試算器，輸入內用售價、外送售價、食材成本、包材成本、平台抽成和每日訂單數，
+            快速比較外送抽成後每筆毛利、每日毛利與建議外送售價。
           </p>
 
           <div className="mt-6">
             <TrackedLink
-              href="/tools/restaurant-margin-calculator"
+              href="/tools/food-delivery-fee-calculator"
               eventName="click_article_cta"
               eventParams={{
                 article_slug: "food-delivery-platform-fee",
-                destination: "/tools/restaurant-margin-calculator",
-                tool_id: "restaurant_margin",
+                destination: "/tools/food-delivery-fee-calculator",
+                tool_id: "food_delivery_fee",
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用餐飲毛利率計算器
+              使用外送平台抽成試算器
             </TrackedLink>
           </div>
         </section>

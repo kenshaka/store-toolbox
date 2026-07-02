@@ -8,13 +8,14 @@ import { tools } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "開店工具總覽",
   description:
-    "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含滿額加購活動計算器、餐飲毛利率計算器、菜單漲價試算器與折扣活動損益計算器。",
+    "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含滿額加購活動計算器、餐飲毛利率計算器、外送平台抽成試算器、菜單漲價試算器與折扣活動損益計算器。",
   keywords: [
     "開店工具",
     "餐飲工具",
     "餐飲毛利率計算器",
     "滿額加購計算器",
     "折扣活動計算器",
+    "外送平台抽成試算器",
     "菜單漲價試算器",
     "小吃店經營",
     "飲料店經營",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "開店工具總覽｜開店小工具箱",
     description:
-      "整理小店老闆常用的營運試算工具，包含滿額加購、餐飲毛利率、菜單漲價與折扣活動損益試算。",
+      "整理小店老闆常用的營運試算工具，包含滿額加購、餐飲毛利率、外送平台抽成、菜單漲價與折扣活動損益試算。",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 const useCases = [
   "設計滿額加購活動前，先確認加購價和成本是否有毛利。",
   "調整菜單售價前，先試算食材、包材、成本上漲和平台抽成後的毛利率。",
+  "上架外送平台前，先估算抽成、包材、折扣補貼後是否還有足夠毛利。",
   "推出打折促銷前，先估算需要增加多少銷量才不會虧。",
 ];
 
@@ -54,7 +56,7 @@ export default function ToolsPage() {
 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
               整理餐飲店、小吃店、飲料店與小型商店常用的免費試算工具，
-              幫助你在推出活動、調整售價、菜單漲價或設計促銷前，先把毛利、成本與銷量算清楚。
+              幫助你在推出活動、調整售價、上架外送平台、菜單漲價或設計促銷前，先把毛利、成本與銷量算清楚。
             </p>
           </div>
 
@@ -122,7 +124,7 @@ export default function ToolsPage() {
               適合什麼時候使用？
             </h2>
 
-            <ul className="mt-5 grid gap-4 md:grid-cols-3">
+            <ul className="mt-5 grid gap-4 md:grid-cols-2">
               {useCases.map((useCase) => (
                 <li
                   key={useCase}

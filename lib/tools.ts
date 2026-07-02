@@ -6,6 +6,7 @@ export type FaqItem = {
 export type ToolKey =
   | "addOnPromotionCalculator"
   | "restaurantMarginCalculator"
+  | "foodDeliveryFeeCalculator"
   | "menuPriceIncreaseCalculator"
   | "discountProfitCalculator";
 
@@ -102,6 +103,45 @@ export const tools = [
         question: "毛利率太低怎麼改善？",
         answer:
           "可以調整售價、檢查食材份量、降低包材成本、設計套餐組合，或針對外送平台設定不同售價。",
+      },
+    ],
+  },
+  {
+    key: "foodDeliveryFeeCalculator",
+    toolId: "food_delivery_fee",
+    navLabel: "外送抽成",
+    title: "外送平台抽成試算器",
+    category: "外送平台與成本",
+    href: "/tools/food-delivery-fee-calculator",
+    homeDescription:
+      "輸入外送售價、平台抽成與成本，試算外送訂單還剩多少毛利。",
+    description:
+      "輸入內用售價、外送售價、食材成本、包材成本、平台抽成、店家補貼與每日訂單數，快速估算外送抽成後毛利與建議外送售價。",
+    structuredDescription:
+      "免費外送平台抽成試算器，輸入內用售價、外送平台售價、食材成本、包材成本、平台抽成、店家補貼與每日外送訂單數，快速估算餐飲店、小吃店、飲料店外送抽成後毛利、每日毛利與建議外送售價。",
+    articleTitle: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
+    articleHref: "/blog/food-delivery-platform-fee",
+    keywords: ["外送平台抽成試算器", "外送抽成計算", "餐飲外送成本"],
+    faqs: [
+      {
+        question: "外送平台抽成要算進成本嗎？",
+        answer:
+          "要。平台抽成是每筆外送訂單都會發生的變動成本，會直接降低單品毛利。",
+      },
+      {
+        question: "外送價格一定要比內用價格高嗎？",
+        answer:
+          "不一定，但如果平台抽成比例高、包材成本也高，外送價完全等同內用價時，毛利通常會明顯下降。",
+      },
+      {
+        question: "平台活動折扣要另外算嗎？",
+        answer:
+          "要。如果折扣、免運補貼或平台活動費用由店家負擔，就應該在平台抽成之外再扣除。",
+      },
+      {
+        question: "外送訂單增加就一定比較賺嗎？",
+        answer:
+          "不一定。要比較外送每筆毛利、每日外送總毛利，以及外送是否增加出餐壓力或影響現場服務。",
       },
     ],
   },

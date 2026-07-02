@@ -8,7 +8,7 @@ export default function SiteFooter() {
           <div>
             <p className="font-bold text-stone-900">開店小工具箱</p>
             <p className="mt-1 text-sm text-stone-500">
-              餐飲毛利、滿額加購、折扣活動的簡單試算工具。
+              餐飲毛利、外送抽成、滿額加購與折扣活動的簡單試算工具。
             </p>
           </div>
 

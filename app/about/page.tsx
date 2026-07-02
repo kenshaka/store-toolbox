@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/json-ld";
 import TrackedLink from "@/components/tracked-link";
 import { getAboutStructuredData } from "@/lib/structured-data";
+import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "關於本站",
   description:
-    "關於開店小工具箱：提供餐飲店、小吃店、飲料店與小店老闆使用的免費營運試算工具，協助試算餐飲毛利、滿額加購與折扣活動損益。",
+    "關於開店小工具箱：提供餐飲店、小吃店、飲料店與小店老闆使用的免費營運試算工具，協助試算餐飲毛利、外送平台抽成、滿額加購與折扣活動損益。",
   keywords: [
     "開店小工具箱",
     "關於本站",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     "餐飲毛利試算",
     "小店老闆工具",
     "滿額加購計算",
+    "外送平台抽成",
     "折扣活動試算",
   ],
   openGraph: {
@@ -32,30 +34,6 @@ const audiences = [
   "想確認商品定價、食材成本與包材成本是否合理的小店老闆。",
   "準備測試滿額加購、折扣活動或外送平台售價的經營者。",
   "需要快速估算毛利、成本與銷量變化的個人店家或攤商。",
-];
-
-const currentTools = [
-  {
-    title: "滿額加購活動計算器",
-    description:
-      "用來試算滿額門檻、加購價、商品成本、加購率與每日訂單數，評估加購活動是否划算。",
-    href: "/tools/add-on-promotion-calculator",
-    toolId: "add_on_promotion",
-  },
-  {
-    title: "餐飲毛利率計算器",
-    description:
-      "用來計算商品售價、食材成本、包材成本與平台抽成後的單品毛利與毛利率。",
-    href: "/tools/restaurant-margin-calculator",
-    toolId: "restaurant_margin",
-  },
-  {
-    title: "折扣活動損益計算器",
-    description:
-      "用來比較原價與活動價下的每日毛利，估算打折促銷後是否真的比較賺。",
-    href: "/tools/discount-profit-calculator",
-    toolId: "discount_profit",
-  },
 ];
 
 export default function AboutPage() {
@@ -89,12 +67,12 @@ export default function AboutPage() {
               <p className="mt-4 leading-7 text-stone-700">
                 很多小店在做活動時，會先思考客人會不會買、活動看起來夠不夠吸引人，
                 但比較少先試算活動做完之後是否還有毛利。本站把常見的餐飲促銷與定價問題，
-                做成可以直接輸入數字的計算器，讓你快速估算滿額加購、餐飲毛利率、菜單漲價與折扣活動損益。
+                做成可以直接輸入數字的計算器，讓你快速估算滿額加購、餐飲毛利率、外送平台抽成、菜單漲價與折扣活動損益。
               </p>
 
               <p className="mt-4 leading-7 text-stone-700">
                 這些工具不是要取代會計、稅務或專業顧問，而是協助你在日常經營中先做基本判斷，
-                例如加購價是否太低、平台抽成後毛利是否被吃掉、菜單漲價後毛利是否改善、折扣活動需要多賣幾份才打平。
+                例如加購價是否太低、外送平台抽成後毛利是否被吃掉、菜單漲價後毛利是否改善、折扣活動需要多賣幾份才打平。
               </p>
             </div>
 
@@ -134,8 +112,8 @@ export default function AboutPage() {
               目前提供的工具
             </h2>
 
-            <div className="mt-6 grid gap-5 md:grid-cols-3">
-              {currentTools.map((tool) => (
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {tools.map((tool) => (
                 <TrackedLink
                   key={tool.href}
                   href={tool.href}
@@ -167,7 +145,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-4 leading-7 text-stone-700">
-              除了工具頁，本站也會整理餐飲毛利、滿額加購、折扣活動、菜單定價與促銷試算相關文章。
+              除了工具頁，本站也會整理餐飲毛利、滿額加購、外送平台抽成、折扣活動、菜單定價與促銷試算相關文章。
               文章會盡量用小店常見情境說明公式與判斷方式，讓你不只會使用工具，也能理解背後邏輯。
             </p>
 
