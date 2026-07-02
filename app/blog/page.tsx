@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "開店小工具箱：餐飲毛利、開店成本、損益兩平試算工具",
+      },
+    ],
   },
 };
 

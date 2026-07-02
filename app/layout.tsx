@@ -7,8 +7,10 @@ import SiteHeader from "../components/site-header";
 import "./globals.css";
 
 const gaMeasurementId = "G-EQXRCDDHPT";
+const siteUrl = new URL("https://store-toolbox.vercel.app");
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: {
     default: "開店小工具箱｜餐飲毛利、開店成本、損益兩平試算工具",
     template: "%s｜開店小工具箱",
@@ -33,6 +35,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "開店小工具箱" }],
   creator: "開店小工具箱",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", type: "image/png", sizes: "180x180" },
+    ],
+  },
   verification: {
     google: "7h4UCCg5sFtqIh2i73rOb4gG36E3hZFuJuvRG9CLdbo",
   },
@@ -40,9 +51,25 @@ export const metadata: Metadata = {
     title: "開店小工具箱｜餐飲毛利、開店成本、損益兩平試算工具",
     description:
       "給小店老闆使用的簡單試算工具，快速計算餐飲毛利率、滿額加購、折扣活動、外送抽成、菜單漲價、開店成本、損益兩平與人事成本占比。",
+    url: "/",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "開店小工具箱：餐飲毛利、開店成本、損益兩平試算工具",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "開店小工具箱｜餐飲毛利、開店成本、損益兩平試算工具",
+    description:
+      "給小店老闆使用的簡單試算工具，快速計算毛利率、促銷活動、外送抽成、開店成本與損益兩平。",
+    images: ["/og-image.png"],
   },
 };
 
