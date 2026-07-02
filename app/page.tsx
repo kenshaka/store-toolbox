@@ -4,7 +4,7 @@ import { posts } from "@/lib/posts";
 import { tools } from "@/lib/tools";
 
 export default function Home() {
-  const latestPosts = posts.slice(0, 3);
+  const latestPosts = posts.slice(-6).reverse();
 
   return (
     <main className="bg-stone-50 text-stone-900">
@@ -102,7 +102,7 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-orange-700">
-                最新文章
+                最新開店文章
               </p>
               <h2 className="mt-2 text-2xl font-bold">
                 餐飲活動怎麼算才不會虧？
@@ -113,7 +113,7 @@ export default function Home() {
               href="/blog"
               className="text-sm font-bold text-orange-700 hover:underline"
             >
-              查看所有文章 →
+              看全部文章 →
             </Link>
           </div>
 
@@ -122,7 +122,7 @@ export default function Home() {
             幫助你避免促銷做得很熱鬧卻沒有真正賺錢。
           </p>
 
-          <div className="mt-6 grid gap-5">
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
             {latestPosts.map((post) => (
               <Link
                 key={post.slug}
