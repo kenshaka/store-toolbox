@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "開店小工具箱｜餐飲毛利、開店成本、損益兩平試算工具",
+    name: "開店小工具箱",
     short_name: "開店工具箱",
     description:
       "餐飲店、小吃店、飲料店常用的營運試算工具，包含餐飲毛利率、滿額加購、折扣活動、菜單漲價、外送平台抽成、開店成本、損益兩平與人事成本占比試算。",

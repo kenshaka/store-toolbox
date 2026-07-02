@@ -33,8 +33,14 @@ export const metadata: Metadata = {
     "開店成本",
     "小店老闆工具",
   ],
+  applicationName: "開店小工具箱",
   authors: [{ name: "開店小工具箱" }],
   creator: "開店小工具箱",
+  appleWebApp: {
+    capable: true,
+    title: "開店小工具箱",
+    statusBarStyle: "default",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },

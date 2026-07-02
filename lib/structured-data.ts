@@ -5,13 +5,21 @@ import type { FaqItem, ToolCategorySlug, ToolKey } from "@/lib/tools";
 export const siteUrl = "https://store-toolbox.vercel.app";
 
 const siteName = "開店小工具箱";
+const siteAlternateName = "開店工具箱";
+const siteLogoUrl = `${siteUrl}/icon.png`;
 const siteDescription =
   "開店小工具箱提供餐飲店、小吃店、飲料店常用的營運試算工具，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算，幫助小店老闆在定價、促銷或開店前先算清楚。";
 
 const publisher = {
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: siteName,
+  alternateName: siteAlternateName,
   url: siteUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: siteLogoUrl,
+  },
 };
 
 function absoluteUrl(path = "") {
@@ -63,18 +71,28 @@ export function getWebsiteStructuredData() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
       name: siteName,
-      alternateName: "Store Toolbox",
+      alternateName: siteAlternateName,
       url: siteUrl,
       description: siteDescription,
       inLanguage: "zh-Hant-TW",
       publisher,
+      about: {
+        "@id": `${siteUrl}/#organization`,
+      },
     },
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: siteName,
+      alternateName: siteAlternateName,
       url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: siteLogoUrl,
+      },
     },
   ];
 }
