@@ -256,5 +256,10 @@ export const restaurantFoodCostItemsPost: BlogPost = {
   openGraphTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
   openGraphDescription:
     "用餐飲店常見成本項目拆解單品成本，幫你看懂定價和毛利率背後真正要算的費用。",
+  relatedPostSlugs: [
+    "food-pricing-formula",
+    "restaurant-margin-how-to-calculate",
+    "food-delivery-platform-fee",
+  ],
   Content: RestaurantFoodCostItemsContent,
 };

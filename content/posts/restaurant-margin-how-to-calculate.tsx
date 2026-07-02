@@ -362,5 +362,10 @@ export const restaurantMarginHowToCalculatePost: BlogPost = {
     openGraphTitle: "餐飲毛利率怎麼算？小吃店、飲料店定價前一定要看的毛利公式",
     openGraphDescription:
       "用簡單範例說明餐飲毛利率、食材成本、包材成本、外送平台抽成與建議售價怎麼算。",
+    relatedPostSlugs: [
+      "food-pricing-formula",
+      "restaurant-margin-benchmark",
+      "restaurant-food-cost-items",
+    ],
     Content: RestaurantMarginHowToCalculateContent,
   };

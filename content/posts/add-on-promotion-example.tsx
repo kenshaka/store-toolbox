@@ -337,5 +337,10 @@ export const addOnPromotionExamplePost: BlogPost = {
     openGraphTitle: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
     openGraphDescription:
       "用簡單範例試算滿額加購活動是否划算，包含加購毛利、毛利率、加購率與每日增加毛利。",
+    relatedPostSlugs: [
+      "add-on-vs-discount-promotion",
+      "restaurant-promotion-cost",
+      "increase-average-order-value",
+    ],
     Content: AddOnPromotionExampleContent,
   };

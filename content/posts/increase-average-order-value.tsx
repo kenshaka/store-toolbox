@@ -246,5 +246,10 @@ export const increaseAverageOrderValuePost: BlogPost = {
   openGraphTitle: "餐飲店客單價怎麼提高？加購、套餐、滿額活動比較",
   openGraphDescription:
     "整理提高餐飲客單價的方法，從滿額加購、套餐到升級份量，教你同時看營業額和毛利。",
+  relatedPostSlugs: [
+    "add-on-promotion-example",
+    "add-on-vs-discount-promotion",
+    "menu-price-increase",
+  ],
   Content: IncreaseAverageOrderValueContent,
 };

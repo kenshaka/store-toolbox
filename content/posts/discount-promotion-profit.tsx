@@ -344,5 +344,10 @@ export const discountPromotionProfitPost: BlogPost = {
     openGraphTitle: "折扣活動怎麼算才不會虧？餐飲店打折促銷前要先算這幾個數字",
     openGraphDescription:
       "用簡單範例比較原本每日毛利和活動後每日毛利，快速判斷打折活動是否划算。",
+    relatedPostSlugs: [
+      "restaurant-promotion-checklist",
+      "restaurant-promotion-cost",
+      "add-on-vs-discount-promotion",
+    ],
     Content: DiscountPromotionProfitContent,
   };

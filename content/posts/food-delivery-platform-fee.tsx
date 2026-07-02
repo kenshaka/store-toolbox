@@ -233,5 +233,10 @@ export const foodDeliveryPlatformFeePost: BlogPost = {
   openGraphTitle: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
   openGraphDescription:
     "用餐飲店外送訂單範例試算平台抽成、食材成本、包材成本和抽成後毛利。",
+  relatedPostSlugs: [
+    "restaurant-margin-how-to-calculate",
+    "drink-shop-margin",
+    "restaurant-food-cost-items",
+  ],
   Content: FoodDeliveryPlatformFeeContent,
 };

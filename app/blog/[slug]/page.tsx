@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/json-ld";
+import RelatedPosts from "@/components/related-posts";
 import { getBlogPostStructuredData } from "@/lib/structured-data";
 import { notFound } from "next/navigation";
-import { getPostBySlug, getPostMetadata, posts } from "@/lib/posts";
+import { getPostBySlug, getPostMetadata, getRelatedPosts, posts } from "@/lib/posts";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -38,11 +39,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const PostContent = post.Content;
+  const relatedPosts = getRelatedPosts(post);
 
   return (
     <>
       <JsonLd data={getBlogPostStructuredData(post)} />
       <PostContent />
+      <RelatedPosts posts={relatedPosts} />
     </>
   );
 }

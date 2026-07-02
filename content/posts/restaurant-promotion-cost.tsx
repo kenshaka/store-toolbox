@@ -263,5 +263,10 @@ export const restaurantPromotionCostPost: BlogPost = {
   openGraphTitle: "餐飲店活動成本怎麼抓？折扣、加購、贈品活動試算方式",
   openGraphDescription:
     "用折扣、滿額加購和贈品活動範例，說明餐飲店活動成本與活動前後毛利怎麼試算。",
+  relatedPostSlugs: [
+    "discount-promotion-profit",
+    "restaurant-promotion-checklist",
+    "add-on-promotion-example",
+  ],
   Content: RestaurantPromotionCostContent,
 };

@@ -36,6 +36,12 @@ export function getPostBySlug(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
 
+export function getRelatedPosts(post: BlogPost) {
+  return (post.relatedPostSlugs ?? [])
+    .map((slug) => getPostBySlug(slug))
+    .filter((relatedPost): relatedPost is BlogPost => Boolean(relatedPost));
+}
+
 export function getPostMetadata(post: BlogPost): Metadata {
   return {
     title: post.title,

@@ -247,5 +247,10 @@ export const foodPricingFormulaPost: BlogPost = {
   openGraphTitle: "小吃店定價怎麼算？用成本、毛利率反推售價",
   openGraphDescription:
     "整理小吃店定價公式，教你用總直接成本、目標成本率與毛利率反推餐點售價。",
+  relatedPostSlugs: [
+    "restaurant-margin-how-to-calculate",
+    "restaurant-food-cost-items",
+    "menu-price-increase",
+  ],
   Content: FoodPricingFormulaContent,
 };

@@ -246,5 +246,10 @@ export const addOnVsDiscountPromotionPost: BlogPost = {
   openGraphTitle: "滿額折扣和滿額加購哪個比較划算？餐飲促銷活動比較",
   openGraphDescription:
     "用餐飲店常見活動比較滿額折扣和滿額加購，幫助店家用毛利和客單價判斷活動是否划算。",
+  relatedPostSlugs: [
+    "add-on-promotion-example",
+    "discount-promotion-profit",
+    "restaurant-promotion-cost",
+  ],
   Content: AddOnVsDiscountPromotionContent,
 };

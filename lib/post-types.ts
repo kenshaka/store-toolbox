@@ -9,5 +9,6 @@ export type BlogPost = {
   date: string;
   openGraphTitle: string;
   openGraphDescription: string;
+  relatedPostSlugs?: string[];
   Content: () => ReactNode;
 };

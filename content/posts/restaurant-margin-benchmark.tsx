@@ -229,5 +229,10 @@ export const restaurantMarginBenchmarkPost: BlogPost = {
   openGraphTitle: "餐飲店毛利率多少才合理？不同品項毛利率怎麼看",
   openGraphDescription:
     "整理餐飲毛利率判斷方式，幫你從品項角色、通路抽成和毛利金額看懂菜單是否健康。",
+  relatedPostSlugs: [
+    "restaurant-margin-how-to-calculate",
+    "food-pricing-formula",
+    "menu-price-increase",
+  ],
   Content: RestaurantMarginBenchmarkContent,
 };

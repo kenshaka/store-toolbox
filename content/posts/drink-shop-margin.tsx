@@ -238,5 +238,10 @@ export const drinkShopMarginPost: BlogPost = {
   openGraphTitle: "飲料店毛利怎麼算？原物料、杯材、平台抽成要一起看",
   openGraphDescription:
     "用單杯飲料範例試算飲料店毛利，包含原物料、杯材、配料和平台抽成。",
+  relatedPostSlugs: [
+    "restaurant-margin-how-to-calculate",
+    "restaurant-margin-benchmark",
+    "food-delivery-platform-fee",
+  ],
   Content: DrinkShopMarginContent,
 };

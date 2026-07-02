@@ -236,5 +236,10 @@ export const restaurantPromotionChecklistPost: BlogPost = {
   openGraphTitle: "小吃店促銷活動怎麼設計？避免越賣越虧的 5 個檢查點",
   openGraphDescription:
     "用 5 個檢查點幫餐飲店評估促銷活動是否真的划算，避免營業額上升但毛利下降。",
+  relatedPostSlugs: [
+    "discount-promotion-profit",
+    "restaurant-promotion-cost",
+    "add-on-vs-discount-promotion",
+  ],
   Content: RestaurantPromotionChecklistContent,
 };

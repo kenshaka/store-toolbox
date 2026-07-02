@@ -245,5 +245,10 @@ export const menuPriceIncreasePost: BlogPost = {
   openGraphTitle: "菜單漲價怎麼算？漲價幅度、客單價和毛利率試算",
   openGraphDescription:
     "整理餐飲店菜單漲價前的試算方式，從成本、毛利率、銷量變化和客單價判斷漲多少比較合理。",
+  relatedPostSlugs: [
+    "food-pricing-formula",
+    "restaurant-margin-benchmark",
+    "increase-average-order-value",
+  ],
   Content: MenuPriceIncreaseContent,
 };
