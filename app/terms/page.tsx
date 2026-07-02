@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: {
@@ -184,7 +185,11 @@ export default function TermsPage() {
                 十二、聯絡方式
               </h2>
               <p className="mt-3">
-                如果你對本使用條款、網站內容或服務有任何問題，請透過本網站日後公布的聯絡方式與我們聯繫。
+                如果你對本使用條款、網站內容或服務有任何問題，請透過
+                <Link href="/contact" className="font-bold text-orange-700 hover:underline">
+                  聯絡我們
+                </Link>
+                頁面與我們聯繫。
               </p>
             </section>
 

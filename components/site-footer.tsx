@@ -16,6 +16,12 @@ export default function SiteFooter() {
             <Link href="/about" className="hover:text-orange-700 hover:underline">
               關於本站
             </Link>
+            <Link href="/faq" className="hover:text-orange-700 hover:underline">
+              常見問題
+            </Link>
+            <Link href="/contact" className="hover:text-orange-700 hover:underline">
+              聯絡我們
+            </Link>
             <Link href="/privacy" className="hover:text-orange-700 hover:underline">
               隱私權政策
             </Link>

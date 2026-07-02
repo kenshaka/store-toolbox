@@ -177,6 +177,29 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-orange-700">
+                常見問題
+              </p>
+              <h2 className="mt-2 text-2xl font-bold">
+                使用工具前，可以先了解試算限制
+              </h2>
+              <p className="mt-4 max-w-2xl leading-7 text-stone-700">
+                整理試算結果怎麼看、工具是否儲存輸入數字、餐飲毛利率與淨利率差異、外送抽成與開店成本等常見問題。
+              </p>
+            </div>
+
+            <Link
+              href="/faq"
+              className="inline-flex w-fit rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+            >
+              查看常見問題
+            </Link>
+          </div>
+        </section>
+
         <section className="mt-8 rounded-2xl bg-stone-900 p-6 text-white shadow-sm">
           <h2 className="text-2xl font-bold">使用前提醒</h2>
           <p className="mt-4 leading-7 text-stone-300">

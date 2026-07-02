@@ -205,6 +205,61 @@ export function getAboutStructuredData() {
   ];
 }
 
+export function getContactStructuredData(contactEmail: string) {
+  return [
+    getBreadcrumbJsonLd([
+      { name: siteName, path: "" },
+      { name: "聯絡我們", path: "/contact" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "聯絡開店小工具箱",
+      url: absoluteUrl("/contact"),
+      description:
+        "開店小工具箱的聯絡頁，提供工具建議、錯誤回報、合作需求與網站內容相關問題的聯絡方式。",
+      inLanguage: "zh-Hant-TW",
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+      },
+      publisher,
+      mainEntity: {
+        "@type": "Organization",
+        name: siteName,
+        url: siteUrl,
+        email: contactEmail,
+      },
+    },
+  ];
+}
+
+export function getGeneralFaqStructuredData(faqs: FaqItem[]) {
+  return [
+    getBreadcrumbJsonLd([
+      { name: siteName, path: "" },
+      { name: "常見問題", path: "/faq" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "常見問題",
+      url: absoluteUrl("/faq"),
+      description:
+        "開店小工具箱常見問題，說明工具試算結果、資料儲存、使用限制、免費使用與聯絡方式。",
+      inLanguage: "zh-Hant-TW",
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+      },
+      publisher,
+    },
+    getFaqPageJsonLd(faqs),
+  ];
+}
+
 export function getToolStructuredData(toolKey: ToolKey) {
   const tool = getToolByKey(toolKey);
 

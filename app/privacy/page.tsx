@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: {
@@ -156,7 +157,11 @@ export default function PrivacyPage() {
                 十一、聯絡方式
               </h2>
               <p className="mt-3">
-                如果你對本隱私權政策或資料處理方式有任何問題，請透過本網站日後公布的聯絡方式與我們聯繫。
+                如果你對本隱私權政策或資料處理方式有任何問題，請透過
+                <Link href="/contact" className="font-bold text-orange-700 hover:underline">
+                  聯絡我們
+                </Link>
+                頁面與我們聯繫。
               </p>
             </section>
 
