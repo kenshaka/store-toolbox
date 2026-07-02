@@ -45,6 +45,9 @@ export function getRelatedPosts(post: BlogPost) {
 export function getPostMetadata(post: BlogPost): Metadata {
   return {
     title: post.title,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     description: post.description,
     keywords: post.keywords,
     openGraph: {

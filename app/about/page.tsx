@@ -5,6 +5,9 @@ import { getAboutStructuredData } from "@/lib/structured-data";
 import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/about",
+  },
   title: "關於本站",
   description:
     "關於開店小工具箱：提供餐飲店、小吃店、飲料店與小店老闆使用的免費營運試算工具，協助試算餐飲毛利、外送抽成、滿額加購、開店成本、損益兩平與人事成本占比。",

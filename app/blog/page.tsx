@@ -6,6 +6,9 @@ import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/blog",
+  },
   title: "餐飲經營文章",
   description:
     "開店小工具箱的餐飲經營文章，整理滿額加購、餐飲毛利、折扣活動、定價試算與小店促銷活動的實用教學。",

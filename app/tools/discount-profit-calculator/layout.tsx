@@ -3,6 +3,9 @@ import JsonLd from "@/components/json-ld";
 import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools/discount-profit-calculator",
+  },
   title: "折扣活動損益計算器",
   description:
     "免費折扣活動損益計算器，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速判斷打折促銷後毛利是增加還是減少。",

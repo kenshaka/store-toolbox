@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
 import { toolsByCategory } from "@/lib/tools";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const latestPosts = posts.slice(-6).reverse();

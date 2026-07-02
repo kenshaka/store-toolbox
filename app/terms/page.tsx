@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/terms",
+  },
   title: "使用條款",
   description:
     "開店小工具箱的使用條款，說明本網站服務內容、試算工具限制、免責聲明、智慧財產權與使用者責任。",

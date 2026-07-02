@@ -6,6 +6,9 @@ import { getToolsIndexStructuredData } from "@/lib/structured-data";
 import { toolsByCategory } from "@/lib/tools";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools",
+  },
   title: "開店工具總覽",
   description:
     "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算。",

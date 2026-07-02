@@ -3,6 +3,9 @@ import JsonLd from "@/components/json-ld";
 import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools/food-delivery-fee-calculator",
+  },
   title: "外送平台抽成試算器",
   description:
     "免費外送平台抽成試算器，輸入外送售價、食材成本、包材成本、平台抽成與每日訂單數，快速估算抽成後毛利與建議外送售價。",

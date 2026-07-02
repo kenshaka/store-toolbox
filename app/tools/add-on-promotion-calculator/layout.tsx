@@ -3,6 +3,9 @@ import JsonLd from "@/components/json-ld";
 import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools/add-on-promotion-calculator",
+  },
   title: "滿額加購活動計算器",
   description:
     "免費滿額加購活動計算器，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算餐飲店、小吃店、飲料店的加購活動是否划算。",

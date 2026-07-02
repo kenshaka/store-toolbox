@@ -3,6 +3,9 @@ import JsonLd from "@/components/json-ld";
 import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools/labor-cost-ratio-calculator",
+  },
   title: "人事成本占比試算器",
   description:
     "免費人事成本占比試算器，輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，快速估算人事成本占營業額比例。",

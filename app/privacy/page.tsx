@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/privacy",
+  },
   title: "隱私權政策",
   description:
     "開店小工具箱的隱私權政策，說明本網站如何處理使用者資料、Cookie、第三方服務與廣告相關資訊。",

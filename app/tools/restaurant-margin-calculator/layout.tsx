@@ -3,6 +3,9 @@ import JsonLd from "@/components/json-ld";
 import { getToolStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/tools/restaurant-margin-calculator",
+  },
   title: "餐飲毛利率計算器",
   description:
     "免費餐飲毛利率計算器，輸入商品售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利、毛利率與建議售價。",
