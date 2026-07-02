@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -77,6 +78,17 @@ export default function BreakEvenCalculatorPage() {
       tool_id: "break_even",
       field_name: fieldName,
     });
+  }
+
+  function applyExampleValues() {
+    setMonthlyRent(50000);
+    setMonthlyLabor(90000);
+    setUtilities(15000);
+    setOtherFixedCosts(20000);
+    setAverageOrderValue(180);
+    setGrossMarginRate(60);
+    setOperatingDays(26);
+    setTargetMonthlyProfit(50000);
   }
 
   const result = useMemo(() => {
@@ -192,6 +204,10 @@ export default function BreakEvenCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入營運資料</h2>
+            <ApplyExampleButton
+              description="先用一間小型餐飲店的固定成本範例，快速估算每月與每日損益兩平門檻。"
+              onApply={applyExampleValues}
+            />
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <NumberInput

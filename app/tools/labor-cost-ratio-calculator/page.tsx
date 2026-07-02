@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -76,6 +77,17 @@ export default function LaborCostRatioCalculatorPage() {
       tool_id: "labor_cost_ratio",
       field_name: fieldName,
     });
+  }
+
+  function applyExampleValues() {
+    setMonthlyRevenue(600000);
+    setFullTimeStaff(2);
+    setFullTimeSalary(38000);
+    setPartTimeHours(120);
+    setPartTimeHourlyWage(190);
+    setOwnerSalary(45000);
+    setExtraBurdenRate(8);
+    setTargetLaborRatio(30);
   }
 
   const result = useMemo(() => {
@@ -187,6 +199,10 @@ export default function LaborCostRatioCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入人事資料</h2>
+            <ApplyExampleButton
+              description="先用月營收 60 萬、正職加兼職的人事範例，快速查看薪資占比是否偏高。"
+              onApply={applyExampleValues}
+            />
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <NumberInput

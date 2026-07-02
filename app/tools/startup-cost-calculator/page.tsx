@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -77,6 +78,18 @@ export default function StartupCostCalculatorPage() {
       tool_id: "startup_cost",
       field_name: fieldName,
     });
+  }
+
+  function applyExampleValues() {
+    setRentDeposit(150000);
+    setRenovationCost(300000);
+    setEquipmentCost(250000);
+    setInitialInventory(80000);
+    setLicenseAndSetup(20000);
+    setOpeningMarketing(30000);
+    setPreOpeningLabor(60000);
+    setMonthlyOperatingCost(180000);
+    setReserveMonths(3);
   }
 
   const result = useMemo(() => {
@@ -177,6 +190,10 @@ export default function StartupCostCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入開店成本</h2>
+            <ApplyExampleButton
+              description="先用小型店面開辦成本範例，快速估算裝潢設備、備料與周轉金總需求。"
+              onApply={applyExampleValues}
+            />
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <NumberInput
