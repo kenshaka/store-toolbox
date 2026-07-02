@@ -1,7 +1,7 @@
 import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
-import { tools } from "@/lib/tools";
+import { toolsByCategory } from "@/lib/tools";
 
 export default function Home() {
   const latestPosts = posts.slice(-6).reverse();
@@ -22,24 +22,56 @@ export default function Home() {
           讓你在做定價、促銷或開店前先知道數字是否合理。
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {tools.map((tool) => (
-            <TrackedLink
-              key={tool.href}
-              href={tool.href}
-              eventName="select_tool"
-              eventParams={{
-                tool_id: tool.toolId,
-                tool_name: tool.title,
-                link_location: "home_card",
-              }}
-              className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+        <div className="mt-10 grid gap-6">
+          {toolsByCategory.map((category) => (
+            <section
+              key={category.slug}
+              className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
             >
-              <h2 className="text-xl font-bold">{tool.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-stone-600">
-                {tool.homeDescription}
-              </p>
-            </TrackedLink>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-orange-700">
+                    工具分類
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold text-stone-900">
+                    {category.title}
+                  </h2>
+                  <p className="mt-3 max-w-2xl leading-7 text-stone-700">
+                    {category.homeDescription}
+                  </p>
+                </div>
+
+                <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
+                  {category.tools.length} 個工具
+                </span>
+              </div>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {category.tools.map((tool) => (
+                  <TrackedLink
+                    key={tool.href}
+                    href={tool.href}
+                    eventName="select_tool"
+                    eventParams={{
+                      tool_id: tool.toolId,
+                      tool_name: tool.title,
+                      link_location: "home_card",
+                    }}
+                    className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md"
+                  >
+                    <p className="text-xs font-semibold text-orange-700">
+                      {tool.category}
+                    </p>
+                    <h3 className="mt-2 text-xl font-bold text-stone-900">
+                      {tool.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-stone-600">
+                      {tool.homeDescription}
+                    </p>
+                  </TrackedLink>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
 
@@ -56,30 +88,21 @@ export default function Home() {
             工具分類
           </p>
           <h2 className="mt-2 text-2xl font-bold">
-            先把活動和定價算清楚，再決定要不要推出
+            依照你現在遇到的經營問題選工具
           </h2>
 
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
-            <div className="rounded-2xl bg-stone-100 p-5">
-              <h3 className="font-bold">促銷活動試算</h3>
-              <p className="mt-3 text-sm leading-6 text-stone-700">
-                用滿額加購、外送平台、菜單漲價與折扣活動工具，估算活動後毛利、加購率、抽成與需要增加的銷量。
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-stone-100 p-5">
-              <h3 className="font-bold">餐飲毛利計算</h3>
-              <p className="mt-3 text-sm leading-6 text-stone-700">
-                輸入售價、食材成本、包材成本、平台抽成與漲價金額，快速判斷商品定價是否合理。
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-stone-100 p-5">
-              <h3 className="font-bold">整店營運試算</h3>
-              <p className="mt-3 text-sm leading-6 text-stone-700">
-                用開店成本、損益兩平與人事成本占比工具，估算開店前資金、每月打平營業額與排班壓力。
-              </p>
-            </div>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            {toolsByCategory.map((category) => (
+              <div key={category.slug} className="rounded-2xl bg-stone-100 p-5">
+                <h3 className="font-bold">{category.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-stone-700">
+                  {category.description}
+                </p>
+                <p className="mt-4 text-sm text-stone-600">
+                  {category.tools.map((tool) => tool.navLabel).join("、")}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

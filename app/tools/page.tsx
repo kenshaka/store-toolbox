@@ -3,7 +3,7 @@ import Link from "next/link";
 import JsonLd from "@/components/json-ld";
 import TrackedLink from "@/components/tracked-link";
 import { getToolsIndexStructuredData } from "@/lib/structured-data";
-import { tools } from "@/lib/tools";
+import { toolsByCategory } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "開店工具總覽",
@@ -34,7 +34,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 const useCases = [
   "設計滿額加購活動前，先確認加購價和成本是否有毛利。",
   "調整菜單售價前，先試算食材、包材、成本上漲和平台抽成後的毛利率。",
@@ -59,64 +58,90 @@ export default function ToolsPage() {
 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
               整理餐飲店、小吃店、飲料店與小型商店常用的免費試算工具，
-              幫助你在推出活動、調整售價、上架外送平台、估算開店成本或檢查人事成本前，先把毛利、成本、銷量與營運壓力算清楚。
+              依照單品定價、活動促銷、通路成本與整店經營分組，幫助你在推出活動、調整售價、上架外送平台、估算開店成本或檢查人事成本前，先把毛利、成本、銷量與營運壓力算清楚。
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6">
-            {tools.map((tool) => (
-              <section
-                key={tool.href}
-                className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
-              >
-                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-orange-700">
-                      {tool.category}
-                    </p>
-
-                    <h2 className="mt-2 text-2xl font-bold text-stone-900">
-                      {tool.title}
-                    </h2>
-
-                    <p className="mt-3 max-w-2xl leading-7 text-stone-700">
-                      {tool.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-3">
-                      <TrackedLink
-                        href={tool.href}
-                        eventName="select_tool"
-                        eventParams={{
-                          tool_id: tool.toolId,
-                          tool_name: tool.title,
-                          link_location: "tools_index",
-                        }}
-                        className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
-                      >
-                        使用工具
-                      </TrackedLink>
-
-                      <Link
-                        href={tool.articleHref}
-                        className="inline-flex rounded-full bg-orange-50 px-5 py-3 text-sm font-bold text-orange-700 transition hover:bg-orange-100"
-                      >
-                        閱讀相關文章
-                      </Link>
+          <div className="mt-10 grid gap-8">
+            {toolsByCategory.map((category) => (
+              <section key={category.slug}>
+                <div className="mb-5 rounded-3xl bg-white p-6 shadow-sm">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="text-sm font-semibold text-orange-700">
+                        工具分類
+                      </p>
+                      <h2 className="mt-2 text-3xl font-bold text-stone-900">
+                        {category.title}
+                      </h2>
+                      <p className="mt-3 max-w-2xl leading-7 text-stone-700">
+                        {category.description}
+                      </p>
                     </div>
-                  </div>
 
-                  <div className="rounded-2xl bg-stone-100 p-5 lg:w-80">
-                    <p className="text-sm font-bold text-stone-900">
-                      對應文章
-                    </p>
-                    <Link
-                      href={tool.articleHref}
-                      className="mt-3 block text-sm leading-6 text-stone-700 hover:text-orange-700 hover:underline"
-                    >
-                      {tool.articleTitle}
-                    </Link>
+                    <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
+                      {category.tools.length} 個工具
+                    </span>
                   </div>
+                </div>
+
+                <div className="grid gap-6">
+                  {category.tools.map((tool) => (
+                    <section
+                      key={tool.href}
+                      className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+                    >
+                      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                          <p className="text-sm font-semibold text-orange-700">
+                            {tool.category}
+                          </p>
+
+                          <h3 className="mt-2 text-2xl font-bold text-stone-900">
+                            {tool.title}
+                          </h3>
+
+                          <p className="mt-3 max-w-2xl leading-7 text-stone-700">
+                            {tool.description}
+                          </p>
+
+                          <div className="mt-5 flex flex-wrap gap-3">
+                            <TrackedLink
+                              href={tool.href}
+                              eventName="select_tool"
+                              eventParams={{
+                                tool_id: tool.toolId,
+                                tool_name: tool.title,
+                                link_location: `tools_index_${category.slug}`,
+                              }}
+                              className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+                            >
+                              使用工具
+                            </TrackedLink>
+
+                            <Link
+                              href={tool.articleHref}
+                              className="inline-flex rounded-full bg-orange-50 px-5 py-3 text-sm font-bold text-orange-700 transition hover:bg-orange-100"
+                            >
+                              閱讀相關文章
+                            </Link>
+                          </div>
+                        </div>
+
+                        <div className="rounded-2xl bg-stone-100 p-5 lg:w-80">
+                          <p className="text-sm font-bold text-stone-900">
+                            對應文章
+                          </p>
+                          <Link
+                            href={tool.articleHref}
+                            className="mt-3 block text-sm leading-6 text-stone-700 hover:text-orange-700 hover:underline"
+                          >
+                            {tool.articleTitle}
+                          </Link>
+                        </div>
+                      </div>
+                    </section>
+                  ))}
                 </div>
               </section>
             ))}

@@ -3,6 +3,54 @@ export type FaqItem = {
   answer: string;
 };
 
+export type ToolCategorySlug =
+  | "pricing"
+  | "promotion"
+  | "channelCost"
+  | "operations";
+
+export type ToolCategory = {
+  slug: ToolCategorySlug;
+  title: string;
+  description: string;
+  homeDescription: string;
+};
+
+export const toolCategories = [
+  {
+    slug: "pricing",
+    title: "單品定價",
+    description:
+      "適合用來檢查單一商品的售價、成本、毛利率與漲價後變化。",
+    homeDescription:
+      "先確認每個品項賣出去後還剩多少毛利，再決定售價或漲價幅度。",
+  },
+  {
+    slug: "promotion",
+    title: "活動促銷",
+    description:
+      "適合用來評估滿額加購、折扣活動是否真的能增加毛利。",
+    homeDescription:
+      "推出促銷前，先試算加購價、折扣價與銷量變化是否划算。",
+  },
+  {
+    slug: "channelCost",
+    title: "通路成本",
+    description:
+      "適合用來估算外送平台抽成、包材成本與平台價是否合理。",
+    homeDescription:
+      "上架外送平台前，先看抽成與包材扣完後每筆訂單還剩多少。",
+  },
+  {
+    slug: "operations",
+    title: "整店經營",
+    description:
+      "適合用來估算開店預算、損益兩平與人事成本占比。",
+    homeDescription:
+      "從整間店的角度檢查固定成本、啟動資金與人力配置是否撐得住。",
+  },
+] as const satisfies readonly ToolCategory[];
+
 export type ToolKey =
   | "addOnPromotionCalculator"
   | "restaurantMarginCalculator"
@@ -19,6 +67,7 @@ export type Tool = {
   navLabel: string;
   title: string;
   category: string;
+  categorySlug: ToolCategorySlug;
   href: string;
   homeDescription: string;
   description: string;
@@ -36,6 +85,7 @@ export const tools = [
     navLabel: "滿額加購",
     title: "滿額加購活動計算器",
     category: "餐飲促銷活動",
+    categorySlug: "promotion",
     href: "/tools/add-on-promotion-calculator",
     homeDescription:
       "輸入滿額門檻、加購價與商品成本，快速試算加購活動是否划算。",
@@ -75,6 +125,7 @@ export const tools = [
     navLabel: "餐飲毛利",
     title: "餐飲毛利率計算器",
     category: "餐飲定價與毛利",
+    categorySlug: "pricing",
     href: "/tools/restaurant-margin-calculator",
     homeDescription:
       "輸入售價與成本，計算單品毛利、毛利率與定價是否合理。",
@@ -115,6 +166,7 @@ export const tools = [
     navLabel: "外送抽成",
     title: "外送平台抽成試算器",
     category: "外送平台與成本",
+    categorySlug: "channelCost",
     href: "/tools/food-delivery-fee-calculator",
     homeDescription:
       "輸入外送售價、平台抽成與成本，試算外送訂單還剩多少毛利。",
@@ -155,6 +207,7 @@ export const tools = [
     navLabel: "菜單漲價",
     title: "菜單漲價試算器",
     category: "餐飲定價與毛利",
+    categorySlug: "pricing",
     href: "/tools/menu-price-increase-calculator",
     homeDescription:
       "輸入售價、成本、調漲金額與銷量，試算漲價後每日毛利變化。",
@@ -194,6 +247,7 @@ export const tools = [
     navLabel: "折扣試算",
     title: "折扣活動損益計算器",
     category: "折扣活動試算",
+    categorySlug: "promotion",
     href: "/tools/discount-profit-calculator",
     homeDescription:
       "試算打折後還剩多少毛利，以及需要多賣幾份才不會虧。",
@@ -234,6 +288,7 @@ export const tools = [
     navLabel: "損益兩平",
     title: "開店損益兩平試算器",
     category: "整店營運試算",
+    categorySlug: "operations",
     href: "/tools/break-even-calculator",
     homeDescription:
       "輸入固定成本、客單價與毛利率，估算每天要賣幾筆才不虧。",
@@ -273,6 +328,7 @@ export const tools = [
     navLabel: "開店成本",
     title: "開店成本試算器",
     category: "開店預算試算",
+    categorySlug: "operations",
     href: "/tools/startup-cost-calculator",
     homeDescription:
       "輸入押金、裝潢、設備與周轉金，估算開店前要準備多少資金。",
@@ -312,6 +368,7 @@ export const tools = [
     navLabel: "人事占比",
     title: "人事成本占比試算器",
     category: "人事成本試算",
+    categorySlug: "operations",
     href: "/tools/labor-cost-ratio-calculator",
     homeDescription:
       "輸入營業額、薪資與兼職時數，估算人事成本占營業額比例。",
@@ -346,6 +403,11 @@ export const tools = [
     ],
   },
 ] as const satisfies readonly Tool[];
+
+export const toolsByCategory = toolCategories.map((category) => ({
+  ...category,
+  tools: tools.filter((tool) => tool.categorySlug === category.slug),
+}));
 
 export function getToolByKey(toolKey: ToolKey) {
   return tools.find((tool) => tool.key === toolKey)!;

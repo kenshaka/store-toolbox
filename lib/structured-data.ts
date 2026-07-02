@@ -1,5 +1,5 @@
 import type { BlogPost } from "@/lib/posts";
-import { getToolByKey, tools } from "@/lib/tools";
+import { getToolByKey, toolsByCategory } from "@/lib/tools";
 import type { FaqItem, ToolKey } from "@/lib/tools";
 
 export const siteUrl = "https://store-toolbox.vercel.app";
@@ -147,6 +147,8 @@ export function getBlogPostStructuredData(post: BlogPost) {
 }
 
 export function getToolsIndexStructuredData() {
+  const groupedTools = toolsByCategory.flatMap((category) => category.tools);
+
   return [
     getBreadcrumbJsonLd([
       { name: siteName, path: "" },
@@ -158,7 +160,7 @@ export function getToolsIndexStructuredData() {
       name: "開店工具總覽",
       url: absoluteUrl("/tools"),
       description:
-        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算。",
+        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，依照單品定價、活動促銷、通路成本與整店經營分組，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算。",
       inLanguage: "zh-Hant-TW",
       isPartOf: {
         "@type": "WebSite",
@@ -167,7 +169,7 @@ export function getToolsIndexStructuredData() {
       },
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: tools.map((tool, index) => ({
+        itemListElement: groupedTools.map((tool, index) => ({
           "@type": "ListItem",
           position: index + 1,
           url: absoluteUrl(tool.href),
