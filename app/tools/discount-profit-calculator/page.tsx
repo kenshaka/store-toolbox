@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -83,6 +93,15 @@ export default function DiscountProfitCalculatorPage() {
     setProductCost(40);
     setOriginalDailySales(50);
     setDiscountDailySales(75);
+  }
+
+  function resetCalculator() {
+    setOriginalPrice(0);
+    setDiscountPrice(0);
+    setProductCost(0);
+    setOriginalDailySales(0);
+    setDiscountDailySales(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -158,15 +177,21 @@ export default function DiscountProfitCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "商品原價", value: formatMoney(originalPrice) },
+    { label: "活動售價", value: formatMoney(discountPrice) },
+    { label: "單品成本", value: formatMoney(productCost) },
+    { label: "原本每日銷量", value: `${originalDailySales} 份` },
+    { label: "活動後預估每日銷量", value: `${discountDailySales} 份` },
+  ];
+
   const resultSummaryText = [
-    "折扣活動損益試算結果",
+    "開店小工具箱｜折扣活動損益試算報告",
     "",
-    `商品原價：${formatMoney(originalPrice)}`,
-    `活動售價：${formatMoney(discountPrice)}`,
-    `單品成本：${formatMoney(productCost)}`,
-    `原本每日銷量：${originalDailySales} 份`,
-    `活動後預估每日銷量：${discountDailySales} 份`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `折扣幅度：${formatPercent(result.discountRate)}`,
     `原本每份毛利：${formatMoney(result.originalProfitPerItem)}`,
     `活動每份毛利：${formatMoney(result.discountProfitPerItem)}`,
@@ -174,10 +199,11 @@ export default function DiscountProfitCalculatorPage() {
     `活動每日毛利：${formatMoney(result.discountDailyProfit)}`,
     `每日毛利差額：${formatMoney(result.dailyProfitDifference)}`,
     `打平所需銷量：${result.breakEvenSales} 份`,
-    `活動判斷：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、活動判斷",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際促銷仍需考慮備料、人力、回購與活動曝光成本。",
   ].join("\n");
 
   return (
@@ -199,6 +225,7 @@ export default function DiscountProfitCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="discount_profit"
               description="先用「100 元商品打 85 元、銷量增加」的範例，快速比較折扣前後的毛利變化。"
@@ -258,6 +285,8 @@ export default function DiscountProfitCalculatorPage() {
                 help="活動開始後，預估每天會賣幾份"
               />
             </div>
+
+            <CalculatorResetButton toolId="discount_profit" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -338,6 +367,8 @@ export default function DiscountProfitCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

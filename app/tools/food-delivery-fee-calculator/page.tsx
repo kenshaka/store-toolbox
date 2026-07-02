@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -86,6 +96,17 @@ export default function FoodDeliveryFeeCalculatorPage() {
     setPlatformFeeRate(30);
     setShopSubsidy(0);
     setDailyOrders(30);
+  }
+
+  function resetCalculator() {
+    setBasePrice(0);
+    setDeliveryPrice(0);
+    setFoodCost(0);
+    setPackagingCost(0);
+    setPlatformFeeRate(0);
+    setShopSubsidy(0);
+    setDailyOrders(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -158,17 +179,23 @@ export default function FoodDeliveryFeeCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "內用／自取售價", value: formatMoney(basePrice) },
+    { label: "外送平台售價", value: formatMoney(deliveryPrice) },
+    { label: "食材成本", value: formatMoney(foodCost) },
+    { label: "包材成本", value: formatMoney(packagingCost) },
+    { label: "平台抽成比例", value: formatPercent(platformFeeRate) },
+    { label: "店家負擔折扣／補貼", value: formatMoney(shopSubsidy) },
+    { label: "預估每日外送訂單數", value: `${dailyOrders} 單` },
+  ];
+
   const resultSummaryText = [
-    "外送平台抽成試算結果",
+    "開店小工具箱｜外送平台抽成試算報告",
     "",
-    `內用／自取售價：${formatMoney(basePrice)}`,
-    `外送平台售價：${formatMoney(deliveryPrice)}`,
-    `食材成本：${formatMoney(foodCost)}`,
-    `包材成本：${formatMoney(packagingCost)}`,
-    `平台抽成比例：${formatPercent(platformFeeRate)}`,
-    `店家負擔折扣／補貼：${formatMoney(shopSubsidy)}`,
-    `預估每日外送訂單數：${dailyOrders} 單`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `平台抽成金額：${formatMoney(result.platformFee)}`,
     `抽成後實收金額：${formatMoney(result.netRevenueAfterFee)}`,
     `每筆外送毛利：${formatMoney(result.deliveryProfitPerOrder)}`,
@@ -178,10 +205,11 @@ export default function FoodDeliveryFeeCalculatorPage() {
     `每日外送毛利：${formatMoney(result.dailyProfit)}`,
     `每月外送毛利：約 ${formatMoney(result.monthlyProfit)}`,
     `維持內用毛利的外送價：${formatMoney(result.requiredDeliveryPrice)}`,
-    `外送判斷：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、外送判斷",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際外送利潤仍需依平台合約、活動補貼與包材成本確認。",
   ].join("\n");
 
   return (
@@ -203,6 +231,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入外送資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="food_delivery_fee"
               description="先用「內用 120 元、外送 150 元、平台抽成 30%」的範例，快速查看外送單還賺不賺。"
@@ -282,6 +311,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 help="估算每天外送平台大約會帶來幾筆訂單"
               />
             </div>
+
+            <CalculatorResetButton toolId="food_delivery_fee" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -364,6 +395,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

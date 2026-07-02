@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -88,6 +98,18 @@ export default function LaborCostRatioCalculatorPage() {
     setOwnerSalary(45000);
     setExtraBurdenRate(8);
     setTargetLaborRatio(30);
+  }
+
+  function resetCalculator() {
+    setMonthlyRevenue(0);
+    setFullTimeStaff(0);
+    setFullTimeSalary(0);
+    setPartTimeHours(0);
+    setPartTimeHourlyWage(0);
+    setOwnerSalary(0);
+    setExtraBurdenRate(0);
+    setTargetLaborRatio(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -156,28 +178,35 @@ export default function LaborCostRatioCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "每月營業額", value: formatMoney(monthlyRevenue) },
+    { label: "正職人數", value: `${fullTimeStaff} 人` },
+    { label: "正職平均月薪", value: formatMoney(fullTimeSalary) },
+    { label: "兼職每月總時數", value: `${partTimeHours} 小時` },
+    { label: "兼職時薪", value: formatMoney(partTimeHourlyWage) },
+    { label: "老闆每月基本薪資", value: formatMoney(ownerSalary) },
+    { label: "額外人事負擔比例", value: formatPercent(extraBurdenRate) },
+    { label: "目標人事成本占比", value: formatPercent(targetLaborRatio) },
+  ];
+
   const resultSummaryText = [
-    "人事成本占比試算結果",
+    "開店小工具箱｜人事成本占比試算報告",
     "",
-    `每月營業額：${formatMoney(monthlyRevenue)}`,
-    `正職人數：${fullTimeStaff} 人`,
-    `正職平均月薪：${formatMoney(fullTimeSalary)}`,
-    `兼職每月總時數：${partTimeHours} 小時`,
-    `兼職時薪：${formatMoney(partTimeHourlyWage)}`,
-    `老闆每月基本薪資：${formatMoney(ownerSalary)}`,
-    `額外人事負擔比例：${formatPercent(extraBurdenRate)}`,
-    `目標人事成本占比：${formatPercent(targetLaborRatio)}`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `正職成本：${formatMoney(result.fullTimeCost)}`,
     `兼職成本：${formatMoney(result.partTimeCost)}`,
     `每月人事成本合計：${formatMoney(result.totalLaborCost)}`,
     `人事成本占比：${formatPercent(result.laborRatio)}`,
     `符合目標所需月營業額：${formatMoney(result.requiredRevenueForTarget)}`,
     `與目標預算差距：${formatMoney(result.laborBudgetGap)}`,
-    `判斷建議：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、判斷建議",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際排班仍需考慮尖峰時段、勞健保、獎金與法規成本。",
   ].join("\n");
 
   return (
@@ -199,6 +228,7 @@ export default function LaborCostRatioCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入人事資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="labor_cost_ratio"
               description="先用月營收 60 萬、正職加兼職的人事範例，快速查看薪資占比是否偏高。"
@@ -290,6 +320,8 @@ export default function LaborCostRatioCalculatorPage() {
                 help="可先用 25% 到 35% 做情境試算"
               />
             </div>
+
+            <CalculatorResetButton toolId="labor_cost_ratio" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -317,6 +349,8 @@ export default function LaborCostRatioCalculatorPage() {
                 </p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

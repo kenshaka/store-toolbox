@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -90,6 +100,19 @@ export default function StartupCostCalculatorPage() {
     setPreOpeningLabor(60000);
     setMonthlyOperatingCost(180000);
     setReserveMonths(3);
+  }
+
+  function resetCalculator() {
+    setRentDeposit(0);
+    setRenovationCost(0);
+    setEquipmentCost(0);
+    setInitialInventory(0);
+    setLicenseAndSetup(0);
+    setOpeningMarketing(0);
+    setPreOpeningLabor(0);
+    setMonthlyOperatingCost(0);
+    setReserveMonths(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -147,28 +170,35 @@ export default function StartupCostCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "押金與預付租金", value: formatMoney(rentDeposit) },
+    { label: "裝潢工程費", value: formatMoney(renovationCost) },
+    { label: "設備器具費", value: formatMoney(equipmentCost) },
+    { label: "初期備料與包材", value: formatMoney(initialInventory) },
+    { label: "登記與開辦雜支", value: formatMoney(licenseAndSetup) },
+    { label: "開幕行銷費", value: formatMoney(openingMarketing) },
+    { label: "開幕前人事訓練", value: formatMoney(preOpeningLabor) },
+    { label: "每月固定營運成本", value: formatMoney(monthlyOperatingCost) },
+    { label: "預留周轉金月數", value: `${reserveMonths} 個月` },
+  ];
+
   const resultSummaryText = [
-    "開店成本試算結果",
+    "開店小工具箱｜開店成本試算報告",
     "",
-    `押金與預付租金：${formatMoney(rentDeposit)}`,
-    `裝潢工程費：${formatMoney(renovationCost)}`,
-    `設備器具費：${formatMoney(equipmentCost)}`,
-    `初期備料與包材：${formatMoney(initialInventory)}`,
-    `登記與開辦雜支：${formatMoney(licenseAndSetup)}`,
-    `開幕行銷費：${formatMoney(openingMarketing)}`,
-    `開幕前人事訓練：${formatMoney(preOpeningLabor)}`,
-    `每月固定營運成本：${formatMoney(monthlyOperatingCost)}`,
-    `預留周轉金月數：${reserveMonths} 個月`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `一次性開辦費：${formatMoney(result.setupCost)}`,
     `裝潢設備合計：${formatMoney(result.equipmentAndRenovationCost)}`,
     `預留周轉金：${formatMoney(result.workingCapital)}`,
     `建議準備總資金：${formatMoney(result.totalStartupCost)}`,
     `周轉金占比：約 ${formatPercent(result.workingCapitalRate)}`,
-    `判斷建議：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、判斷建議",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際開店預算仍需保留報價浮動、追加工程與營運磨合期現金。",
   ].join("\n");
 
   return (
@@ -190,6 +220,7 @@ export default function StartupCostCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入開店成本</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="startup_cost"
               description="先用小型店面開辦成本範例，快速估算裝潢設備、備料與周轉金總需求。"
@@ -288,6 +319,8 @@ export default function StartupCostCalculatorPage() {
                 help="建議至少保留 2 到 3 個月"
               />
             </div>
+
+            <CalculatorResetButton toolId="startup_cost" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -318,6 +351,8 @@ export default function StartupCostCalculatorPage() {
                 </p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -35,6 +37,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -44,6 +50,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -89,6 +99,18 @@ export default function BreakEvenCalculatorPage() {
     setGrossMarginRate(60);
     setOperatingDays(26);
     setTargetMonthlyProfit(50000);
+  }
+
+  function resetCalculator() {
+    setMonthlyRent(0);
+    setMonthlyLabor(0);
+    setUtilities(0);
+    setOtherFixedCosts(0);
+    setAverageOrderValue(0);
+    setGrossMarginRate(0);
+    setOperatingDays(0);
+    setTargetMonthlyProfit(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -160,18 +182,24 @@ export default function BreakEvenCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "每月租金", value: formatMoney(monthlyRent) },
+    { label: "每月人事成本", value: formatMoney(monthlyLabor) },
+    { label: "每月水電瓦斯", value: formatMoney(utilities) },
+    { label: "其他固定支出", value: formatMoney(otherFixedCosts) },
+    { label: "平均客單價", value: formatMoney(averageOrderValue) },
+    { label: "平均毛利率", value: `${grossMarginRate.toFixed(1)}%` },
+    { label: "每月營業天數", value: `${operatingDays} 天` },
+    { label: "目標每月利潤", value: formatMoney(targetMonthlyProfit) },
+  ];
+
   const resultSummaryText = [
-    "開店損益兩平試算結果",
+    "開店小工具箱｜開店損益兩平試算報告",
     "",
-    `每月租金：${formatMoney(monthlyRent)}`,
-    `每月人事成本：${formatMoney(monthlyLabor)}`,
-    `每月水電瓦斯：${formatMoney(utilities)}`,
-    `其他固定支出：${formatMoney(otherFixedCosts)}`,
-    `平均客單價：${formatMoney(averageOrderValue)}`,
-    `平均毛利率：${grossMarginRate.toFixed(1)}%`,
-    `每月營業天數：${operatingDays} 天`,
-    `目標每月利潤：${formatMoney(targetMonthlyProfit)}`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `每月固定成本：${formatMoney(result.fixedCost)}`,
     `損益兩平月營業額：${formatMoney(result.breakEvenMonthlyRevenue)}`,
     `損益兩平每日營業額：${formatMoney(result.breakEvenDailyRevenue)}`,
@@ -179,10 +207,11 @@ export default function BreakEvenCalculatorPage() {
     `目標月營業額：${formatMoney(result.targetMonthlyRevenue)}`,
     `目標每日營業額：${formatMoney(result.targetDailyRevenue)}`,
     `目標每日訂單數：${formatNumber(result.targetDailyOrders)} 筆`,
-    `判斷建議：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、判斷建議",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際開店仍需考慮商圈、淡旺季、座位數與出餐能力。",
   ].join("\n");
 
   return (
@@ -204,6 +233,7 @@ export default function BreakEvenCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入營運資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="break_even"
               description="先用一間小型餐飲店的固定成本範例，快速估算每月與每日損益兩平門檻。"
@@ -293,6 +323,8 @@ export default function BreakEvenCalculatorPage() {
                 help="想在打平之外，每月多留下多少利潤"
               />
             </div>
+
+            <CalculatorResetButton toolId="break_even" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -327,6 +359,8 @@ export default function BreakEvenCalculatorPage() {
                 </p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

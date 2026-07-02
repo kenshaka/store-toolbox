@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -84,6 +94,16 @@ export default function MenuPriceIncreaseCalculatorPage() {
     setIncreaseAmount(10);
     setCurrentDailySales(80);
     setEstimatedDailySales(72);
+  }
+
+  function resetCalculator() {
+    setCurrentPrice(0);
+    setCurrentCost(0);
+    setNewCost(0);
+    setIncreaseAmount(0);
+    setCurrentDailySales(0);
+    setEstimatedDailySales(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -163,16 +183,22 @@ export default function MenuPriceIncreaseCalculatorPage() {
   ]);
 
 
+  const assumptionItems = [
+    { label: "目前售價", value: formatMoney(currentPrice) },
+    { label: "目前單品成本", value: formatMoney(currentCost) },
+    { label: "成本上漲後單品成本", value: formatMoney(newCost) },
+    { label: "預計調漲金額", value: formatMoney(increaseAmount) },
+    { label: "目前每日銷量", value: `${currentDailySales} 份` },
+    { label: "漲價後預估每日銷量", value: `${estimatedDailySales} 份` },
+  ];
+
   const resultSummaryText = [
-    "菜單漲價試算結果",
+    "開店小工具箱｜菜單漲價試算報告",
     "",
-    `目前售價：${formatMoney(currentPrice)}`,
-    `目前單品成本：${formatMoney(currentCost)}`,
-    `成本上漲後單品成本：${formatMoney(newCost)}`,
-    `預計調漲金額：${formatMoney(increaseAmount)}`,
-    `目前每日銷量：${currentDailySales} 份`,
-    `漲價後預估每日銷量：${estimatedDailySales} 份`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `漲價後售價：${formatMoney(result.newPrice)}`,
     `漲價幅度：約 ${formatPercent(result.increaseRate)}`,
     `目前每份毛利：${formatMoney(result.currentProfitPerItem)}`,
@@ -183,10 +209,11 @@ export default function MenuPriceIncreaseCalculatorPage() {
     `每日毛利差額：${formatMoney(result.dailyProfitDifference)}`,
     `每月毛利差額：約 ${formatMoney(result.monthlyProfitDifference)}`,
     `打平所需每日銷量：${result.breakEvenDailySales} 份`,
-    `漲價判斷：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、漲價判斷",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際漲價仍需搭配客群接受度、競品價格與菜單結構評估。",
   ].join("\n");
 
   return (
@@ -208,6 +235,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入漲價資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="menu_price_increase"
               description="先用「100 元餐點漲 10 元」的範例，快速查看漲價後毛利與銷量變化。"
@@ -277,6 +305,8 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 help="保守估計漲價後每天大約賣幾份"
               />
             </div>
+
+            <CalculatorResetButton toolId="menu_price_increase" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -367,6 +397,8 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}

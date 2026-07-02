@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
+import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
+import { CalculatorResetButton } from "@/components/calculator-reset-button";
 import { CopyResultButton } from "@/components/copy-result-button";
 import { useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
@@ -34,6 +36,10 @@ function NumberInput({
   suffix = "元",
   help,
 }: NumberInputProps) {
+  const inputMode = suffix === "%" ? "decimal" : "numeric";
+  const step = suffix === "%" ? "0.1" : "1";
+  const placeholder =
+    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -43,6 +49,10 @@ function NumberInput({
           type="number"
           value={value}
           min="0"
+          inputMode={inputMode}
+          step={step}
+          placeholder={placeholder}
+          aria-label={`${label}，單位：${suffix}`}
           onChange={(event) => onChange(Number(event.target.value))}
           className="w-full px-4 py-3 outline-none"
         />
@@ -83,6 +93,15 @@ export default function RestaurantMarginCalculatorPage() {
     setPackagingCost(8);
     setPlatformFeeRate(0);
     setTargetMarginRate(60);
+  }
+
+  function resetCalculator() {
+    setPrice(0);
+    setFoodCost(0);
+    setPackagingCost(0);
+    setPlatformFeeRate(0);
+    setTargetMarginRate(0);
+    trackedFieldsRef.current.clear();
   }
 
   const result = useMemo(() => {
@@ -133,15 +152,21 @@ export default function RestaurantMarginCalculatorPage() {
   }, [price, foodCost, packagingCost, platformFeeRate, targetMarginRate]);
 
 
+  const assumptionItems = [
+    { label: "商品售價", value: formatMoney(price) },
+    { label: "食材成本", value: formatMoney(foodCost) },
+    { label: "包材成本", value: formatMoney(packagingCost) },
+    { label: "平台抽成", value: formatPercent(platformFeeRate) },
+    { label: "目標毛利率", value: formatPercent(targetMarginRate) },
+  ];
+
   const resultSummaryText = [
-    "餐飲毛利率試算結果",
+    "開店小工具箱｜餐飲毛利率試算報告",
     "",
-    `商品售價：${formatMoney(price)}`,
-    `食材成本：${formatMoney(foodCost)}`,
-    `包材成本：${formatMoney(packagingCost)}`,
-    `平台抽成：${formatPercent(platformFeeRate)}`,
-    `目標毛利率：${formatPercent(targetMarginRate)}`,
+    "一、目前試算假設",
+    ...assumptionItems.map((item) => `${item.label}：${item.value}`),
     "",
+    "二、試算結果",
     `總直接成本：${formatMoney(result.totalCost)}`,
     `單品毛利：${formatMoney(result.grossProfit)}`,
     `毛利率：${formatPercent(result.marginRate)}`,
@@ -149,10 +174,11 @@ export default function RestaurantMarginCalculatorPage() {
     `抽成後毛利：${formatMoney(result.profitAfterPlatformFee)}`,
     `抽成後毛利率：${formatPercent(result.marginAfterPlatformFee)}`,
     `目標毛利建議售價：${formatMoney(result.suggestedPrice)}`,
-    `商品判斷：${result.verdict}`,
-    result.verdictDetail,
     "",
-    "本結果由開店小工具箱產生，僅供經營試算參考。",
+    "三、商品判斷",
+    `${result.verdict}：${result.verdictDetail}`,
+    "",
+    "提醒：本結果由開店小工具箱產生，僅供經營試算參考。實際定價仍需考慮人事、租金、水電、耗損與市場接受度。",
   ].join("\n");
 
   return (
@@ -174,6 +200,7 @@ export default function RestaurantMarginCalculatorPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入商品資料</h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
             <ApplyExampleButton
               toolId="restaurant_margin"
               description="先用一份 120 元餐點的成本範例，快速查看單品毛利率與建議售價。"
@@ -233,6 +260,8 @@ export default function RestaurantMarginCalculatorPage() {
                 help="用來反推建議售價，例如 60%"
               />
             </div>
+
+            <CalculatorResetButton toolId="restaurant_margin" onReset={resetCalculator} />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -296,6 +325,8 @@ export default function RestaurantMarginCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
+
+              <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
                 text={resultSummaryText}
