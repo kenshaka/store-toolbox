@@ -142,11 +142,24 @@ function MenuPriceIncreaseContent() {
           </h2>
 
           <p className="mt-4">
-            你可以先用餐飲毛利率計算器輸入新售價、新成本和平台抽成，確認漲價後毛利率是否回到合理範圍。
-            如果你擔心漲價影響銷量，也可以用折扣活動損益計算器的概念比較漲價前後的每日毛利。
+            你可以先用菜單漲價試算器輸入目前售價、成本上漲後成本、預計調漲金額與每日銷量，
+            比較漲價前後的每日毛利。如果還想確認外送平台抽成或目標毛利率，也可以再搭配餐飲毛利率計算器。
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <TrackedLink
+              href="/tools/menu-price-increase-calculator"
+              eventName="click_article_cta"
+              eventParams={{
+                article_slug: "menu-price-increase",
+                destination: "/tools/menu-price-increase-calculator",
+                tool_id: "menu_price_increase",
+              }}
+              className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+            >
+              使用菜單漲價試算器
+            </TrackedLink>
+
             <TrackedLink
               href="/tools/restaurant-margin-calculator"
               eventName="click_article_cta"
@@ -155,22 +168,9 @@ function MenuPriceIncreaseContent() {
                 destination: "/tools/restaurant-margin-calculator",
                 tool_id: "restaurant_margin",
               }}
-              className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
-            >
-              使用餐飲毛利率計算器
-            </TrackedLink>
-
-            <TrackedLink
-              href="/tools/discount-profit-calculator"
-              eventName="click_article_cta"
-              eventParams={{
-                article_slug: "menu-price-increase",
-                destination: "/tools/discount-profit-calculator",
-                tool_id: "discount_profit",
-              }}
               className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用折扣活動損益計算器
+              使用餐飲毛利率計算器
             </TrackedLink>
           </div>
         </section>

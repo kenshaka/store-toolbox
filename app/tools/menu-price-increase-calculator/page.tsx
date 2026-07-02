@@ -1,0 +1,413 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/gtag";
+
+type NumberInputProps = {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+  suffix?: string;
+  help?: string;
+};
+
+function formatMoney(value: number) {
+  return new Intl.NumberFormat("zh-TW", {
+    style: "currency",
+    currency: "TWD",
+    maximumFractionDigits: 0,
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
+function formatPercent(value: number) {
+  if (!Number.isFinite(value)) return "0.0%";
+  return `${value.toFixed(1)}%`;
+}
+
+function NumberInput({
+  label,
+  value,
+  onChange,
+  suffix = "元",
+  help,
+}: NumberInputProps) {
+  return (
+    <label className="block">
+      <span className="text-sm font-medium text-stone-800">{label}</span>
+      <div className="mt-2 flex overflow-hidden rounded-xl border border-stone-300 bg-white focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-200">
+        <input
+          type="number"
+          value={value}
+          min="0"
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="w-full px-4 py-3 outline-none"
+        />
+        <span className="flex items-center bg-stone-100 px-4 text-sm text-stone-600">
+          {suffix}
+        </span>
+      </div>
+      {help ? <p className="mt-1 text-xs text-stone-500">{help}</p> : null}
+    </label>
+  );
+}
+
+export default function MenuPriceIncreaseCalculatorPage() {
+  const [currentPrice, setCurrentPrice] = useState(100);
+  const [currentCost, setCurrentCost] = useState(45);
+  const [newCost, setNewCost] = useState(52);
+  const [increaseAmount, setIncreaseAmount] = useState(10);
+  const [currentDailySales, setCurrentDailySales] = useState(80);
+  const [estimatedDailySales, setEstimatedDailySales] = useState(72);
+
+  const trackedFieldsRef = useRef<Set<string>>(new Set());
+
+  function trackCalculatorField(fieldName: string) {
+    if (trackedFieldsRef.current.has(fieldName)) {
+      return;
+    }
+
+    trackedFieldsRef.current.add(fieldName);
+    trackEvent("use_calculator", {
+      tool_id: "menu_price_increase",
+      field_name: fieldName,
+    });
+  }
+
+  const result = useMemo(() => {
+    const newPrice = currentPrice + increaseAmount;
+    const increaseRate = currentPrice > 0 ? (increaseAmount / currentPrice) * 100 : 0;
+
+    const currentProfitPerItem = currentPrice - currentCost;
+    const noIncreaseProfitPerItem = currentPrice - newCost;
+    const newProfitPerItem = newPrice - newCost;
+
+    const currentMarginRate =
+      currentPrice > 0 ? (currentProfitPerItem / currentPrice) * 100 : 0;
+    const noIncreaseMarginRate =
+      currentPrice > 0 ? (noIncreaseProfitPerItem / currentPrice) * 100 : 0;
+    const newMarginRate =
+      newPrice > 0 ? (newProfitPerItem / newPrice) * 100 : 0;
+
+    const costIncreaseAmount = newCost - currentCost;
+    const currentDailyProfit = currentProfitPerItem * currentDailySales;
+    const newDailyProfit = newProfitPerItem * estimatedDailySales;
+    const dailyProfitDifference = newDailyProfit - currentDailyProfit;
+    const monthlyProfitDifference = dailyProfitDifference * 30;
+
+    const breakEvenDailySales =
+      newProfitPerItem > 0 ? Math.ceil(currentDailyProfit / newProfitPerItem) : 0;
+    const salesBuffer =
+      newProfitPerItem > 0 ? estimatedDailySales - breakEvenDailySales : 0;
+
+    let verdict = "可以測試";
+    let verdictDetail =
+      "漲價後仍有正毛利，可以先觀察銷量變化，再決定是否擴大到其他品項。";
+
+    if (newProfitPerItem <= 0) {
+      verdict = "不建議";
+      verdictDetail =
+        "漲價後售價仍低於或等於成本，每賣一份都沒有毛利。建議重新檢查成本或調高售價。";
+    } else if (dailyProfitDifference < 0) {
+      verdict = "要小心";
+      verdictDetail =
+        "依照目前預估，漲價後每日總毛利仍低於原本狀態。可能是漲幅不夠，或預估銷量下降太多。";
+    } else if (newMarginRate < 35) {
+      verdict = "毛利偏低";
+      verdictDetail =
+        "漲價後每日毛利有改善，但單品毛利率仍偏低。建議再檢查食材、包材、份量或外送平台抽成。";
+    } else if (dailyProfitDifference > 0) {
+      verdict = "有機會";
+      verdictDetail =
+        "依照目前假設，漲價後每日總毛利會增加。建議先從部分品項或小幅調整開始測試。";
+    }
+
+    return {
+      newPrice,
+      increaseRate,
+      currentProfitPerItem,
+      noIncreaseProfitPerItem,
+      newProfitPerItem,
+      currentMarginRate,
+      noIncreaseMarginRate,
+      newMarginRate,
+      costIncreaseAmount,
+      currentDailyProfit,
+      newDailyProfit,
+      dailyProfitDifference,
+      monthlyProfitDifference,
+      breakEvenDailySales,
+      salesBuffer,
+      verdict,
+      verdictDetail,
+    };
+  }, [
+    currentPrice,
+    currentCost,
+    newCost,
+    increaseAmount,
+    currentDailySales,
+    estimatedDailySales,
+  ]);
+
+  return (
+    <main className="min-h-screen bg-stone-50 text-stone-900">
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        <div>
+          <p className="text-sm font-semibold text-orange-700">
+            餐飲定價試算工具
+          </p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+            菜單漲價試算器
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
+            輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，
+            快速估算漲價後毛利率、每日毛利與銷量打平點。
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
+            <h2 className="text-2xl font-bold">輸入漲價資料</h2>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <NumberInput
+                label="目前售價"
+                value={currentPrice}
+                onChange={(value) => {
+                  trackCalculatorField("current_price");
+                  setCurrentPrice(value);
+                }}
+                help="例如：目前一份餐點賣 100 元"
+              />
+
+              <NumberInput
+                label="目前單品成本"
+                value={currentCost}
+                onChange={(value) => {
+                  trackCalculatorField("current_cost");
+                  setCurrentCost(value);
+                }}
+                help="漲價前的食材、包材等直接成本"
+              />
+
+              <NumberInput
+                label="成本上漲後單品成本"
+                value={newCost}
+                onChange={(value) => {
+                  trackCalculatorField("new_cost");
+                  setNewCost(value);
+                }}
+                help="原物料或包材漲價後的新成本"
+              />
+
+              <NumberInput
+                label="預計調漲金額"
+                value={increaseAmount}
+                onChange={(value) => {
+                  trackCalculatorField("increase_amount");
+                  setIncreaseAmount(value);
+                }}
+                help="例如：從 100 元調漲到 110 元，填 10"
+              />
+
+              <NumberInput
+                label="目前每日銷量"
+                value={currentDailySales}
+                onChange={(value) => {
+                  trackCalculatorField("current_daily_sales");
+                  setCurrentDailySales(value);
+                }}
+                suffix="份"
+                help="漲價前每天大約賣幾份"
+              />
+
+              <NumberInput
+                label="漲價後預估每日銷量"
+                value={estimatedDailySales}
+                onChange={(value) => {
+                  trackCalculatorField("estimated_daily_sales");
+                  setEstimatedDailySales(value);
+                }}
+                suffix="份"
+                help="保守估計漲價後每天大約賣幾份"
+              />
+            </div>
+          </div>
+
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+            <h2 className="text-2xl font-bold">試算結果</h2>
+
+            <div className="mt-6 space-y-4">
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">漲價後售價</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatMoney(result.newPrice)}
+                </p>
+                <p className="mt-2 text-xs text-stone-300">
+                  漲幅約 {formatPercent(result.increaseRate)}
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">漲價後每份毛利</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatMoney(result.newProfitPerItem)}
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <p className="text-sm text-stone-300">漲價後毛利率</p>
+                <p className="mt-1 text-3xl font-bold">
+                  {formatPercent(result.newMarginRate)}
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">目前每份毛利</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.currentProfitPerItem)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">不漲價時新毛利</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.noIncreaseProfitPerItem)}
+                  </p>
+                  <p className="mt-2 text-xs text-stone-300">
+                    毛利率 {formatPercent(result.noIncreaseMarginRate)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">目前每日毛利</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.currentDailyProfit)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">漲價後每日毛利</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.newDailyProfit)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">每日毛利差額</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {formatMoney(result.dailyProfitDifference)}
+                  </p>
+                  <p className="mt-2 text-xs text-stone-300">
+                    每月約 {formatMoney(result.monthlyProfitDifference)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-sm text-stone-300">打平所需每日銷量</p>
+                  <p className="mt-1 text-2xl font-bold">
+                    {result.breakEvenDailySales} 份
+                  </p>
+                  <p className="mt-2 text-xs text-stone-300">
+                    預估銷量比打平點 {result.salesBuffer >= 0 ? "多" : "少"}{" "}
+                    {Math.abs(result.salesBuffer)} 份
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-orange-500 p-4 text-stone-950">
+                <p className="text-sm font-semibold">漲價判斷</p>
+                <p className="mt-1 text-3xl font-black">{result.verdict}</p>
+                <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">計算公式</h2>
+
+          <div className="mt-5 space-y-3 text-stone-700">
+            <p>漲價後售價 = 目前售價 + 預計調漲金額</p>
+            <p>漲價幅度 = 預計調漲金額 ÷ 目前售價 × 100%</p>
+            <p>目前每份毛利 = 目前售價 − 目前單品成本</p>
+            <p>不漲價時新毛利 = 目前售價 − 成本上漲後單品成本</p>
+            <p>漲價後每份毛利 = 漲價後售價 − 成本上漲後單品成本</p>
+            <p>漲價後每日毛利 = 漲價後每份毛利 × 漲價後預估每日銷量</p>
+            <p>打平所需每日銷量 = 目前每日毛利 ÷ 漲價後每份毛利</p>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
+            <h3 className="font-bold">範例</h3>
+            <p className="mt-3 leading-7 text-stone-700">
+              如果餐點目前售價 100 元、成本 45 元，每份毛利是 55 元。
+              成本上漲後變成 52 元，若不漲價，每份毛利會降到 48 元。
+              如果調漲 10 元，漲價後售價變成 110 元，每份毛利會變成 58 元。
+              即使每日銷量從 80 份降到 72 份，每日毛利仍會從 4,400 元變成 4,176 元，
+              代表這個漲幅可能還不夠補回銷量下降。
+            </p>
+          </div>
+
+          <p className="mt-6 text-sm leading-6 text-stone-500">
+            本工具僅供菜單漲價前的初步試算。實際結果仍會受到顧客接受度、競品價格、
+            份量調整、外送平台抽成、人力成本與原物料波動等因素影響。
+          </p>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+          <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
+          <p className="mt-4 leading-7 text-stone-700">
+            搭配菜單漲價情境，了解成本上升、毛利率、銷量變化與客單價調整該怎麼一起評估。
+          </p>
+          <Link
+            href="/blog/menu-price-increase"
+            className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+          >
+            菜單漲價怎麼算？漲價幅度、客單價和毛利率試算
+          </Link>
+        </section>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold">常見問題</h2>
+          <div className="mt-5 grid gap-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q1：漲價幅度要怎麼抓？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以先用成本上漲金額和目標毛利率反推，再用 5 元、10 元等顧客容易理解的價格級距測試。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q2：漲價後銷量下降就代表失敗嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                不一定。要看每日總毛利是否改善。如果每份毛利提高夠多，少賣一些仍可能比原本更賺。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q3：所有品項都要一起漲價嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                不一定。可以先調整成本壓力最大、毛利最低或外送影響最大的品項，避免一次改太多造成顧客反彈。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 p-5">
+              <h3 className="font-bold text-stone-900">
+                Q4：漲價可以搭配套餐或加購嗎？
+              </h3>
+              <p className="mt-2 leading-7 text-stone-700">
+                可以。用套餐、升級份量或加購品項提高客單價，常常比單純調高單品價格更容易被客人接受。
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  );
+}

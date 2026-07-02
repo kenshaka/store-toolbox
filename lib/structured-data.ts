@@ -6,7 +6,7 @@ export const siteUrl = "https://store-toolbox.vercel.app";
 
 const siteName = "開店小工具箱";
 const siteDescription =
-  "開店小工具箱提供餐飲店、小吃店、飲料店常用的營運試算工具，包含滿額加購活動計算器、餐飲毛利率計算器、折扣活動損益計算器，幫助小店老闆在做活動前先算清楚。";
+  "開店小工具箱提供餐飲店、小吃店、飲料店常用的營運試算工具，包含滿額加購活動計算器、餐飲毛利率計算器、菜單漲價試算器、折扣活動損益計算器，幫助小店老闆在定價或做活動前先算清楚。";
 
 const publisher = {
   "@type": "Organization",
@@ -158,7 +158,7 @@ export function getToolsIndexStructuredData() {
       name: "開店工具總覽",
       url: absoluteUrl("/tools"),
       description:
-        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含滿額加購活動、餐飲毛利率與折扣活動損益試算。",
+        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，包含滿額加購活動、餐飲毛利率、菜單漲價與折扣活動損益試算。",
       inLanguage: "zh-Hant-TW",
       isPartOf: {
         "@type": "WebSite",

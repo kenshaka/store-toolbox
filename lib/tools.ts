@@ -6,6 +6,7 @@ export type FaqItem = {
 export type ToolKey =
   | "addOnPromotionCalculator"
   | "restaurantMarginCalculator"
+  | "menuPriceIncreaseCalculator"
   | "discountProfitCalculator";
 
 export type Tool = {
@@ -101,6 +102,46 @@ export const tools = [
         question: "毛利率太低怎麼改善？",
         answer:
           "可以調整售價、檢查食材份量、降低包材成本、設計套餐組合，或針對外送平台設定不同售價。",
+      },
+    ],
+  },
+
+  {
+    key: "menuPriceIncreaseCalculator",
+    toolId: "menu_price_increase",
+    navLabel: "菜單漲價",
+    title: "菜單漲價試算器",
+    category: "餐飲定價與毛利",
+    href: "/tools/menu-price-increase-calculator",
+    homeDescription:
+      "輸入售價、成本、調漲金額與銷量，試算漲價後每日毛利變化。",
+    description:
+      "輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，快速試算菜單漲價後毛利率與每日毛利變化。",
+    structuredDescription:
+      "免費菜單漲價試算器，輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，快速估算餐飲店、小吃店、飲料店漲價後毛利率、每日毛利與銷量打平點。",
+    articleTitle: "菜單漲價怎麼算？漲價幅度、客單價和毛利率試算",
+    articleHref: "/blog/menu-price-increase",
+    keywords: ["菜單漲價試算器", "餐飲漲價計算", "餐飲定價"],
+    faqs: [
+      {
+        question: "菜單漲價前最重要要看什麼？",
+        answer:
+          "建議先看目前每份毛利、成本上漲後的新毛利、漲價後毛利率，以及漲價後每日銷量下降時，總毛利是否仍能維持或增加。",
+      },
+      {
+        question: "漲價後銷量下降就一定不好嗎？",
+        answer:
+          "不一定。若每份毛利提高夠多，即使銷量小幅下降，每日總毛利仍可能比原本更高。重點是比較漲價前後的每日總毛利。",
+      },
+      {
+        question: "漲價幅度要用金額還是百分比看？",
+        answer:
+          "兩個都要看。金額方便設計菜單價格，百分比可以看顧客感受與毛利改善幅度。實務上常用 5 元、10 元等容易理解的級距測試。",
+      },
+      {
+        question: "可以用套餐或加購代替漲價嗎？",
+        answer:
+          "可以。若直接漲價擔心顧客反彈，可以用套餐、份量升級、加購品項或規格調整提高客單價，但仍要先確認總毛利是否改善。",
       },
     ],
   },

@@ -18,11 +18,11 @@ export default function Home() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-          幫餐飲店、小吃店、飲料店快速試算滿額加購、餐飲毛利率與折扣活動，
-          讓你在做促銷前先知道活動會不會賺錢。
+          幫餐飲店、小吃店、飲料店快速試算滿額加購、餐飲毛利率、菜單漲價與折扣活動，
+          讓你在做定價或促銷前先知道活動會不會賺錢。
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {tools.map((tool) => (
             <TrackedLink
               key={tool.href}
@@ -63,14 +63,14 @@ export default function Home() {
             <div className="rounded-2xl bg-stone-100 p-5">
               <h3 className="font-bold">促銷活動試算</h3>
               <p className="mt-3 text-sm leading-6 text-stone-700">
-                用滿額加購與折扣活動工具，估算活動後毛利、加購率與需要增加的銷量。
+                用滿額加購、菜單漲價與折扣活動工具，估算活動後毛利、加購率與需要增加的銷量。
               </p>
             </div>
 
             <div className="rounded-2xl bg-stone-100 p-5">
               <h3 className="font-bold">餐飲毛利計算</h3>
               <p className="mt-3 text-sm leading-6 text-stone-700">
-                輸入售價、食材成本、包材成本與平台抽成，快速判斷商品定價是否合理。
+                輸入售價、食材成本、包材成本、漲價金額與平台抽成，快速判斷商品定價是否合理。
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
           </div>
 
           <p className="mt-4 leading-7 text-stone-700">
-            從滿額加購、餐飲毛利率到折扣活動，整理常見的試算範例與公式，
+            從滿額加購、餐飲毛利率、菜單漲價到折扣活動，整理常見的試算範例與公式，
             幫助你避免促銷做得很熱鬧卻沒有真正賺錢。
           </p>
 
