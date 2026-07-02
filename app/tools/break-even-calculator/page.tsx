@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -75,6 +77,55 @@ export default function BreakEvenCalculatorPage() {
   const [grossMarginRate, setGrossMarginRate] = useState(60);
   const [operatingDays, setOperatingDays] = useState(26);
   const [targetMonthlyProfit, setTargetMonthlyProfit] = useState(50000);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedMonthlyRent = getSharedNumberParam(searchParams, "monthlyRent");
+      if (sharedMonthlyRent !== null) {
+        setMonthlyRent(sharedMonthlyRent);
+      }
+
+      const sharedMonthlyLabor = getSharedNumberParam(searchParams, "monthlyLabor");
+      if (sharedMonthlyLabor !== null) {
+        setMonthlyLabor(sharedMonthlyLabor);
+      }
+
+      const sharedUtilities = getSharedNumberParam(searchParams, "utilities");
+      if (sharedUtilities !== null) {
+        setUtilities(sharedUtilities);
+      }
+
+      const sharedOtherFixedCosts = getSharedNumberParam(searchParams, "otherFixedCosts");
+      if (sharedOtherFixedCosts !== null) {
+        setOtherFixedCosts(sharedOtherFixedCosts);
+      }
+
+      const sharedAverageOrderValue = getSharedNumberParam(searchParams, "averageOrderValue");
+      if (sharedAverageOrderValue !== null) {
+        setAverageOrderValue(sharedAverageOrderValue);
+      }
+
+      const sharedGrossMarginRate = getSharedNumberParam(searchParams, "grossMarginRate");
+      if (sharedGrossMarginRate !== null) {
+        setGrossMarginRate(sharedGrossMarginRate);
+      }
+
+      const sharedOperatingDays = getSharedNumberParam(searchParams, "operatingDays");
+      if (sharedOperatingDays !== null) {
+        setOperatingDays(sharedOperatingDays);
+      }
+
+      const sharedTargetMonthlyProfit = getSharedNumberParam(searchParams, "targetMonthlyProfit");
+      if (sharedTargetMonthlyProfit !== null) {
+        setTargetMonthlyProfit(sharedTargetMonthlyProfit);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -191,6 +242,17 @@ export default function BreakEvenCalculatorPage() {
     { label: "平均毛利率", value: `${grossMarginRate.toFixed(1)}%` },
     { label: "每月營業天數", value: `${operatingDays} 天` },
     { label: "目標每月利潤", value: formatMoney(targetMonthlyProfit) },
+  ];
+
+  const shareLinkParams = [
+    { key: "monthlyRent", value: monthlyRent },
+    { key: "monthlyLabor", value: monthlyLabor },
+    { key: "utilities", value: utilities },
+    { key: "otherFixedCosts", value: otherFixedCosts },
+    { key: "averageOrderValue", value: averageOrderValue },
+    { key: "grossMarginRate", value: grossMarginRate },
+    { key: "operatingDays", value: operatingDays },
+    { key: "targetMonthlyProfit", value: targetMonthlyProfit },
   ];
 
   const resultSummaryText = [
@@ -365,6 +427,11 @@ export default function BreakEvenCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="break_even"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="break_even"
+                params={shareLinkParams}
               />
             </div>
           </aside>

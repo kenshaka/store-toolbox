@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -75,6 +77,60 @@ export default function StartupCostCalculatorPage() {
   const [preOpeningLabor, setPreOpeningLabor] = useState(60000);
   const [monthlyOperatingCost, setMonthlyOperatingCost] = useState(180000);
   const [reserveMonths, setReserveMonths] = useState(3);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedRentDeposit = getSharedNumberParam(searchParams, "rentDeposit");
+      if (sharedRentDeposit !== null) {
+        setRentDeposit(sharedRentDeposit);
+      }
+
+      const sharedRenovationCost = getSharedNumberParam(searchParams, "renovationCost");
+      if (sharedRenovationCost !== null) {
+        setRenovationCost(sharedRenovationCost);
+      }
+
+      const sharedEquipmentCost = getSharedNumberParam(searchParams, "equipmentCost");
+      if (sharedEquipmentCost !== null) {
+        setEquipmentCost(sharedEquipmentCost);
+      }
+
+      const sharedInitialInventory = getSharedNumberParam(searchParams, "initialInventory");
+      if (sharedInitialInventory !== null) {
+        setInitialInventory(sharedInitialInventory);
+      }
+
+      const sharedLicenseAndSetup = getSharedNumberParam(searchParams, "licenseAndSetup");
+      if (sharedLicenseAndSetup !== null) {
+        setLicenseAndSetup(sharedLicenseAndSetup);
+      }
+
+      const sharedOpeningMarketing = getSharedNumberParam(searchParams, "openingMarketing");
+      if (sharedOpeningMarketing !== null) {
+        setOpeningMarketing(sharedOpeningMarketing);
+      }
+
+      const sharedPreOpeningLabor = getSharedNumberParam(searchParams, "preOpeningLabor");
+      if (sharedPreOpeningLabor !== null) {
+        setPreOpeningLabor(sharedPreOpeningLabor);
+      }
+
+      const sharedMonthlyOperatingCost = getSharedNumberParam(searchParams, "monthlyOperatingCost");
+      if (sharedMonthlyOperatingCost !== null) {
+        setMonthlyOperatingCost(sharedMonthlyOperatingCost);
+      }
+
+      const sharedReserveMonths = getSharedNumberParam(searchParams, "reserveMonths");
+      if (sharedReserveMonths !== null) {
+        setReserveMonths(sharedReserveMonths);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -180,6 +236,18 @@ export default function StartupCostCalculatorPage() {
     { label: "開幕前人事訓練", value: formatMoney(preOpeningLabor) },
     { label: "每月固定營運成本", value: formatMoney(monthlyOperatingCost) },
     { label: "預留周轉金月數", value: `${reserveMonths} 個月` },
+  ];
+
+  const shareLinkParams = [
+    { key: "rentDeposit", value: rentDeposit },
+    { key: "renovationCost", value: renovationCost },
+    { key: "equipmentCost", value: equipmentCost },
+    { key: "initialInventory", value: initialInventory },
+    { key: "licenseAndSetup", value: licenseAndSetup },
+    { key: "openingMarketing", value: openingMarketing },
+    { key: "preOpeningLabor", value: preOpeningLabor },
+    { key: "monthlyOperatingCost", value: monthlyOperatingCost },
+    { key: "reserveMonths", value: reserveMonths },
   ];
 
   const resultSummaryText = [
@@ -357,6 +425,11 @@ export default function StartupCostCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="startup_cost"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="startup_cost"
+                params={shareLinkParams}
               />
             </div>
           </aside>

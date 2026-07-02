@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -72,6 +74,40 @@ export default function DiscountProfitCalculatorPage() {
   const [originalDailySales, setOriginalDailySales] = useState(50);
   const [discountDailySales, setDiscountDailySales] = useState(80);
 
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedOriginalPrice = getSharedNumberParam(searchParams, "originalPrice");
+      if (sharedOriginalPrice !== null) {
+        setOriginalPrice(sharedOriginalPrice);
+      }
+
+      const sharedDiscountPrice = getSharedNumberParam(searchParams, "discountPrice");
+      if (sharedDiscountPrice !== null) {
+        setDiscountPrice(sharedDiscountPrice);
+      }
+
+      const sharedProductCost = getSharedNumberParam(searchParams, "productCost");
+      if (sharedProductCost !== null) {
+        setProductCost(sharedProductCost);
+      }
+
+      const sharedOriginalDailySales = getSharedNumberParam(searchParams, "originalDailySales");
+      if (sharedOriginalDailySales !== null) {
+        setOriginalDailySales(sharedOriginalDailySales);
+      }
+
+      const sharedDiscountDailySales = getSharedNumberParam(searchParams, "discountDailySales");
+      if (sharedDiscountDailySales !== null) {
+        setDiscountDailySales(sharedDiscountDailySales);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -183,6 +219,14 @@ export default function DiscountProfitCalculatorPage() {
     { label: "單品成本", value: formatMoney(productCost) },
     { label: "原本每日銷量", value: `${originalDailySales} 份` },
     { label: "活動後預估每日銷量", value: `${discountDailySales} 份` },
+  ];
+
+  const shareLinkParams = [
+    { key: "originalPrice", value: originalPrice },
+    { key: "discountPrice", value: discountPrice },
+    { key: "productCost", value: productCost },
+    { key: "originalDailySales", value: originalDailySales },
+    { key: "discountDailySales", value: discountDailySales },
   ];
 
   const resultSummaryText = [
@@ -373,6 +417,11 @@ export default function DiscountProfitCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="discount_profit"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="discount_profit"
+                params={shareLinkParams}
               />
             </div>
           </aside>

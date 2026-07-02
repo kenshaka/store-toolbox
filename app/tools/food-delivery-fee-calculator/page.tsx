@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -73,6 +75,50 @@ export default function FoodDeliveryFeeCalculatorPage() {
   const [platformFeeRate, setPlatformFeeRate] = useState(30);
   const [shopSubsidy, setShopSubsidy] = useState(0);
   const [dailyOrders, setDailyOrders] = useState(30);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedBasePrice = getSharedNumberParam(searchParams, "basePrice");
+      if (sharedBasePrice !== null) {
+        setBasePrice(sharedBasePrice);
+      }
+
+      const sharedDeliveryPrice = getSharedNumberParam(searchParams, "deliveryPrice");
+      if (sharedDeliveryPrice !== null) {
+        setDeliveryPrice(sharedDeliveryPrice);
+      }
+
+      const sharedFoodCost = getSharedNumberParam(searchParams, "foodCost");
+      if (sharedFoodCost !== null) {
+        setFoodCost(sharedFoodCost);
+      }
+
+      const sharedPackagingCost = getSharedNumberParam(searchParams, "packagingCost");
+      if (sharedPackagingCost !== null) {
+        setPackagingCost(sharedPackagingCost);
+      }
+
+      const sharedPlatformFeeRate = getSharedNumberParam(searchParams, "platformFeeRate");
+      if (sharedPlatformFeeRate !== null) {
+        setPlatformFeeRate(sharedPlatformFeeRate);
+      }
+
+      const sharedShopSubsidy = getSharedNumberParam(searchParams, "shopSubsidy");
+      if (sharedShopSubsidy !== null) {
+        setShopSubsidy(sharedShopSubsidy);
+      }
+
+      const sharedDailyOrders = getSharedNumberParam(searchParams, "dailyOrders");
+      if (sharedDailyOrders !== null) {
+        setDailyOrders(sharedDailyOrders);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -187,6 +233,16 @@ export default function FoodDeliveryFeeCalculatorPage() {
     { label: "平台抽成比例", value: formatPercent(platformFeeRate) },
     { label: "店家負擔折扣／補貼", value: formatMoney(shopSubsidy) },
     { label: "預估每日外送訂單數", value: `${dailyOrders} 單` },
+  ];
+
+  const shareLinkParams = [
+    { key: "basePrice", value: basePrice },
+    { key: "deliveryPrice", value: deliveryPrice },
+    { key: "foodCost", value: foodCost },
+    { key: "packagingCost", value: packagingCost },
+    { key: "platformFeeRate", value: platformFeeRate },
+    { key: "shopSubsidy", value: shopSubsidy },
+    { key: "dailyOrders", value: dailyOrders },
   ];
 
   const resultSummaryText = [
@@ -401,6 +457,11 @@ export default function FoodDeliveryFeeCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="food_delivery_fee"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="food_delivery_fee"
+                params={shareLinkParams}
               />
             </div>
           </aside>

@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -73,6 +75,45 @@ export default function AddOnPromotionCalculatorPage() {
   const [addOnRate, setAddOnRate] = useState(30);
   const [dailyOrders, setDailyOrders] = useState(80);
 
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedThreshold = getSharedNumberParam(searchParams, "threshold");
+      if (sharedThreshold !== null) {
+        setThreshold(sharedThreshold);
+      }
+
+      const sharedAddOnPrice = getSharedNumberParam(searchParams, "addOnPrice");
+      if (sharedAddOnPrice !== null) {
+        setAddOnPrice(sharedAddOnPrice);
+      }
+
+      const sharedAddOnCost = getSharedNumberParam(searchParams, "addOnCost");
+      if (sharedAddOnCost !== null) {
+        setAddOnCost(sharedAddOnCost);
+      }
+
+      const sharedAverageOrder = getSharedNumberParam(searchParams, "averageOrder");
+      if (sharedAverageOrder !== null) {
+        setAverageOrder(sharedAverageOrder);
+      }
+
+      const sharedAddOnRate = getSharedNumberParam(searchParams, "addOnRate");
+      if (sharedAddOnRate !== null) {
+        setAddOnRate(sharedAddOnRate);
+      }
+
+      const sharedDailyOrders = getSharedNumberParam(searchParams, "dailyOrders");
+      if (sharedDailyOrders !== null) {
+        setDailyOrders(sharedDailyOrders);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -149,6 +190,15 @@ export default function AddOnPromotionCalculatorPage() {
     { label: "原本平均客單價", value: formatMoney(averageOrder) },
     { label: "預估加購率", value: formatPercent(addOnRate) },
     { label: "每日訂單數", value: `${dailyOrders} 單` },
+  ];
+
+  const shareLinkParams = [
+    { key: "threshold", value: threshold },
+    { key: "addOnPrice", value: addOnPrice },
+    { key: "addOnCost", value: addOnCost },
+    { key: "averageOrder", value: averageOrder },
+    { key: "addOnRate", value: addOnRate },
+    { key: "dailyOrders", value: dailyOrders },
   ];
 
   const resultSummaryText = [
@@ -315,6 +365,11 @@ export default function AddOnPromotionCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="add_on_promotion"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="add_on_promotion"
+                params={shareLinkParams}
               />
             </div>
           </aside>

@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -72,6 +74,45 @@ export default function MenuPriceIncreaseCalculatorPage() {
   const [increaseAmount, setIncreaseAmount] = useState(10);
   const [currentDailySales, setCurrentDailySales] = useState(80);
   const [estimatedDailySales, setEstimatedDailySales] = useState(72);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedCurrentPrice = getSharedNumberParam(searchParams, "currentPrice");
+      if (sharedCurrentPrice !== null) {
+        setCurrentPrice(sharedCurrentPrice);
+      }
+
+      const sharedCurrentCost = getSharedNumberParam(searchParams, "currentCost");
+      if (sharedCurrentCost !== null) {
+        setCurrentCost(sharedCurrentCost);
+      }
+
+      const sharedNewCost = getSharedNumberParam(searchParams, "newCost");
+      if (sharedNewCost !== null) {
+        setNewCost(sharedNewCost);
+      }
+
+      const sharedIncreaseAmount = getSharedNumberParam(searchParams, "increaseAmount");
+      if (sharedIncreaseAmount !== null) {
+        setIncreaseAmount(sharedIncreaseAmount);
+      }
+
+      const sharedCurrentDailySales = getSharedNumberParam(searchParams, "currentDailySales");
+      if (sharedCurrentDailySales !== null) {
+        setCurrentDailySales(sharedCurrentDailySales);
+      }
+
+      const sharedEstimatedDailySales = getSharedNumberParam(searchParams, "estimatedDailySales");
+      if (sharedEstimatedDailySales !== null) {
+        setEstimatedDailySales(sharedEstimatedDailySales);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -190,6 +231,15 @@ export default function MenuPriceIncreaseCalculatorPage() {
     { label: "預計調漲金額", value: formatMoney(increaseAmount) },
     { label: "目前每日銷量", value: `${currentDailySales} 份` },
     { label: "漲價後預估每日銷量", value: `${estimatedDailySales} 份` },
+  ];
+
+  const shareLinkParams = [
+    { key: "currentPrice", value: currentPrice },
+    { key: "currentCost", value: currentCost },
+    { key: "newCost", value: newCost },
+    { key: "increaseAmount", value: increaseAmount },
+    { key: "currentDailySales", value: currentDailySales },
+    { key: "estimatedDailySales", value: estimatedDailySales },
   ];
 
   const resultSummaryText = [
@@ -403,6 +453,11 @@ export default function MenuPriceIncreaseCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="menu_price_increase"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="menu_price_increase"
+                params={shareLinkParams}
               />
             </div>
           </aside>

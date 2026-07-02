@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -74,6 +76,55 @@ export default function LaborCostRatioCalculatorPage() {
   const [ownerSalary, setOwnerSalary] = useState(45000);
   const [extraBurdenRate, setExtraBurdenRate] = useState(8);
   const [targetLaborRatio, setTargetLaborRatio] = useState(30);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedMonthlyRevenue = getSharedNumberParam(searchParams, "monthlyRevenue");
+      if (sharedMonthlyRevenue !== null) {
+        setMonthlyRevenue(sharedMonthlyRevenue);
+      }
+
+      const sharedFullTimeStaff = getSharedNumberParam(searchParams, "fullTimeStaff");
+      if (sharedFullTimeStaff !== null) {
+        setFullTimeStaff(sharedFullTimeStaff);
+      }
+
+      const sharedFullTimeSalary = getSharedNumberParam(searchParams, "fullTimeSalary");
+      if (sharedFullTimeSalary !== null) {
+        setFullTimeSalary(sharedFullTimeSalary);
+      }
+
+      const sharedPartTimeHours = getSharedNumberParam(searchParams, "partTimeHours");
+      if (sharedPartTimeHours !== null) {
+        setPartTimeHours(sharedPartTimeHours);
+      }
+
+      const sharedPartTimeHourlyWage = getSharedNumberParam(searchParams, "partTimeHourlyWage");
+      if (sharedPartTimeHourlyWage !== null) {
+        setPartTimeHourlyWage(sharedPartTimeHourlyWage);
+      }
+
+      const sharedOwnerSalary = getSharedNumberParam(searchParams, "ownerSalary");
+      if (sharedOwnerSalary !== null) {
+        setOwnerSalary(sharedOwnerSalary);
+      }
+
+      const sharedExtraBurdenRate = getSharedNumberParam(searchParams, "extraBurdenRate");
+      if (sharedExtraBurdenRate !== null) {
+        setExtraBurdenRate(sharedExtraBurdenRate);
+      }
+
+      const sharedTargetLaborRatio = getSharedNumberParam(searchParams, "targetLaborRatio");
+      if (sharedTargetLaborRatio !== null) {
+        setTargetLaborRatio(sharedTargetLaborRatio);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -187,6 +238,17 @@ export default function LaborCostRatioCalculatorPage() {
     { label: "老闆每月基本薪資", value: formatMoney(ownerSalary) },
     { label: "額外人事負擔比例", value: formatPercent(extraBurdenRate) },
     { label: "目標人事成本占比", value: formatPercent(targetLaborRatio) },
+  ];
+
+  const shareLinkParams = [
+    { key: "monthlyRevenue", value: monthlyRevenue },
+    { key: "fullTimeStaff", value: fullTimeStaff },
+    { key: "fullTimeSalary", value: fullTimeSalary },
+    { key: "partTimeHours", value: partTimeHours },
+    { key: "partTimeHourlyWage", value: partTimeHourlyWage },
+    { key: "ownerSalary", value: ownerSalary },
+    { key: "extraBurdenRate", value: extraBurdenRate },
+    { key: "targetLaborRatio", value: targetLaborRatio },
   ];
 
   const resultSummaryText = [
@@ -355,6 +417,11 @@ export default function LaborCostRatioCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="labor_cost_ratio"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="labor_cost_ratio"
+                params={shareLinkParams}
               />
             </div>
           </aside>

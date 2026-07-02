@@ -4,8 +4,10 @@ import Link from "next/link";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
+import { CopyCalculatorLinkButton } from "@/components/copy-calculator-link-button";
 import { CopyResultButton } from "@/components/copy-result-button";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 
 type NumberInputProps = {
@@ -72,6 +74,40 @@ export default function RestaurantMarginCalculatorPage() {
   const [platformFeeRate, setPlatformFeeRate] = useState(0);
   const [targetMarginRate, setTargetMarginRate] = useState(60);
 
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const sharedPrice = getSharedNumberParam(searchParams, "price");
+      if (sharedPrice !== null) {
+        setPrice(sharedPrice);
+      }
+
+      const sharedFoodCost = getSharedNumberParam(searchParams, "foodCost");
+      if (sharedFoodCost !== null) {
+        setFoodCost(sharedFoodCost);
+      }
+
+      const sharedPackagingCost = getSharedNumberParam(searchParams, "packagingCost");
+      if (sharedPackagingCost !== null) {
+        setPackagingCost(sharedPackagingCost);
+      }
+
+      const sharedPlatformFeeRate = getSharedNumberParam(searchParams, "platformFeeRate");
+      if (sharedPlatformFeeRate !== null) {
+        setPlatformFeeRate(sharedPlatformFeeRate);
+      }
+
+      const sharedTargetMarginRate = getSharedNumberParam(searchParams, "targetMarginRate");
+      if (sharedTargetMarginRate !== null) {
+        setTargetMarginRate(sharedTargetMarginRate);
+      }
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackedFieldsRef = useRef<Set<string>>(new Set());
 
@@ -158,6 +194,14 @@ export default function RestaurantMarginCalculatorPage() {
     { label: "包材成本", value: formatMoney(packagingCost) },
     { label: "平台抽成", value: formatPercent(platformFeeRate) },
     { label: "目標毛利率", value: formatPercent(targetMarginRate) },
+  ];
+
+  const shareLinkParams = [
+    { key: "price", value: price },
+    { key: "foodCost", value: foodCost },
+    { key: "packagingCost", value: packagingCost },
+    { key: "platformFeeRate", value: platformFeeRate },
+    { key: "targetMarginRate", value: targetMarginRate },
   ];
 
   const resultSummaryText = [
@@ -331,6 +375,11 @@ export default function RestaurantMarginCalculatorPage() {
               <CopyResultButton
                 text={resultSummaryText}
                 toolId="restaurant_margin"
+              />
+
+              <CopyCalculatorLinkButton
+                toolId="restaurant_margin"
+                params={shareLinkParams}
               />
             </div>
           </aside>
