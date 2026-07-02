@@ -277,11 +277,11 @@ export default function StartupCostCalculatorPage() {
             開店預算試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            開店成本試算器
+            餐廳開店成本估算器
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入押金、裝潢、設備、初期備料、開幕行銷與周轉金，
-            快速估算開一家小店大約需要準備多少啟動資金。
+            快速估算餐廳、小吃店或飲料店開店前大約需要準備多少啟動資金。
           </p>
         </div>
 

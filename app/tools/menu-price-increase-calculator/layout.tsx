@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/menu-price-increase-calculator",
   },
-  title: "菜單漲價試算器",
+  title: "菜單漲價試算器｜餐飲漲價後毛利率與銷量試算",
   description:
-    "免費菜單漲價試算器，輸入目前售價、成本上漲後成本、預計調漲金額與每日銷量，快速估算漲價後毛利率與每日毛利變化。",
+    "免費菜單漲價試算器，輸入目前售價、成本上漲後成本、預計調漲金額與每日銷量，快速估算餐飲漲價後毛利率、每日毛利與銷量打平點。",
   keywords: [
     "菜單漲價試算器",
     "餐飲漲價計算",

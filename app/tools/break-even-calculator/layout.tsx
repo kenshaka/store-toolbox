@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/break-even-calculator",
   },
-  title: "開店損益兩平試算器",
+  title: "損益兩平計算器｜餐飲開店每月營業額與訂單數試算",
   description:
-    "免費開店損益兩平試算器，輸入租金、人事、水電、固定支出、平均客單價與毛利率，快速估算每月營業額與每日訂單數要做到多少才不虧。",
+    "免費損益兩平計算器，輸入租金、人事、水電、固定支出、平均客單價與毛利率，快速估算餐廳、小吃店、飲料店每月營業額與每日訂單數要做到多少才不虧。",
   keywords: [
     "開店損益兩平試算器",
     "損益兩平計算",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "開店成本",
   ],
   openGraph: {
-    title: "開店損益兩平試算器｜開店小工具箱",
+    title: "損益兩平計算器｜開店小工具箱",
     description:
       "輸入固定成本、平均客單價與毛利率，快速估算小店每月要做到多少營業額、每天要賣幾筆才打平。",
     type: "website",

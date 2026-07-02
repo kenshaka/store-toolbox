@@ -325,6 +325,7 @@ export const addOnPromotionExamplePost: BlogPost = {
     keywords: [
       "滿150加購40",
       "滿額加購",
+      "滿額加購活動計算",
       "滿額加購計算",
       "餐飲促銷活動",
       "餐飲毛利",

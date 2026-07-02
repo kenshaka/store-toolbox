@@ -284,11 +284,11 @@ export default function BreakEvenCalculatorPage() {
             開店損益試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            開店損益兩平試算器
+            損益兩平計算器
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入每月租金、人事、水電、固定支出、平均客單價與毛利率，
-            快速估算每月要做到多少營業額、每天要賣幾筆訂單才不虧。
+            快速估算餐廳、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆訂單才不虧。
           </p>
         </div>
 

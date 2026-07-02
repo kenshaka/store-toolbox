@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/discount-profit-calculator",
   },
-  title: "折扣活動損益計算器",
+  title: "折扣活動損益計算器｜餐飲打折促銷毛利試算",
   description:
-    "免費折扣活動損益計算器，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速判斷打折促銷後毛利是增加還是減少。",
+    "免費折扣活動損益計算器，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速判斷餐飲打折促銷後毛利是增加還是減少。",
   keywords: [
     "折扣活動計算器",
     "促銷活動計算",

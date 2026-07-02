@@ -250,6 +250,8 @@ export const restaurantPromotionCostPost: BlogPost = {
   description:
     "整理餐飲店做折扣、滿額加購與贈品活動前應該試算的成本項目，幫助店家比較活動前後毛利是否划算。",
   keywords: [
+    "滿額加購活動計算",
+    "折扣活動損益計算",
     "餐飲活動成本",
     "促銷活動成本",
     "餐飲折扣活動",

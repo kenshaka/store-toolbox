@@ -237,7 +237,7 @@ export default function RestaurantMarginCalculatorPage() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入商品售價、食材成本、包材成本與平台抽成，
-            快速計算餐點毛利、毛利率，以及是否達到你的目標毛利。
+            快速計算餐廳、小吃店、飲料店餐點毛利、毛利率，以及是否達到你的目標毛利。
           </p>
         </div>
 

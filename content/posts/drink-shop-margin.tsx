@@ -225,6 +225,7 @@ export const drinkShopMarginPost: BlogPost = {
   description:
     "用飲料店單杯成本範例，說明原物料、杯材、配料、平台抽成與促銷活動如何影響實際毛利。",
   keywords: [
+    "餐飲毛利率計算器",
     "飲料店毛利",
     "飲料店成本",
     "手搖飲毛利",

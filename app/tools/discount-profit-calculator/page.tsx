@@ -262,7 +262,7 @@ export default function DiscountProfitCalculatorPage() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入原價、活動價、商品成本與預估銷量，
-            快速判斷打折後每日毛利是增加還是減少。
+            快速判斷餐飲打折促銷後每日毛利是增加還是減少。
           </p>
         </div>
 

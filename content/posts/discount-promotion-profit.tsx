@@ -329,6 +329,7 @@ export const discountPromotionProfitPost: BlogPost = {
     description:
       "用餐飲店常見折扣活動為例，說明商品原價、活動售價、單品成本、原本銷量與活動後銷量如何影響每日毛利，幫助店家判斷打折促銷是否划算。",
     keywords: [
+      "折扣活動損益計算",
       "折扣活動計算器",
       "折扣活動",
       "打折促銷",

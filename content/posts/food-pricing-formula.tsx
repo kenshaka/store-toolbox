@@ -234,6 +234,7 @@ export const foodPricingFormulaPost: BlogPost = {
   description:
     "用小吃店常見餐點為例，說明如何整理食材成本、包材成本與目標毛利率，並用成本率反推合理售價。",
   keywords: [
+    "餐飲毛利率計算器",
     "小吃店定價",
     "餐飲定價公式",
     "餐點售價怎麼算",

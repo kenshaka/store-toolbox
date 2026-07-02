@@ -216,6 +216,7 @@ export const restaurantMarginBenchmarkPost: BlogPost = {
   description:
     "說明餐飲毛利率沒有單一標準，教你用品項角色、毛利金額、通路抽成和銷售占比判斷毛利是否健康。",
   keywords: [
+    "餐飲毛利率計算器",
     "餐飲毛利率",
     "餐飲毛利率多少合理",
     "餐飲成本率",

@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/blog",
   },
-  title: "餐飲經營文章",
+  title: "餐飲開店與成本試算文章｜毛利率、外送抽成、促銷活動",
   description:
-    "開店小工具箱的餐飲經營文章，整理餐飲毛利、滿額加購、折扣活動、菜單漲價、外送平台抽成、開店成本與小店營運試算的實用教學。",
+    "整理餐飲毛利率怎麼算、餐廳開店成本估算、外送平台抽成計算、滿額加購活動計算、折扣活動損益與菜單漲價的實用教學。",
   keywords: [
     "餐飲經營",
     "餐飲毛利",
@@ -52,13 +52,13 @@ export default function BlogPage() {
           </p>
 
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            餐飲經營文章
+            餐飲開店與成本試算文章
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            整理餐飲店、小吃店、飲料店常見的營運問題，
-            包含滿額加購、餐飲毛利、折扣活動、菜單漲價、外送平台抽成與開店成本，
-            幫助小店老闆在定價、促銷或開店規劃前先把數字算清楚。
+            整理餐廳、小吃店、飲料店常見的營運問題，
+            包含餐飲毛利率怎麼算、餐廳開店成本估算、滿額加購活動計算、折扣活動損益、菜單漲價與外送平台抽成計算，
+            幫助小店老闆在定價、促銷、外送上架或開店規劃前先把數字算清楚。
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function BlogPage() {
             href="/tools"
             className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
           >
-            查看所有工具
+            查看餐飲開店試算工具
           </Link>
         </section>
       </section>

@@ -233,6 +233,7 @@ export const increaseAverageOrderValuePost: BlogPost = {
   description:
     "比較餐飲店提高客單價的常見方法，包含滿額加購、套餐、升級份量與第二件優惠，並說明如何試算毛利。",
   keywords: [
+    "滿額加購活動計算",
     "餐飲客單價",
     "客單價怎麼提高",
     "滿額加購",

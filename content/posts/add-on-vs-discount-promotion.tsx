@@ -233,6 +233,7 @@ export const addOnVsDiscountPromotionPost: BlogPost = {
     "比較餐飲店滿額折扣與滿額加購的差異，說明兩種促銷活動如何影響毛利、客單價、加購率與現場執行。",
   keywords: [
     "滿額折扣",
+    "滿額加購活動計算",
     "滿額加購",
     "餐飲促銷活動",
     "促銷活動比較",

@@ -279,11 +279,11 @@ export default function LaborCostRatioCalculatorPage() {
             人事成本試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            人事成本占比試算器
+            人事成本占比計算
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，
-            快速估算人事成本占營業額比例，以及需要多少營業額才符合目標占比。
+            快速估算餐飲人事成本占營業額比例，以及需要多少營業額才符合目標占比。
           </p>
         </div>
 

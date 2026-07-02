@@ -347,6 +347,7 @@ export const restaurantMarginHowToCalculatePost: BlogPost = {
     description:
       "用小吃店、飲料店常見定價範例，說明餐飲毛利率公式、食材成本、包材成本、外送平台抽成與建議售價怎麼算。",
     keywords: [
+      "餐飲毛利率計算器",
       "餐飲毛利率",
       "餐飲毛利率計算",
       "餐飲定價",

@@ -232,6 +232,7 @@ export const menuPriceIncreasePost: BlogPost = {
   description:
     "用成本上漲、目標毛利率、銷量變化和客單價說明餐飲店菜單漲價前應該如何試算。",
   keywords: [
+    "菜單漲價試算器",
     "菜單漲價",
     "餐飲漲價",
     "餐飲定價",

@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/add-on-promotion-calculator",
   },
-  title: "滿額加購活動計算器",
+  title: "滿額加購活動計算器｜餐飲加購活動毛利試算",
   description:
-    "免費滿額加購活動計算器，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算餐飲店、小吃店、飲料店的加購活動是否划算。",
+    "免費滿額加購活動計算器，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算餐廳、小吃店、飲料店加購活動毛利是否划算。",
   keywords: [
     "滿額加購計算器",
     "滿額加購活動",

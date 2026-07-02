@@ -232,7 +232,7 @@ export default function AddOnPromotionCalculatorPage() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入滿額門檻、加購商品售價、成本、加購率與每日訂單數，
-            快速估算這個滿額加購活動會不會賺錢。
+            快速估算餐飲店、小吃店、飲料店滿額加購活動毛利會不會賺錢。
           </p>
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">

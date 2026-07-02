@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  title: "餐飲開店成本、毛利率與外送抽成試算工具",
+  description:
+    "免費餐飲開店試算工具，整理餐廳開店成本估算器、餐飲毛利率計算器、外送平台抽成計算、滿額加購活動計算、損益兩平計算器與人事成本占比計算。",
 };
 
 export default function Home() {
@@ -21,12 +24,12 @@ export default function Home() {
         </p>
 
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          開店小工具箱
+          餐飲開店成本、毛利率與外送抽成試算工具
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-          幫餐飲店、小吃店、飲料店快速試算餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比，
-          讓你在做定價、促銷或開店前先知道數字是否合理。
+          幫餐廳、小吃店、飲料店快速使用餐飲毛利率計算器、餐廳開店成本估算器、外送平台抽成計算、滿額加購活動計算、損益兩平計算器與人事成本占比計算，
+          讓你在做定價、促銷、外送上架或開店前先知道數字是否合理。
         </p>
 
         <div className="mt-10 grid gap-6">
@@ -131,8 +134,8 @@ export default function Home() {
           </div>
 
           <p className="mt-4 leading-7 text-stone-700">
-            從滿額加購、餐飲毛利率、外送平台抽成、菜單漲價到折扣活動，整理常見的試算範例與公式，
-            幫助你避免促銷做得很熱鬧卻沒有真正賺錢。
+            從餐飲毛利率怎麼算、餐廳開店成本估算、外送平台抽成計算、菜單漲價到滿額加購活動計算，整理常見的試算範例與公式，
+            幫助你避免定價、促銷或開店預算只憑感覺。
           </p>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">

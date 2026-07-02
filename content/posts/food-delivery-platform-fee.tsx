@@ -216,10 +216,11 @@ function FoodDeliveryPlatformFeeContent() {
 
 export const foodDeliveryPlatformFeePost: BlogPost = {
   slug: "food-delivery-platform-fee",
-  title: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
+  title: "外送平台抽成計算怎麼做？餐飲店上架外送前要先知道的成本",
   description:
-    "說明餐飲店外送平台抽成如何計算，並用售價、食材成本、包材成本與平台抽成率試算外送商品實際毛利。",
+    "說明餐飲店外送平台抽成計算方式，並用售價、食材成本、包材成本與平台抽成率試算外送商品實際毛利。",
   keywords: [
+    "外送平台抽成計算",
     "外送平台抽成",
     "外送抽成怎麼算",
     "餐飲外送成本",
@@ -230,7 +231,7 @@ export const foodDeliveryPlatformFeePost: BlogPost = {
   ],
   category: "外送平台與成本",
   date: "2026 年 7 月 2 日",
-  openGraphTitle: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
+  openGraphTitle: "外送平台抽成計算怎麼做？餐飲店上架外送前要先知道的成本",
   openGraphDescription:
     "用餐飲店外送訂單範例試算平台抽成、食材成本、包材成本和抽成後毛利。",
   relatedPostSlugs: [

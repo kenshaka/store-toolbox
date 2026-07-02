@@ -276,11 +276,11 @@ export default function FoodDeliveryFeeCalculatorPage() {
             外送平台成本試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            外送平台抽成試算器
+            外送平台抽成計算
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入內用售價、外送售價、食材成本、包材成本、平台抽成與每日訂單數，
-            快速估算外送訂單扣除抽成後還剩多少毛利，以及外送價格是否需要調整。
+            快速估算餐飲外送訂單扣除抽成後還剩多少毛利，以及外送價格是否需要調整。
           </p>
         </div>
 

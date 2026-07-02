@@ -243,6 +243,8 @@ export const restaurantFoodCostItemsPost: BlogPost = {
   description:
     "整理餐飲店單品成本常見項目，說明食材、包材、耗損、人力與外送平台費用如何影響毛利與定價。",
   keywords: [
+    "餐廳開店成本估算器",
+    "人事成本占比計算",
     "餐點成本",
     "餐飲成本項目",
     "食材成本",

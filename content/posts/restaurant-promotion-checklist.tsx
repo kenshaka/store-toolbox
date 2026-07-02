@@ -223,6 +223,8 @@ export const restaurantPromotionChecklistPost: BlogPost = {
   description:
     "整理小吃店和餐飲店設計促銷活動前應該檢查的 5 個重點，包含毛利、打平銷量、客單價和出餐壓力。",
   keywords: [
+    "滿額加購活動計算",
+    "折扣活動損益計算",
     "小吃店促銷",
     "餐飲促銷活動",
     "餐飲活動設計",

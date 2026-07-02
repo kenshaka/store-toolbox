@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/startup-cost-calculator",
   },
-  title: "開店成本試算器",
+  title: "餐廳開店成本估算器｜小吃店、飲料店開店成本試算",
   description:
-    "免費開店成本試算器，輸入押金、裝潢、設備、初期備料、開幕行銷與周轉金，快速估算小店開店前需要準備多少啟動資金。",
+    "免費餐廳開店成本估算器，輸入押金、裝潢、設備、初期備料、開幕行銷與周轉金，快速估算餐廳、小吃店、飲料店開店前需要準備多少啟動資金。",
   keywords: [
     "開店成本試算器",
     "開店成本計算",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "周轉金",
   ],
   openGraph: {
-    title: "開店成本試算器｜開店小工具箱",
+    title: "餐廳開店成本估算器｜開店小工具箱",
     description:
       "輸入押金、裝潢、設備、備料與周轉金，快速估算小店開店前需要準備多少錢。",
     type: "website",

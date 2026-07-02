@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/labor-cost-ratio-calculator",
   },
-  title: "人事成本占比試算器",
+  title: "人事成本占比計算｜餐飲薪資占營業額比例試算器",
   description:
-    "免費人事成本占比試算器，輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，快速估算人事成本占營業額比例。",
+    "免費人事成本占比計算工具，輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，快速估算餐飲人事成本占營業額比例。",
   keywords: [
     "人事成本占比試算器",
     "人事成本計算",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "餐飲營業額",
   ],
   openGraph: {
-    title: "人事成本占比試算器｜開店小工具箱",
+    title: "人事成本占比計算｜開店小工具箱",
     description:
       "輸入營業額、正職薪資、兼職時數與老闆薪資，快速估算人事成本占比與目標營業額。",
     type: "website",

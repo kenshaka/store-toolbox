@@ -278,7 +278,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
             輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，
-            快速估算漲價後毛利率、每日毛利與銷量打平點。
+            快速估算餐飲菜單漲價後毛利率、每日毛利與銷量打平點。
           </p>
         </div>
 

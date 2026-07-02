@@ -23,7 +23,7 @@ export const toolCategories = [
     href: "/tools/pricing",
     title: "單品定價",
     description:
-      "適合用來檢查單一商品的售價、成本、毛利率與漲價後變化。",
+      "適合用餐飲毛利率計算器與菜單漲價試算器，檢查餐廳、小吃店、飲料店單一商品的售價、成本、毛利率與漲價後變化。",
     homeDescription:
       "先確認每個品項賣出去後還剩多少毛利，再決定售價或漲價幅度。",
   },
@@ -32,7 +32,7 @@ export const toolCategories = [
     href: "/tools/promotion",
     title: "活動促銷",
     description:
-      "適合用來評估滿額加購、折扣活動是否真的能增加毛利。",
+      "適合用滿額加購活動計算與折扣活動損益計算，評估餐飲促銷是否真的能增加毛利。",
     homeDescription:
       "推出促銷前，先試算加購價、折扣價與銷量變化是否划算。",
   },
@@ -41,7 +41,7 @@ export const toolCategories = [
     href: "/tools/channel-cost",
     title: "通路成本",
     description:
-      "適合用來估算外送平台抽成、包材成本與平台價是否合理。",
+      "適合用外送平台抽成計算，估算餐飲外送平台抽成、包材成本與平台價是否合理。",
     homeDescription:
       "上架外送平台前，先看抽成與包材扣完後每筆訂單還剩多少。",
   },
@@ -50,7 +50,7 @@ export const toolCategories = [
     href: "/tools/store-operations",
     title: "整店經營",
     description:
-      "適合用來估算開店預算、損益兩平與人事成本占比。",
+      "適合用餐廳開店成本估算器、損益兩平計算器與人事成本占比計算，估算開店預算與營運壓力。",
     homeDescription:
       "從整間店的角度檢查固定成本、啟動資金與人力配置是否撐得住。",
   },
@@ -100,7 +100,7 @@ export const tools = [
       "免費滿額加購活動計算器，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算餐飲店、小吃店、飲料店的加購活動是否划算。",
     articleTitle: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
     articleHref: "/blog/add-on-promotion-example",
-    keywords: ["滿額加購計算器", "滿額加購活動", "餐飲促銷活動"],
+    keywords: ["滿額加購活動計算", "滿額加購計算器", "滿額加購活動", "餐飲促銷活動"],
     faqs: [
       {
         question: "滿額加購活動適合所有餐飲店嗎？",
@@ -181,7 +181,7 @@ export const tools = [
       "免費外送平台抽成試算器，輸入內用售價、外送平台售價、食材成本、包材成本、平台抽成、店家補貼與每日外送訂單數，快速估算餐飲店、小吃店、飲料店外送抽成後毛利、每日毛利與建議外送售價。",
     articleTitle: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
     articleHref: "/blog/food-delivery-platform-fee",
-    keywords: ["外送平台抽成試算器", "外送抽成計算", "餐飲外送成本"],
+    keywords: ["外送平台抽成計算", "外送平台抽成試算器", "外送抽成計算", "餐飲外送成本"],
     faqs: [
       {
         question: "外送平台抽成要算進成本嗎？",
@@ -291,19 +291,19 @@ export const tools = [
     key: "breakEvenCalculator",
     toolId: "break_even",
     navLabel: "損益兩平",
-    title: "開店損益兩平試算器",
+    title: "損益兩平計算器",
     category: "整店營運試算",
     categorySlug: "operations",
     href: "/tools/break-even-calculator",
     homeDescription:
       "輸入固定成本、客單價與毛利率，估算每天要賣幾筆才不虧。",
     description:
-      "輸入每月租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算損益兩平月營業額、每日營業額與每日訂單數。",
+      "輸入每月租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算餐飲損益兩平月營業額、每日營業額與每日訂單數。",
     structuredDescription:
-      "免費開店損益兩平試算器，輸入每月租金、人事成本、水電瓦斯、固定支出、平均客單價、平均毛利率與營業天數，快速估算餐飲店、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆才不虧。",
+      "免費損益兩平計算器，輸入每月租金、人事成本、水電瓦斯、固定支出、平均客單價、平均毛利率與營業天數，快速估算餐飲店、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆才不虧。",
     articleTitle: "餐飲店毛利率多少才合理？不同品項毛利率怎麼看",
     articleHref: "/blog/restaurant-margin-benchmark",
-    keywords: ["開店損益兩平試算器", "損益兩平計算", "開店營業額試算"],
+    keywords: ["損益兩平計算器", "開店損益兩平試算器", "損益兩平計算", "餐飲損益兩平", "開店營業額試算"],
     faqs: [
       {
         question: "損益兩平是什麼意思？",
@@ -331,19 +331,19 @@ export const tools = [
     key: "startupCostCalculator",
     toolId: "startup_cost",
     navLabel: "開店成本",
-    title: "開店成本試算器",
+    title: "餐廳開店成本估算器",
     category: "開店預算試算",
     categorySlug: "operations",
     href: "/tools/startup-cost-calculator",
     homeDescription:
       "輸入押金、裝潢、設備與周轉金，估算開店前要準備多少資金。",
     description:
-      "輸入押金與預付租金、裝潢、設備、初期備料、開幕行銷、開幕前人事與周轉金月數，快速估算開一家小店需要準備多少啟動資金。",
+      "輸入押金與預付租金、裝潢、設備、初期備料、開幕行銷、開幕前人事與周轉金月數，快速估算餐廳、小吃店或飲料店需要準備多少啟動資金。",
     structuredDescription:
-      "免費開店成本試算器，輸入押金與預付租金、裝潢、設備、初期備料、登記雜支、開幕行銷、開幕前人事與周轉金月數，快速估算餐飲店、小吃店、飲料店開店前需要準備多少啟動資金。",
+      "免費餐廳開店成本估算器，輸入押金與預付租金、裝潢、設備、初期備料、登記雜支、開幕行銷、開幕前人事與周轉金月數，快速估算餐飲店、小吃店、飲料店開店前需要準備多少啟動資金。",
     articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
     articleHref: "/blog/restaurant-food-cost-items",
-    keywords: ["開店成本試算器", "開店預算", "餐飲開店成本"],
+    keywords: ["餐廳開店成本估算器", "開店成本試算器", "開店預算", "小吃店開店成本試算", "飲料店開店成本計算", "餐飲開店成本"],
     faqs: [
       {
         question: "開店成本通常包含哪些項目？",
@@ -371,19 +371,19 @@ export const tools = [
     key: "laborCostRatioCalculator",
     toolId: "labor_cost_ratio",
     navLabel: "人事占比",
-    title: "人事成本占比試算器",
+    title: "人事成本占比計算",
     category: "人事成本試算",
     categorySlug: "operations",
     href: "/tools/labor-cost-ratio-calculator",
     homeDescription:
       "輸入營業額、薪資與兼職時數，估算人事成本占營業額比例。",
     description:
-      "輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算人事成本占比與符合目標占比所需營業額。",
+      "輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算餐飲人事成本占比與符合目標占比所需營業額。",
     structuredDescription:
-      "免費人事成本占比試算器，輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資、額外人事負擔與目標人事成本占比，快速估算餐飲店、小吃店、飲料店的人事成本占營業額比例。",
+      "免費人事成本占比計算工具，輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資、額外人事負擔與目標人事成本占比，快速估算餐飲店、小吃店、飲料店的人事成本占營業額比例。",
     articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
     articleHref: "/blog/restaurant-food-cost-items",
-    keywords: ["人事成本占比試算器", "人事成本計算", "薪資占營業額"],
+    keywords: ["人事成本占比計算", "人事成本占比試算器", "人事成本計算", "餐飲人事成本", "薪資占營業額"],
     faqs: [
       {
         question: "人事成本占比怎麼算？",
