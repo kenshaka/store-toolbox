@@ -46,6 +46,12 @@ export default function Home() {
                   <p className="mt-3 max-w-2xl leading-7 text-stone-700">
                     {category.homeDescription}
                   </p>
+                  <Link
+                    href={category.href}
+                    className="mt-4 inline-flex text-sm font-bold text-orange-700 hover:underline"
+                  >
+                    查看{category.title}工具 →
+                  </Link>
                 </div>
 
                 <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
@@ -100,7 +106,11 @@ export default function Home() {
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {toolsByCategory.map((category) => (
-              <div key={category.slug} className="rounded-2xl bg-stone-100 p-5">
+              <Link
+                key={category.slug}
+                href={category.href}
+                className="rounded-2xl bg-stone-100 p-5 transition hover:bg-orange-50"
+              >
                 <h3 className="font-bold">{category.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-stone-700">
                   {category.description}
@@ -108,7 +118,10 @@ export default function Home() {
                 <p className="mt-4 text-sm text-stone-600">
                   {category.tools.map((tool) => tool.navLabel).join("、")}
                 </p>
-              </div>
+                <p className="mt-4 text-sm font-bold text-orange-700">
+                  查看分類頁 →
+                </p>
+              </Link>
             ))}
           </div>
         </section>

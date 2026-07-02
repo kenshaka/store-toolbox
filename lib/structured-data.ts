@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/lib/posts";
-import { getToolByKey, toolsByCategory } from "@/lib/tools";
-import type { FaqItem, ToolKey } from "@/lib/tools";
+import { getToolByKey, getToolCategoryBySlug, toolsByCategory } from "@/lib/tools";
+import type { FaqItem, ToolCategorySlug, ToolKey } from "@/lib/tools";
 
 export const siteUrl = "https://store-toolbox.vercel.app";
 
@@ -178,6 +178,45 @@ export function getToolsIndexStructuredData() {
         })),
       },
     },
+  ];
+}
+
+export function getToolCategoryStructuredData(
+  categorySlug: ToolCategorySlug,
+  faqs: FaqItem[],
+) {
+  const category = getToolCategoryBySlug(categorySlug);
+
+  return [
+    getBreadcrumbJsonLd([
+      { name: siteName, path: "" },
+      { name: "開店工具總覽", path: "/tools" },
+      { name: `${category.title}工具`, path: category.href },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `${category.title}工具`,
+      url: absoluteUrl(category.href),
+      description: category.description,
+      inLanguage: "zh-Hant-TW",
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+      },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: category.tools.map((tool, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: absoluteUrl(tool.href),
+          name: tool.title,
+          description: tool.description,
+        })),
+      },
+    },
+    getFaqPageJsonLd(faqs),
   ];
 }
 

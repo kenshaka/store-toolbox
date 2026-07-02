@@ -90,9 +90,17 @@ export default function ToolsPage() {
                       </p>
                     </div>
 
-                    <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
-                      {category.tools.length} 個工具
-                    </span>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
+                        {category.tools.length} 個工具
+                      </span>
+                      <Link
+                        href={category.href}
+                        className="w-fit rounded-full bg-orange-50 px-4 py-2 text-sm font-bold text-orange-700 transition hover:bg-orange-100"
+                      >
+                        查看分類頁
+                      </Link>
+                    </div>
                   </div>
                 </div>
 

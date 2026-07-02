@@ -11,6 +11,7 @@ export type ToolCategorySlug =
 
 export type ToolCategory = {
   slug: ToolCategorySlug;
+  href: string;
   title: string;
   description: string;
   homeDescription: string;
@@ -19,6 +20,7 @@ export type ToolCategory = {
 export const toolCategories = [
   {
     slug: "pricing",
+    href: "/tools/pricing",
     title: "單品定價",
     description:
       "適合用來檢查單一商品的售價、成本、毛利率與漲價後變化。",
@@ -27,6 +29,7 @@ export const toolCategories = [
   },
   {
     slug: "promotion",
+    href: "/tools/promotion",
     title: "活動促銷",
     description:
       "適合用來評估滿額加購、折扣活動是否真的能增加毛利。",
@@ -35,6 +38,7 @@ export const toolCategories = [
   },
   {
     slug: "channelCost",
+    href: "/tools/channel-cost",
     title: "通路成本",
     description:
       "適合用來估算外送平台抽成、包材成本與平台價是否合理。",
@@ -43,6 +47,7 @@ export const toolCategories = [
   },
   {
     slug: "operations",
+    href: "/tools/store-operations",
     title: "整店經營",
     description:
       "適合用來估算開店預算、損益兩平與人事成本占比。",
@@ -411,4 +416,8 @@ export const toolsByCategory = toolCategories.map((category) => ({
 
 export function getToolByKey(toolKey: ToolKey) {
   return tools.find((tool) => tool.key === toolKey)!;
+}
+
+export function getToolCategoryBySlug(categorySlug: ToolCategorySlug) {
+  return toolsByCategory.find((category) => category.slug === categorySlug)!;
 }
