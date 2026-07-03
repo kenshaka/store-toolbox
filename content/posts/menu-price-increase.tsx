@@ -157,7 +157,7 @@ function MenuPriceIncreaseContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用菜單漲價試算器
+              用菜單漲價試算器算漲價後毛利
             </TrackedLink>
 
             <TrackedLink
@@ -170,7 +170,7 @@ function MenuPriceIncreaseContent() {
               }}
               className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用餐飲毛利率計算器
+              用餐飲毛利率計算器算售價與利潤
             </TrackedLink>
           </div>
         </section>

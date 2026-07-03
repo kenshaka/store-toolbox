@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/discount-profit-calculator",
   },
-  title: "折扣活動損益計算器｜餐飲打折促銷毛利試算",
+  title: "打折會不會賠錢？折扣活動損益與回本銷量試算",
   description:
-    "免費折扣活動損益計算器，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速判斷餐飲打折促銷後毛利是增加還是減少。",
+    "想知道打折促銷會不會虧？免費折扣活動損益計算器可輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速比較活動前後每日毛利。",
   keywords: [
     "折扣活動計算器",
     "促銷活動計算",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     "活動毛利",
   ],
   openGraph: {
-    title: "折扣活動損益計算器｜開店小工具箱",
+    title: "打折會不會賠錢？｜開店小工具箱",
     description:
-      "輸入原價、活動價、成本與預估銷量，快速判斷打折活動是否划算。",
+      "輸入原價、活動價、成本與預估銷量，快速判斷打折活動是否划算、需要多賣幾份才回本。",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",

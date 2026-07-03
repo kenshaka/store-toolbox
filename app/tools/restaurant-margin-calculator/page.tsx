@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("restaurantMarginCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -74,7 +76,6 @@ export default function RestaurantMarginCalculatorPage() {
   const [platformFeeRate, setPlatformFeeRate] = useState(0);
   const [targetMarginRate, setTargetMarginRate] = useState(60);
 
-
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
@@ -89,21 +90,29 @@ export default function RestaurantMarginCalculatorPage() {
         setFoodCost(sharedFoodCost);
       }
 
-      const sharedPackagingCost = getSharedNumberParam(searchParams, "packagingCost");
+      const sharedPackagingCost = getSharedNumberParam(
+        searchParams,
+        "packagingCost",
+      );
       if (sharedPackagingCost !== null) {
         setPackagingCost(sharedPackagingCost);
       }
 
-      const sharedPlatformFeeRate = getSharedNumberParam(searchParams, "platformFeeRate");
+      const sharedPlatformFeeRate = getSharedNumberParam(
+        searchParams,
+        "platformFeeRate",
+      );
       if (sharedPlatformFeeRate !== null) {
         setPlatformFeeRate(sharedPlatformFeeRate);
       }
 
-      const sharedTargetMarginRate = getSharedNumberParam(searchParams, "targetMarginRate");
+      const sharedTargetMarginRate = getSharedNumberParam(
+        searchParams,
+        "targetMarginRate",
+      );
       if (sharedTargetMarginRate !== null) {
         setTargetMarginRate(sharedTargetMarginRate);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -151,12 +160,11 @@ export default function RestaurantMarginCalculatorPage() {
       price > 0 ? (profitAfterPlatformFee / price) * 100 : 0;
 
     const suggestedPrice =
-      targetMarginRate >= 100
-        ? 0
-        : totalCost / (1 - targetMarginRate / 100);
+      targetMarginRate >= 100 ? 0 : totalCost / (1 - targetMarginRate / 100);
 
     let verdict = "可以接受";
-    let verdictDetail = "目前毛利率有基本空間，但仍要注意人事、租金、水電與耗損。";
+    let verdictDetail =
+      "目前毛利率有基本空間，但仍要注意人事、租金、水電與耗損。";
 
     if (marginRate < 40) {
       verdict = "毛利偏低";
@@ -186,7 +194,6 @@ export default function RestaurantMarginCalculatorPage() {
       verdictDetail,
     };
   }, [price, foodCost, packagingCost, platformFeeRate, targetMarginRate]);
-
 
   const assumptionItems = [
     { label: "商品售價", value: formatMoney(price) },
@@ -233,18 +240,30 @@ export default function RestaurantMarginCalculatorPage() {
             餐飲定價試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            餐飲毛利率計算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入商品售價、食材成本、包材成本與平台抽成，
-            快速計算餐廳、小吃店、飲料店餐點毛利、毛利率，以及是否達到你的目標毛利。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入商品資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="restaurant_margin"
               description="先用一份 120 元餐點的成本範例，快速查看單品毛利率與建議售價。"
@@ -305,7 +324,10 @@ export default function RestaurantMarginCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="restaurant_margin" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="restaurant_margin"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -369,7 +391,6 @@ export default function RestaurantMarginCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
@@ -401,9 +422,9 @@ export default function RestaurantMarginCalculatorPage() {
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果一份餐點售價 100 元，食材成本 35 元、包材成本 5 元，
-              總直接成本就是 40 元，單品毛利為 60 元，毛利率為 60%。
-              如果再加入 30% 的外送平台抽成，抽成金額為 30 元，
-              抽成後毛利只剩 30 元，抽成後毛利率為 30%。
+              總直接成本就是 40 元，單品毛利為 60 元，毛利率為 60%。 如果再加入
+              30% 的外送平台抽成，抽成金額為 30 元， 抽成後毛利只剩 30
+              元，抽成後毛利率為 30%。
             </p>
           </div>
 
@@ -451,7 +472,8 @@ export default function RestaurantMarginCalculatorPage() {
                 Q3：外送平台抽成要怎麼算？
               </h3>
               <p className="mt-2 leading-7 text-stone-700">
-                可以用商品售價乘上平台抽成比例。若售價 100 元、抽成 30%，平台抽成金額就是 30 元。
+                可以用商品售價乘上平台抽成比例。若售價 100 元、抽成
+                30%，平台抽成金額就是 30 元。
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 p-5">

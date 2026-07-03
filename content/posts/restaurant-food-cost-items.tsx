@@ -11,7 +11,7 @@ function RestaurantFoodCostItemsContent() {
       </p>
 
       <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight">
-        餐點成本包含哪些？食材、包材、人力和平台費用怎麼估
+        餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用
       </h1>
 
       <p className="mt-5 text-lg leading-8 text-stone-700">
@@ -181,7 +181,7 @@ function RestaurantFoodCostItemsContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用餐飲毛利率計算器
+              用餐飲毛利率計算器算售價與利潤
             </TrackedLink>
           </div>
         </section>
@@ -239,9 +239,9 @@ function RestaurantFoodCostItemsContent() {
 
 export const restaurantFoodCostItemsPost: BlogPost = {
   slug: "restaurant-food-cost-items",
-  title: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+  title: "餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用",
   description:
-    "整理餐飲店單品成本常見項目，說明食材、包材、耗損、人力與外送平台費用如何影響毛利與定價。",
+    "整理餐飲店單品成本常見項目，說明餐飲成本怎麼算，以及食材、包材、耗損、人力與外送平台費用如何影響毛利與定價。",
   keywords: [
     "餐廳開店成本估算器",
     "人事成本占比計算",
@@ -255,7 +255,7 @@ export const restaurantFoodCostItemsPost: BlogPost = {
   ],
   category: "餐飲成本管理",
   date: "2026 年 7 月 2 日",
-  openGraphTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+  openGraphTitle: "餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用",
   openGraphDescription:
     "用餐飲店常見成本項目拆解單品成本，幫你看懂定價和毛利率背後真正要算的費用。",
   relatedPostSlugs: [

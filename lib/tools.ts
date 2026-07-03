@@ -4,10 +4,7 @@ export type FaqItem = {
 };
 
 export type ToolCategorySlug =
-  | "pricing"
-  | "promotion"
-  | "channelCost"
-  | "operations";
+  "pricing" | "promotion" | "channelCost" | "operations";
 
 export type ToolCategory = {
   slug: ToolCategorySlug;
@@ -23,36 +20,36 @@ export const toolCategories = [
     href: "/tools/pricing",
     title: "單品定價",
     description:
-      "適合用餐飲毛利率計算器與菜單漲價試算器，檢查餐廳、小吃店、飲料店單一商品的售價、成本、毛利率與漲價後變化。",
+      "適合想知道餐點成本怎麼算、商品售價怎麼訂、毛利率夠不夠，以及成本上漲後要不要調整菜單價格的店家。",
     homeDescription:
-      "先確認每個品項賣出去後還剩多少毛利，再決定售價或漲價幅度。",
+      "不知道一份餐點或飲料要賣多少才會賺時，先從售價、成本與毛利率開始算。",
   },
   {
     slug: "promotion",
     href: "/tools/promotion",
     title: "活動促銷",
     description:
-      "適合用滿額加購活動計算與折扣活動損益計算，評估餐飲促銷是否真的能增加毛利。",
+      "適合想知道打折會不會賠錢、滿額加購會不會賺、活動價怎麼訂，以及需要多賣幾份才回本的店家。",
     homeDescription:
-      "推出促銷前，先試算加購價、折扣價與銷量變化是否划算。",
+      "做打折、滿額加購或套餐活動前，先算活動價、成本與銷量變化是否划算。",
   },
   {
     slug: "channelCost",
     href: "/tools/channel-cost",
     title: "通路成本",
     description:
-      "適合用外送平台抽成計算，估算餐飲外送平台抽成、包材成本與平台價是否合理。",
+      "適合想知道外送平台抽成怎麼算、包材與店家補貼扣完後實收多少，以及外送售價要不要調整的店家。",
     homeDescription:
-      "上架外送平台前，先看抽成與包材扣完後每筆訂單還剩多少。",
+      "上架外送或參加平台活動前，先看抽成、包材和補貼扣完後還剩多少。",
   },
   {
     slug: "operations",
     href: "/tools/store-operations",
     title: "整店經營",
     description:
-      "適合用餐廳開店成本估算器、損益兩平計算器與人事成本占比計算，估算開店預算與營運壓力。",
+      "適合想知道開店要準備多少錢、每天要賣多少才不虧、人事成本占比會不會太高的店家。",
     homeDescription:
-      "從整間店的角度檢查固定成本、啟動資金與人力配置是否撐得住。",
+      "從整間店的角度估開店預算、固定成本、每日營業額目標與人事壓力。",
   },
 ] as const satisfies readonly ToolCategory[];
 
@@ -75,6 +72,11 @@ export type Tool = {
   categorySlug: ToolCategorySlug;
   href: string;
   homeDescription: string;
+  plainQuestion: string;
+  plainTitle: string;
+  plainDescription: string;
+  ctaLabel: string;
+  searchIntents: string[];
   description: string;
   structuredDescription: string;
   articleTitle: string;
@@ -93,14 +95,30 @@ export const tools = [
     categorySlug: "promotion",
     href: "/tools/add-on-promotion-calculator",
     homeDescription:
-      "輸入滿額門檻、加購價與商品成本，快速試算加購活動是否划算。",
+      "想做滿額加購、套餐加購或第二件優惠前，先算加購價、成本與加購率是否真的增加毛利。",
+    plainQuestion: "想知道滿額加購活動會不會賺？",
+    plainTitle: "滿額加購活動怎麼算？滿額加購活動計算器",
+    plainDescription:
+      "如果你想知道滿額加購、加價購或套餐加購會不會賺，可以輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速估算活動後增加多少毛利。",
+    ctaLabel: "用滿額加購活動計算器算加購毛利",
+    searchIntents: [
+      "滿額加購活動怎麼算",
+      "加購價怎麼訂才會賺",
+      "滿額加購會不會虧",
+      "提高客單價活動怎麼估",
+    ],
     description:
-      "輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算滿額加購活動是否划算。",
+      "想做滿額加購、加價購或套餐加購時，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算活動是否真的增加毛利。",
     structuredDescription:
       "免費滿額加購活動計算器，輸入滿額門檻、加購價、商品成本、加購率與每日訂單數，快速試算餐飲店、小吃店、飲料店的加購活動是否划算。",
-    articleTitle: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
+    articleTitle: "滿額加購活動怎麼算？滿 150 元加購 40 元划算嗎",
     articleHref: "/blog/add-on-promotion-example",
-    keywords: ["滿額加購活動計算", "滿額加購計算器", "滿額加購活動", "餐飲促銷活動"],
+    keywords: [
+      "滿額加購活動計算",
+      "滿額加購計算器",
+      "滿額加購活動",
+      "餐飲促銷活動",
+    ],
     faqs: [
       {
         question: "滿額加購活動適合所有餐飲店嗎？",
@@ -133,13 +151,23 @@ export const tools = [
     categorySlug: "pricing",
     href: "/tools/restaurant-margin-calculator",
     homeDescription:
-      "輸入售價與成本，計算單品毛利、毛利率與定價是否合理。",
+      "想知道一份餐點、飲料或商品要賣多少才會賺，先把售價、食材、包材與平台抽成放進來算。",
+    plainQuestion: "想知道餐點要賣多少才會賺？",
+    plainTitle: "餐點售價怎麼算？餐飲毛利率計算器",
+    plainDescription:
+      "如果你想計算餐點成本、商品售價或毛利率，可以輸入售價、食材成本、包材成本、平台抽成與目標毛利率，快速看出每份商品實際還剩多少毛利。",
+    ctaLabel: "用餐飲毛利率計算器算售價與利潤",
+    searchIntents: [
+      "餐點售價怎麼算",
+      "餐飲成本怎麼算",
+      "毛利率怎麼算",
+      "商品要賣多少才會賺",
+    ],
     description:
-      "輸入商品售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利與建議售價。",
+      "想知道餐點、飲料或商品要賣多少才會賺，輸入售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利與建議售價。",
     structuredDescription:
       "免費餐飲毛利率計算器，輸入商品售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利、毛利率與建議售價。",
-    articleTitle:
-      "餐飲毛利率怎麼算？小吃店、飲料店定價前一定要看的毛利公式",
+    articleTitle: "餐飲毛利率怎麼算？小吃店、飲料店定價前一定要看的毛利公式",
     articleHref: "/blog/restaurant-margin-how-to-calculate",
     keywords: ["餐飲毛利率計算器", "餐飲定價", "食材成本計算"],
     faqs: [
@@ -174,14 +202,30 @@ export const tools = [
     categorySlug: "channelCost",
     href: "/tools/food-delivery-fee-calculator",
     homeDescription:
-      "輸入外送售價、平台抽成與成本，試算外送訂單還剩多少毛利。",
+      "想知道外送平台抽成、包材與活動補貼扣完後，外送訂單到底還剩多少毛利。",
+    plainQuestion: "想知道外送抽成後還剩多少？",
+    plainTitle: "外送抽成怎麼算？外送平台抽成試算器",
+    plainDescription:
+      "如果你想計算外送平台抽成後實收多少，可以輸入內用價、外送價、食材成本、包材成本、平台抽成、店家補貼與每日訂單數，快速估算外送毛利與建議售價。",
+    ctaLabel: "用外送平台抽成試算器算店家實收",
+    searchIntents: [
+      "外送抽成怎麼算",
+      "外送平台抽成後剩多少",
+      "外送成本怎麼算",
+      "外送售價要怎麼訂",
+    ],
     description:
-      "輸入內用售價、外送售價、食材成本、包材成本、平台抽成、店家補貼與每日訂單數，快速估算外送抽成後毛利與建議外送售價。",
+      "想知道外送平台抽成後還剩多少，輸入內用售價、外送售價、食材成本、包材成本、平台抽成、店家補貼與每日訂單數，快速估算外送毛利與建議售價。",
     structuredDescription:
       "免費外送平台抽成試算器，輸入內用售價、外送平台售價、食材成本、包材成本、平台抽成、店家補貼與每日外送訂單數，快速估算餐飲店、小吃店、飲料店外送抽成後毛利、每日毛利與建議外送售價。",
-    articleTitle: "外送平台抽成怎麼算？餐飲店上架外送前要先知道的成本",
+    articleTitle: "外送抽成怎麼算？平台抽成、包材成本與外送售價",
     articleHref: "/blog/food-delivery-platform-fee",
-    keywords: ["外送平台抽成計算", "外送平台抽成試算器", "外送抽成計算", "餐飲外送成本"],
+    keywords: [
+      "外送平台抽成計算",
+      "外送平台抽成試算器",
+      "外送抽成計算",
+      "餐飲外送成本",
+    ],
     faqs: [
       {
         question: "外送平台抽成要算進成本嗎？",
@@ -215,9 +259,20 @@ export const tools = [
     categorySlug: "pricing",
     href: "/tools/menu-price-increase-calculator",
     homeDescription:
-      "輸入售價、成本、調漲金額與銷量，試算漲價後每日毛利變化。",
+      "成本變高、想漲價又怕客人變少時，先算漲價後每份毛利與每日總毛利會不會改善。",
+    plainQuestion: "想知道成本上漲後要不要漲價？",
+    plainTitle: "菜單漲價怎麼算？菜單漲價試算器",
+    plainDescription:
+      "如果你想知道餐點成本變高後要不要漲價，可以輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，快速比較漲價前後毛利與銷量打平點。",
+    ctaLabel: "用菜單漲價試算器算漲價後毛利",
+    searchIntents: [
+      "菜單漲價怎麼算",
+      "成本上漲要漲多少",
+      "餐點漲價會不會影響利潤",
+      "漲價後少賣幾份會打平",
+    ],
     description:
-      "輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，快速試算菜單漲價後毛利率與每日毛利變化。",
+      "成本變高、想漲價又怕銷量下降時，輸入目前售價、成本上漲後成本、預計調漲金額與每日銷量，快速試算漲價後毛利是否改善。",
     structuredDescription:
       "免費菜單漲價試算器，輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，快速估算餐飲店、小吃店、飲料店漲價後毛利率、每日毛利與銷量打平點。",
     articleTitle: "菜單漲價怎麼算？漲價幅度、客單價和毛利率試算",
@@ -255,13 +310,23 @@ export const tools = [
     categorySlug: "promotion",
     href: "/tools/discount-profit-calculator",
     homeDescription:
-      "試算打折後還剩多少毛利，以及需要多賣幾份才不會虧。",
+      "想打折促銷前，先算活動價扣掉成本後還剩多少毛利，以及要多賣幾份才不會賠。",
+    plainQuestion: "想知道打折會不會賠錢？",
+    plainTitle: "打折會不會賠錢？折扣活動損益計算器",
+    plainDescription:
+      "如果你想知道打折促銷會不會虧，可以輸入商品原價、活動售價、商品成本、原本銷量與活動後預估銷量，快速比較活動前後每日毛利。",
+    ctaLabel: "用折扣活動損益計算器算打折會不會虧",
+    searchIntents: [
+      "打折會不會賠錢",
+      "折扣活動怎麼算",
+      "促銷要多賣幾份才回本",
+      "活動價怎麼訂才不虧",
+    ],
     description:
-      "輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，判斷打折促銷後毛利是增加還是減少。",
+      "想打折促銷前，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，判斷活動後每日毛利是增加還是減少。",
     structuredDescription:
       "免費折扣活動損益計算器，輸入商品原價、活動售價、成本、原本銷量與活動後預估銷量，快速判斷打折促銷後毛利是增加還是減少。",
-    articleTitle:
-      "折扣活動怎麼算才不會虧？餐飲店打折促銷前要先算這幾個數字",
+    articleTitle: "折扣活動怎麼算才不會虧？餐飲店打折促銷前要先算這幾個數字",
     articleHref: "/blog/discount-promotion-profit",
     keywords: ["折扣活動計算器", "打折會不會虧", "餐飲折扣活動"],
     faqs: [
@@ -296,14 +361,31 @@ export const tools = [
     categorySlug: "operations",
     href: "/tools/break-even-calculator",
     homeDescription:
-      "輸入固定成本、客單價與毛利率，估算每天要賣幾筆才不虧。",
+      "想知道每月租金、人事與水電壓力下，每天至少要做到多少營業額、賣幾筆才不虧。",
+    plainQuestion: "想知道每天要賣多少才不虧？",
+    plainTitle: "每天要賣多少才不虧？損益兩平計算器",
+    plainDescription:
+      "如果你想知道開店後每月要做到多少營業額才打平，可以輸入租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算每日營業額與訂單數門檻。",
+    ctaLabel: "用損益兩平計算器算每天要賣多少",
+    searchIntents: [
+      "每天要賣多少才不虧",
+      "開店營業額要多少才回本",
+      "損益兩平怎麼算",
+      "每月固定成本怎麼打平",
+    ],
     description:
-      "輸入每月租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算餐飲損益兩平月營業額、每日營業額與每日訂單數。",
+      "想知道每天要賣多少才不虧，輸入每月租金、人事、水電、固定支出、平均客單價、毛利率與營業天數，快速估算損益兩平月營業額、每日營業額與每日訂單數。",
     structuredDescription:
       "免費損益兩平計算器，輸入每月租金、人事成本、水電瓦斯、固定支出、平均客單價、平均毛利率與營業天數，快速估算餐飲店、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆才不虧。",
     articleTitle: "餐飲店毛利率多少才合理？不同品項毛利率怎麼看",
     articleHref: "/blog/restaurant-margin-benchmark",
-    keywords: ["損益兩平計算器", "開店損益兩平試算器", "損益兩平計算", "餐飲損益兩平", "開店營業額試算"],
+    keywords: [
+      "損益兩平計算器",
+      "開店損益兩平試算器",
+      "損益兩平計算",
+      "餐飲損益兩平",
+      "開店營業額試算",
+    ],
     faqs: [
       {
         question: "損益兩平是什麼意思？",
@@ -336,14 +418,32 @@ export const tools = [
     categorySlug: "operations",
     href: "/tools/startup-cost-calculator",
     homeDescription:
-      "輸入押金、裝潢、設備與周轉金，估算開店前要準備多少資金。",
+      "想知道開小吃店、飲料店或餐飲店要準備多少錢，先估押金、裝潢、設備、備料與周轉金。",
+    plainQuestion: "想知道開店要準備多少錢？",
+    plainTitle: "開店要準備多少錢？開店成本試算器",
+    plainDescription:
+      "如果你想計算開店成本，可以輸入押金與預付租金、裝潢、設備、初期備料、登記雜支、開幕行銷、開幕前人事與周轉金月數，快速估算開店前需要準備多少啟動資金。",
+    ctaLabel: "用開店成本試算器估算開店預算",
+    searchIntents: [
+      "開店要準備多少錢",
+      "開店成本怎麼算",
+      "計算開店成本",
+      "小吃店開店預算怎麼抓",
+    ],
     description:
-      "輸入押金與預付租金、裝潢、設備、初期備料、開幕行銷、開幕前人事與周轉金月數，快速估算餐廳、小吃店或飲料店需要準備多少啟動資金。",
+      "想知道開店要準備多少錢，輸入押金與預付租金、裝潢、設備、初期備料、開幕行銷、開幕前人事與周轉金月數，快速估算餐廳、小吃店或飲料店需要準備多少啟動資金。",
     structuredDescription:
       "免費餐廳開店成本估算器，輸入押金與預付租金、裝潢、設備、初期備料、登記雜支、開幕行銷、開幕前人事與周轉金月數，快速估算餐飲店、小吃店、飲料店開店前需要準備多少啟動資金。",
-    articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+    articleTitle: "餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用",
     articleHref: "/blog/restaurant-food-cost-items",
-    keywords: ["餐廳開店成本估算器", "開店成本試算器", "開店預算", "小吃店開店成本試算", "飲料店開店成本計算", "餐飲開店成本"],
+    keywords: [
+      "餐廳開店成本估算器",
+      "開店成本試算器",
+      "開店預算",
+      "小吃店開店成本試算",
+      "飲料店開店成本計算",
+      "餐飲開店成本",
+    ],
     faqs: [
       {
         question: "開店成本通常包含哪些項目？",
@@ -376,14 +476,31 @@ export const tools = [
     categorySlug: "operations",
     href: "/tools/labor-cost-ratio-calculator",
     homeDescription:
-      "輸入營業額、薪資與兼職時數，估算人事成本占營業額比例。",
+      "想知道正職、兼職與老闆工時加起來，人事成本占營業額比例會不會太高。",
+    plainQuestion: "想知道員工薪水占比會不會太高？",
+    plainTitle: "人事成本怎麼算？人事成本占比計算器",
+    plainDescription:
+      "如果你想計算人事成本占營業額比例，可以輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算薪資壓力是否合理。",
+    ctaLabel: "用人事成本占比計算器算薪資比例",
+    searchIntents: [
+      "人事成本怎麼算",
+      "員工薪水占營業額多少合理",
+      "餐飲人事成本占比",
+      "排班成本會不會太高",
+    ],
     description:
-      "輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算餐飲人事成本占比與符合目標占比所需營業額。",
+      "想知道人事成本會不會太高，輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資與額外人事負擔，快速估算人事成本占比與目標營業額。",
     structuredDescription:
       "免費人事成本占比計算工具，輸入月營業額、正職人數、正職平均月薪、兼職總時數、兼職時薪、老闆薪資、額外人事負擔與目標人事成本占比，快速估算餐飲店、小吃店、飲料店的人事成本占營業額比例。",
-    articleTitle: "餐點成本包含哪些？食材、包材、人力和平台費用怎麼估",
+    articleTitle: "餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用",
     articleHref: "/blog/restaurant-food-cost-items",
-    keywords: ["人事成本占比計算", "人事成本占比試算器", "人事成本計算", "餐飲人事成本", "薪資占營業額"],
+    keywords: [
+      "人事成本占比計算",
+      "人事成本占比試算器",
+      "人事成本計算",
+      "餐飲人事成本",
+      "薪資占營業額",
+    ],
     faqs: [
       {
         question: "人事成本占比怎麼算？",

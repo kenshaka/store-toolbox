@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("laborCostRatioCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -81,46 +83,69 @@ export default function LaborCostRatioCalculatorPage() {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
-      const sharedMonthlyRevenue = getSharedNumberParam(searchParams, "monthlyRevenue");
+      const sharedMonthlyRevenue = getSharedNumberParam(
+        searchParams,
+        "monthlyRevenue",
+      );
       if (sharedMonthlyRevenue !== null) {
         setMonthlyRevenue(sharedMonthlyRevenue);
       }
 
-      const sharedFullTimeStaff = getSharedNumberParam(searchParams, "fullTimeStaff");
+      const sharedFullTimeStaff = getSharedNumberParam(
+        searchParams,
+        "fullTimeStaff",
+      );
       if (sharedFullTimeStaff !== null) {
         setFullTimeStaff(sharedFullTimeStaff);
       }
 
-      const sharedFullTimeSalary = getSharedNumberParam(searchParams, "fullTimeSalary");
+      const sharedFullTimeSalary = getSharedNumberParam(
+        searchParams,
+        "fullTimeSalary",
+      );
       if (sharedFullTimeSalary !== null) {
         setFullTimeSalary(sharedFullTimeSalary);
       }
 
-      const sharedPartTimeHours = getSharedNumberParam(searchParams, "partTimeHours");
+      const sharedPartTimeHours = getSharedNumberParam(
+        searchParams,
+        "partTimeHours",
+      );
       if (sharedPartTimeHours !== null) {
         setPartTimeHours(sharedPartTimeHours);
       }
 
-      const sharedPartTimeHourlyWage = getSharedNumberParam(searchParams, "partTimeHourlyWage");
+      const sharedPartTimeHourlyWage = getSharedNumberParam(
+        searchParams,
+        "partTimeHourlyWage",
+      );
       if (sharedPartTimeHourlyWage !== null) {
         setPartTimeHourlyWage(sharedPartTimeHourlyWage);
       }
 
-      const sharedOwnerSalary = getSharedNumberParam(searchParams, "ownerSalary");
+      const sharedOwnerSalary = getSharedNumberParam(
+        searchParams,
+        "ownerSalary",
+      );
       if (sharedOwnerSalary !== null) {
         setOwnerSalary(sharedOwnerSalary);
       }
 
-      const sharedExtraBurdenRate = getSharedNumberParam(searchParams, "extraBurdenRate");
+      const sharedExtraBurdenRate = getSharedNumberParam(
+        searchParams,
+        "extraBurdenRate",
+      );
       if (sharedExtraBurdenRate !== null) {
         setExtraBurdenRate(sharedExtraBurdenRate);
       }
 
-      const sharedTargetLaborRatio = getSharedNumberParam(searchParams, "targetLaborRatio");
+      const sharedTargetLaborRatio = getSharedNumberParam(
+        searchParams,
+        "targetLaborRatio",
+      );
       if (sharedTargetLaborRatio !== null) {
         setTargetLaborRatio(sharedTargetLaborRatio);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -183,8 +208,7 @@ export default function LaborCostRatioCalculatorPage() {
 
     if (monthlyRevenue <= 0) {
       verdict = "資料不足";
-      verdictDetail =
-        "月營業額必須大於 0，才能計算人事成本占比。";
+      verdictDetail = "月營業額必須大於 0，才能計算人事成本占比。";
     } else if (laborRatio > targetLaborRatio + 8) {
       verdict = "人事壓力偏高";
       verdictDetail =
@@ -227,7 +251,6 @@ export default function LaborCostRatioCalculatorPage() {
     extraBurdenRate,
     targetLaborRatio,
   ]);
-
 
   const assumptionItems = [
     { label: "每月營業額", value: formatMoney(monthlyRevenue) },
@@ -279,18 +302,30 @@ export default function LaborCostRatioCalculatorPage() {
             人事成本試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            人事成本占比計算
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入月營業額、正職薪資、兼職時數、老闆薪資與額外人事負擔，
-            快速估算餐飲人事成本占營業額比例，以及需要多少營業額才符合目標占比。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入人事資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="labor_cost_ratio"
               description="先用月營收 60 萬、正職加兼職的人事範例，快速查看薪資占比是否偏高。"
@@ -383,7 +418,10 @@ export default function LaborCostRatioCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="labor_cost_ratio" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="labor_cost_ratio"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -410,7 +448,6 @@ export default function LaborCostRatioCalculatorPage() {
                   {formatMoney(result.requiredRevenueForTarget)}
                 </p>
               </div>
-
 
               <CalculatorAssumptionList items={assumptionItems} />
 
@@ -465,8 +502,9 @@ export default function LaborCostRatioCalculatorPage() {
             {result.verdictDetail}
           </p>
           <p className="mt-4 text-sm leading-6 text-stone-500">
-            若要維持 {formatPercent(targetLaborRatio)} 的人事占比，依照目前人事成本，
-            月營業額約需達到 {formatMoney(result.requiredRevenueForTarget)}。
+            若要維持 {formatPercent(targetLaborRatio)}{" "}
+            的人事占比，依照目前人事成本， 月營業額約需達到{" "}
+            {formatMoney(result.requiredRevenueForTarget)}。
             目前與目標營業額差距約 {formatMoney(result.revenueGap)}。
           </p>
         </section>

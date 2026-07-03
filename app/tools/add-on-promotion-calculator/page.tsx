@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("addOnPromotionCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -75,7 +77,6 @@ export default function AddOnPromotionCalculatorPage() {
   const [addOnRate, setAddOnRate] = useState(30);
   const [dailyOrders, setDailyOrders] = useState(80);
 
-
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
@@ -95,7 +96,10 @@ export default function AddOnPromotionCalculatorPage() {
         setAddOnCost(sharedAddOnCost);
       }
 
-      const sharedAverageOrder = getSharedNumberParam(searchParams, "averageOrder");
+      const sharedAverageOrder = getSharedNumberParam(
+        searchParams,
+        "averageOrder",
+      );
       if (sharedAverageOrder !== null) {
         setAverageOrder(sharedAverageOrder);
       }
@@ -105,11 +109,13 @@ export default function AddOnPromotionCalculatorPage() {
         setAddOnRate(sharedAddOnRate);
       }
 
-      const sharedDailyOrders = getSharedNumberParam(searchParams, "dailyOrders");
+      const sharedDailyOrders = getSharedNumberParam(
+        searchParams,
+        "dailyOrders",
+      );
       if (sharedDailyOrders !== null) {
         setDailyOrders(sharedDailyOrders);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -161,13 +167,16 @@ export default function AddOnPromotionCalculatorPage() {
 
     if (profitPerAddOn <= 0) {
       verdict = "不建議";
-      verdictDetail = "加購價低於或等於成本，每賣一份都沒有毛利，建議調高加購價或降低成本。";
+      verdictDetail =
+        "加購價低於或等於成本，每賣一份都沒有毛利，建議調高加購價或降低成本。";
     } else if (marginRate < 30) {
       verdict = "要小心";
-      verdictDetail = "毛利率偏低，除非能明顯提高客單價或帶動回購，否則活動效果可能有限。";
+      verdictDetail =
+        "毛利率偏低，除非能明顯提高客單價或帶動回購，否則活動效果可能有限。";
     } else if (marginRate >= 50) {
       verdict = "很適合";
-      verdictDetail = "加購商品毛利率不錯，若加購率穩定，這類活動有機會提升每日毛利。";
+      verdictDetail =
+        "加購商品毛利率不錯，若加購率穩定，這類活動有機會提升每日毛利。";
     }
 
     return {
@@ -181,7 +190,6 @@ export default function AddOnPromotionCalculatorPage() {
       verdictDetail,
     };
   }, [threshold, addOnPrice, addOnCost, averageOrder, addOnRate, dailyOrders]);
-
 
   const assumptionItems = [
     { label: "單筆消費滿額門檻", value: formatMoney(threshold) },
@@ -228,17 +236,29 @@ export default function AddOnPromotionCalculatorPage() {
             餐飲促銷試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            滿額加購活動計算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入滿額門檻、加購商品售價、成本、加購率與每日訂單數，
-            快速估算餐飲店、小吃店、飲料店滿額加購活動毛利會不會賺錢。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="add_on_promotion"
               description="先用「滿 150 元、40 元加購」的常見活動範例，快速查看加購率與成本對毛利的影響。"
@@ -309,7 +329,10 @@ export default function AddOnPromotionCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="add_on_promotion" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="add_on_promotion"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -359,7 +382,6 @@ export default function AddOnPromotionCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
@@ -389,10 +411,10 @@ export default function AddOnPromotionCalculatorPage() {
           <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
-              如果你設定「滿 150 元，加 40 元可加購一瓶飲料」，
-              而每瓶成本是 18 元，代表每瓶加購毛利是 22 元，
-              毛利率是 55%。如果每天 80 筆訂單、其中 30% 會加購，
-              預估每日可增加 528 元毛利，每月約增加 15,840 元毛利。
+              如果你設定「滿 150 元，加 40 元可加購一瓶飲料」， 而每瓶成本是 18
+              元，代表每瓶加購毛利是 22 元， 毛利率是 55%。如果每天 80
+              筆訂單、其中 30% 會加購， 預估每日可增加 528 元毛利，每月約增加
+              15,840 元毛利。
             </p>
           </div>
 
@@ -432,7 +454,8 @@ export default function AddOnPromotionCalculatorPage() {
                 Q2：加購率要怎麼估算？
               </h3>
               <p className="mt-2 leading-7 text-stone-700">
-                剛開始可以用 10%、20%、30% 做保守、中間、樂觀三種情境。活動上線後，再用實際訂單紀錄修正。
+                剛開始可以用 10%、20%、30%
+                做保守、中間、樂觀三種情境。活動上線後，再用實際訂單紀錄修正。
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 p-5">
@@ -448,7 +471,8 @@ export default function AddOnPromotionCalculatorPage() {
                 Q4：滿額門檻要怎麼設定？
               </h3>
               <p className="mt-2 leading-7 text-stone-700">
-                可以從平均客單價往上加一點點。若平均客單價是 120 元，滿 150 元通常比滿 200 元更容易讓客人達成。
+                可以從平均客單價往上加一點點。若平均客單價是 120 元，滿 150
+                元通常比滿 200 元更容易讓客人達成。
               </p>
             </div>
           </div>

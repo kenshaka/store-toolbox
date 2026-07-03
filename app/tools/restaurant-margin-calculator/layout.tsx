@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/restaurant-margin-calculator",
   },
-  title: "餐飲毛利率計算器｜餐廳、小吃店、飲料店定價試算",
+  title: "餐點售價怎麼算？餐飲成本、毛利率與建議售價試算",
   description:
-    "免費餐飲毛利率計算器，輸入商品售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算餐廳、小吃店、飲料店單品毛利、毛利率與建議售價。",
+    "想知道餐點要賣多少才會賺？免費餐飲毛利率計算器可輸入售價、食材成本、包材成本、平台抽成與目標毛利率，快速計算單品毛利、毛利率與建議售價。",
   keywords: [
     "餐飲毛利率計算器",
     "毛利率計算",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     "飲料店毛利",
   ],
   openGraph: {
-    title: "餐飲毛利率計算器｜開店小工具箱",
+    title: "餐點售價怎麼算？｜開店小工具箱",
     description:
-      "輸入售價、食材成本、包材成本與平台抽成，快速計算餐飲商品毛利率。",
+      "輸入售價、食材成本、包材成本與平台抽成，快速計算餐飲商品成本、毛利率與建議售價。",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",

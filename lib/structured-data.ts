@@ -1,5 +1,9 @@
 import type { BlogPost } from "@/lib/posts";
-import { getToolByKey, getToolCategoryBySlug, toolsByCategory } from "@/lib/tools";
+import {
+  getToolByKey,
+  getToolCategoryBySlug,
+  toolsByCategory,
+} from "@/lib/tools";
 import type { FaqItem, ToolCategorySlug, ToolKey } from "@/lib/tools";
 
 export const siteUrl = "https://store-toolbox.vercel.app";
@@ -8,7 +12,7 @@ const siteName = "開店小工具箱";
 const siteAlternateName = "開店工具箱";
 const siteLogoUrl = `${siteUrl}/icon.png`;
 const siteDescription =
-  "開店小工具箱提供餐飲店、小吃店、飲料店常用的營運試算工具，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算，幫助小店老闆在定價、促銷或開店前先算清楚。";
+  "開店小工具箱提供餐飲店、小吃店、飲料店與小型商家常用的營運試算工具，幫小店老闆計算成本、售價、利潤、開店預算、外送抽成、促銷活動、損益兩平與人事成本。";
 
 const publisher = {
   "@type": "Organization",
@@ -101,15 +105,15 @@ export function getBlogIndexStructuredData(blogPosts: BlogPost[]) {
   return [
     getBreadcrumbJsonLd([
       { name: siteName, path: "" },
-      { name: "餐飲經營文章", path: "/blog" },
+      { name: "小店成本與利潤文章", path: "/blog" },
     ]),
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "餐飲經營文章",
+      name: "小店成本與利潤文章",
       url: absoluteUrl("/blog"),
       description:
-        "開店小工具箱的餐飲經營文章，整理滿額加購、餐飲毛利、外送平台抽成、折扣活動、定價試算與小店促銷活動的實用教學。",
+        "開店小工具箱的小店經營文章，整理成本怎麼算、售價怎麼訂、開店要準備多少錢、外送抽成、打折促銷與毛利率的實用教學。",
       inLanguage: "zh-Hant-TW",
       isPartOf: {
         "@type": "WebSite",
@@ -136,7 +140,7 @@ export function getBlogPostStructuredData(post: BlogPost) {
   return [
     getBreadcrumbJsonLd([
       { name: siteName, path: "" },
-      { name: "餐飲經營文章", path: "/blog" },
+      { name: "小店成本與利潤文章", path: "/blog" },
       { name: post.title, path },
     ]),
     {
@@ -157,7 +161,7 @@ export function getBlogPostStructuredData(post: BlogPost) {
       publisher,
       isPartOf: {
         "@type": "Blog",
-        name: "餐飲經營文章",
+        name: "小店成本與利潤文章",
         url: absoluteUrl("/blog"),
       },
     },
@@ -178,7 +182,7 @@ export function getToolsIndexStructuredData() {
       name: "開店工具總覽",
       url: absoluteUrl("/tools"),
       description:
-        "開店小工具箱整理餐飲店、小吃店、飲料店常用的免費試算工具，依照單品定價、活動促銷、通路成本與整店經營分組，包含餐飲毛利率、滿額加購、折扣活動、外送平台抽成、菜單漲價、開店成本、損益兩平與人事成本占比試算。",
+        "開店小工具箱整理餐飲店、小吃店、飲料店與小型商家常用的免費試算工具，依照成本、售價、利潤、促銷、外送抽成、開店預算、損益兩平與人事成本等問題分組。",
       inLanguage: "zh-Hant-TW",
       isPartOf: {
         "@type": "WebSite",

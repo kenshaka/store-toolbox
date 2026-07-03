@@ -11,7 +11,7 @@ function FoodPricingFormulaContent() {
       </p>
 
       <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight">
-        小吃店定價怎麼算？用成本、毛利率反推售價
+        餐點售價怎麼算？小吃店用成本、毛利率反推售價
       </h1>
 
       <p className="mt-5 text-lg leading-8 text-stone-700">
@@ -169,7 +169,7 @@ function FoodPricingFormulaContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用餐飲毛利率計算器
+              用餐飲毛利率計算器算售價與利潤
             </TrackedLink>
           </div>
         </section>
@@ -230,9 +230,9 @@ function FoodPricingFormulaContent() {
 
 export const foodPricingFormulaPost: BlogPost = {
   slug: "food-pricing-formula",
-  title: "小吃店定價怎麼算？用成本、毛利率反推售價",
+  title: "餐點售價怎麼算？小吃店用成本、毛利率反推售價",
   description:
-    "用小吃店常見餐點為例，說明如何整理食材成本、包材成本與目標毛利率，並用成本率反推合理售價。",
+    "用小吃店常見餐點為例，說明餐點售價怎麼算，如何整理食材成本、包材成本與目標毛利率，並用成本率反推合理售價。",
   keywords: [
     "餐飲毛利率計算器",
     "小吃店定價",
@@ -245,7 +245,7 @@ export const foodPricingFormulaPost: BlogPost = {
   ],
   category: "餐飲定價與毛利",
   date: "2026 年 7 月 2 日",
-  openGraphTitle: "小吃店定價怎麼算？用成本、毛利率反推售價",
+  openGraphTitle: "餐點售價怎麼算？小吃店用成本、毛利率反推售價",
   openGraphDescription:
     "整理小吃店定價公式，教你用總直接成本、目標成本率與毛利率反推餐點售價。",
   relatedPostSlugs: [

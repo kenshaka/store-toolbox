@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("discountProfitCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -74,36 +76,49 @@ export default function DiscountProfitCalculatorPage() {
   const [originalDailySales, setOriginalDailySales] = useState(50);
   const [discountDailySales, setDiscountDailySales] = useState(80);
 
-
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
-      const sharedOriginalPrice = getSharedNumberParam(searchParams, "originalPrice");
+      const sharedOriginalPrice = getSharedNumberParam(
+        searchParams,
+        "originalPrice",
+      );
       if (sharedOriginalPrice !== null) {
         setOriginalPrice(sharedOriginalPrice);
       }
 
-      const sharedDiscountPrice = getSharedNumberParam(searchParams, "discountPrice");
+      const sharedDiscountPrice = getSharedNumberParam(
+        searchParams,
+        "discountPrice",
+      );
       if (sharedDiscountPrice !== null) {
         setDiscountPrice(sharedDiscountPrice);
       }
 
-      const sharedProductCost = getSharedNumberParam(searchParams, "productCost");
+      const sharedProductCost = getSharedNumberParam(
+        searchParams,
+        "productCost",
+      );
       if (sharedProductCost !== null) {
         setProductCost(sharedProductCost);
       }
 
-      const sharedOriginalDailySales = getSharedNumberParam(searchParams, "originalDailySales");
+      const sharedOriginalDailySales = getSharedNumberParam(
+        searchParams,
+        "originalDailySales",
+      );
       if (sharedOriginalDailySales !== null) {
         setOriginalDailySales(sharedOriginalDailySales);
       }
 
-      const sharedDiscountDailySales = getSharedNumberParam(searchParams, "discountDailySales");
+      const sharedDiscountDailySales = getSharedNumberParam(
+        searchParams,
+        "discountDailySales",
+      );
       if (sharedDiscountDailySales !== null) {
         setDiscountDailySales(sharedDiscountDailySales);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -212,7 +227,6 @@ export default function DiscountProfitCalculatorPage() {
     discountDailySales,
   ]);
 
-
   const assumptionItems = [
     { label: "商品原價", value: formatMoney(originalPrice) },
     { label: "活動售價", value: formatMoney(discountPrice) },
@@ -258,18 +272,30 @@ export default function DiscountProfitCalculatorPage() {
             商店促銷試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            折扣活動損益計算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入原價、活動價、商品成本與預估銷量，
-            快速判斷餐飲打折促銷後每日毛利是增加還是減少。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="discount_profit"
               description="先用「100 元商品打 85 元、銷量增加」的範例，快速比較折扣前後的毛利變化。"
@@ -330,7 +356,10 @@ export default function DiscountProfitCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="discount_profit" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="discount_profit"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -411,7 +440,6 @@ export default function DiscountProfitCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
@@ -442,10 +470,9 @@ export default function DiscountProfitCalculatorPage() {
           <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
-              如果商品原價 100 元、成本 40 元，原本每份毛利是 60 元。
-              活動價改成 80 元後，每份毛利變成 40 元。
-              如果原本每天賣 50 份，每日毛利是 3,000 元；
-              活動後若每天賣 80 份，每日毛利是 3,200 元，
+              如果商品原價 100 元、成本 40 元，原本每份毛利是 60 元。 活動價改成
+              80 元後，每份毛利變成 40 元。 如果原本每天賣 50 份，每日毛利是
+              3,000 元； 活動後若每天賣 80 份，每日毛利是 3,200 元，
               代表活動後每日毛利增加 200 元。
             </p>
           </div>

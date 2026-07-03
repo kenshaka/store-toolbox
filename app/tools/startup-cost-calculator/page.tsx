@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("startupCostCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -82,51 +84,77 @@ export default function StartupCostCalculatorPage() {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
-      const sharedRentDeposit = getSharedNumberParam(searchParams, "rentDeposit");
+      const sharedRentDeposit = getSharedNumberParam(
+        searchParams,
+        "rentDeposit",
+      );
       if (sharedRentDeposit !== null) {
         setRentDeposit(sharedRentDeposit);
       }
 
-      const sharedRenovationCost = getSharedNumberParam(searchParams, "renovationCost");
+      const sharedRenovationCost = getSharedNumberParam(
+        searchParams,
+        "renovationCost",
+      );
       if (sharedRenovationCost !== null) {
         setRenovationCost(sharedRenovationCost);
       }
 
-      const sharedEquipmentCost = getSharedNumberParam(searchParams, "equipmentCost");
+      const sharedEquipmentCost = getSharedNumberParam(
+        searchParams,
+        "equipmentCost",
+      );
       if (sharedEquipmentCost !== null) {
         setEquipmentCost(sharedEquipmentCost);
       }
 
-      const sharedInitialInventory = getSharedNumberParam(searchParams, "initialInventory");
+      const sharedInitialInventory = getSharedNumberParam(
+        searchParams,
+        "initialInventory",
+      );
       if (sharedInitialInventory !== null) {
         setInitialInventory(sharedInitialInventory);
       }
 
-      const sharedLicenseAndSetup = getSharedNumberParam(searchParams, "licenseAndSetup");
+      const sharedLicenseAndSetup = getSharedNumberParam(
+        searchParams,
+        "licenseAndSetup",
+      );
       if (sharedLicenseAndSetup !== null) {
         setLicenseAndSetup(sharedLicenseAndSetup);
       }
 
-      const sharedOpeningMarketing = getSharedNumberParam(searchParams, "openingMarketing");
+      const sharedOpeningMarketing = getSharedNumberParam(
+        searchParams,
+        "openingMarketing",
+      );
       if (sharedOpeningMarketing !== null) {
         setOpeningMarketing(sharedOpeningMarketing);
       }
 
-      const sharedPreOpeningLabor = getSharedNumberParam(searchParams, "preOpeningLabor");
+      const sharedPreOpeningLabor = getSharedNumberParam(
+        searchParams,
+        "preOpeningLabor",
+      );
       if (sharedPreOpeningLabor !== null) {
         setPreOpeningLabor(sharedPreOpeningLabor);
       }
 
-      const sharedMonthlyOperatingCost = getSharedNumberParam(searchParams, "monthlyOperatingCost");
+      const sharedMonthlyOperatingCost = getSharedNumberParam(
+        searchParams,
+        "monthlyOperatingCost",
+      );
       if (sharedMonthlyOperatingCost !== null) {
         setMonthlyOperatingCost(sharedMonthlyOperatingCost);
       }
 
-      const sharedReserveMonths = getSharedNumberParam(searchParams, "reserveMonths");
+      const sharedReserveMonths = getSharedNumberParam(
+        searchParams,
+        "reserveMonths",
+      );
       if (sharedReserveMonths !== null) {
         setReserveMonths(sharedReserveMonths);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -225,7 +253,6 @@ export default function StartupCostCalculatorPage() {
     reserveMonths,
   ]);
 
-
   const assumptionItems = [
     { label: "押金與預付租金", value: formatMoney(rentDeposit) },
     { label: "裝潢工程費", value: formatMoney(renovationCost) },
@@ -277,18 +304,30 @@ export default function StartupCostCalculatorPage() {
             開店預算試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            餐廳開店成本估算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入押金、裝潢、設備、初期備料、開幕行銷與周轉金，
-            快速估算餐廳、小吃店或飲料店開店前大約需要準備多少啟動資金。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入開店成本</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="startup_cost"
               description="先用小型店面開辦成本範例，快速估算裝潢設備、備料與周轉金總需求。"
@@ -388,7 +427,10 @@ export default function StartupCostCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="startup_cost" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="startup_cost"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -419,7 +461,6 @@ export default function StartupCostCalculatorPage() {
                 </p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
@@ -448,9 +489,7 @@ export default function StartupCostCalculatorPage() {
 
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <p className="text-sm text-stone-500">周轉金月數</p>
-            <p className="mt-2 text-2xl font-bold">
-              {reserveMonths} 個月
-            </p>
+            <p className="mt-2 text-2xl font-bold">{reserveMonths} 個月</p>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               用每月固定營運成本乘上預留月數估算。
             </p>

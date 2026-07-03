@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("foodDeliveryFeeCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -85,7 +87,10 @@ export default function FoodDeliveryFeeCalculatorPage() {
         setBasePrice(sharedBasePrice);
       }
 
-      const sharedDeliveryPrice = getSharedNumberParam(searchParams, "deliveryPrice");
+      const sharedDeliveryPrice = getSharedNumberParam(
+        searchParams,
+        "deliveryPrice",
+      );
       if (sharedDeliveryPrice !== null) {
         setDeliveryPrice(sharedDeliveryPrice);
       }
@@ -95,26 +100,37 @@ export default function FoodDeliveryFeeCalculatorPage() {
         setFoodCost(sharedFoodCost);
       }
 
-      const sharedPackagingCost = getSharedNumberParam(searchParams, "packagingCost");
+      const sharedPackagingCost = getSharedNumberParam(
+        searchParams,
+        "packagingCost",
+      );
       if (sharedPackagingCost !== null) {
         setPackagingCost(sharedPackagingCost);
       }
 
-      const sharedPlatformFeeRate = getSharedNumberParam(searchParams, "platformFeeRate");
+      const sharedPlatformFeeRate = getSharedNumberParam(
+        searchParams,
+        "platformFeeRate",
+      );
       if (sharedPlatformFeeRate !== null) {
         setPlatformFeeRate(sharedPlatformFeeRate);
       }
 
-      const sharedShopSubsidy = getSharedNumberParam(searchParams, "shopSubsidy");
+      const sharedShopSubsidy = getSharedNumberParam(
+        searchParams,
+        "shopSubsidy",
+      );
       if (sharedShopSubsidy !== null) {
         setShopSubsidy(sharedShopSubsidy);
       }
 
-      const sharedDailyOrders = getSharedNumberParam(searchParams, "dailyOrders");
+      const sharedDailyOrders = getSharedNumberParam(
+        searchParams,
+        "dailyOrders",
+      );
       if (sharedDailyOrders !== null) {
         setDailyOrders(sharedDailyOrders);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -165,7 +181,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
       deliveryPrice > 0 ? (deliveryProfitPerOrder / deliveryPrice) * 100 : 0;
 
     const baseProfitPerOrder = basePrice - totalCost;
-    const profitDifferencePerOrder = deliveryProfitPerOrder - baseProfitPerOrder;
+    const profitDifferencePerOrder =
+      deliveryProfitPerOrder - baseProfitPerOrder;
     const dailyProfit = deliveryProfitPerOrder * dailyOrders;
     const monthlyProfit = dailyProfit * 30;
 
@@ -224,7 +241,6 @@ export default function FoodDeliveryFeeCalculatorPage() {
     dailyOrders,
   ]);
 
-
   const assumptionItems = [
     { label: "內用／自取售價", value: formatMoney(basePrice) },
     { label: "外送平台售價", value: formatMoney(deliveryPrice) },
@@ -276,18 +292,30 @@ export default function FoodDeliveryFeeCalculatorPage() {
             外送平台成本試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            外送平台抽成計算
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入內用售價、外送售價、食材成本、包材成本、平台抽成與每日訂單數，
-            快速估算餐飲外送訂單扣除抽成後還剩多少毛利，以及外送價格是否需要調整。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入外送資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="food_delivery_fee"
               description="先用「內用 120 元、外送 150 元、平台抽成 30%」的範例，快速查看外送單還賺不賺。"
@@ -368,7 +396,10 @@ export default function FoodDeliveryFeeCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="food_delivery_fee" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="food_delivery_fee"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -440,7 +471,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
                     {formatMoney(result.requiredDeliveryPrice)}
                   </p>
                   <p className="mt-2 text-xs text-stone-300">
-                    目前外送價比建議價 {result.priceGap > 0 ? "低" : "高"} {formatMoney(Math.abs(result.priceGap))}
+                    目前外送價比建議價 {result.priceGap > 0 ? "低" : "高"}{" "}
+                    {formatMoney(Math.abs(result.priceGap))}
                   </p>
                 </div>
               </div>
@@ -450,7 +482,6 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 <p className="mt-1 text-3xl font-black">{result.verdict}</p>
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
-
 
               <CalculatorAssumptionList items={assumptionItems} />
 
@@ -474,7 +505,10 @@ export default function FoodDeliveryFeeCalculatorPage() {
             <p>平台抽成金額 = 外送平台售價 × 平台抽成比例</p>
             <p>抽成後實收金額 = 外送平台售價 − 平台抽成金額</p>
             <p>直接成本合計 = 食材成本 + 包材成本</p>
-            <p>每筆外送毛利 = 外送平台售價 − 平台抽成金額 − 直接成本合計 − 店家負擔折扣／補貼</p>
+            <p>
+              每筆外送毛利 = 外送平台售價 − 平台抽成金額 − 直接成本合計 −
+              店家負擔折扣／補貼
+            </p>
             <p>外送毛利率 = 每筆外送毛利 ÷ 外送平台售價 × 100%</p>
             <p>每日外送毛利 = 每筆外送毛利 × 預估每日外送訂單數</p>
           </div>
@@ -482,9 +516,10 @@ export default function FoodDeliveryFeeCalculatorPage() {
           <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
-              如果內用售價 120 元、外送平台售價 150 元，食材成本 38 元、包材成本 7 元，
-              平台抽成 30%，平台抽成金額是 45 元。扣掉直接成本 45 元後，
-              每筆外送毛利是 60 元；內用或自取毛利是 75 元，代表外送每筆少 15 元毛利。
+              如果內用售價 120 元、外送平台售價 150 元，食材成本 38 元、包材成本
+              7 元， 平台抽成 30%，平台抽成金額是 45 元。扣掉直接成本 45 元後，
+              每筆外送毛利是 60 元；內用或自取毛利是 75 元，代表外送每筆少 15
+              元毛利。
             </p>
           </div>
 

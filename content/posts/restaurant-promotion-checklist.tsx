@@ -148,7 +148,7 @@ function RestaurantPromotionChecklistContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用折扣活動損益計算器
+              用折扣活動損益計算器算打折會不會虧
             </TrackedLink>
 
             <TrackedLink
@@ -161,7 +161,7 @@ function RestaurantPromotionChecklistContent() {
               }}
               className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用滿額加購活動計算器
+              用滿額加購活動計算器算加購毛利
             </TrackedLink>
           </div>
         </section>

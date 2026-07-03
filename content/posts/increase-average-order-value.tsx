@@ -171,7 +171,7 @@ function IncreaseAverageOrderValueContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用滿額加購活動計算器
+              用滿額加購活動計算器算加購毛利
             </TrackedLink>
           </div>
         </section>

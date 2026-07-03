@@ -11,7 +11,7 @@ function AddOnPromotionExampleContent() {
       </p>
 
       <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight">
-        滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算
+        滿額加購活動怎麼算？滿 150 元加購 40 元划算嗎
       </h1>
 
       <p className="mt-5 text-lg leading-8 text-stone-700">
@@ -239,7 +239,7 @@ function AddOnPromotionExampleContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用滿額加購活動計算器
+              用滿額加購活動計算器算加購毛利
             </TrackedLink>
           </div>
         </section>
@@ -319,9 +319,9 @@ function AddOnPromotionExampleContent() {
 
 export const addOnPromotionExamplePost: BlogPost = {
     slug: "add-on-promotion-example",
-    title: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
+    title: "滿額加購活動怎麼算？滿 150 元加購 40 元划算嗎",
     description:
-      "用餐飲店常見的滿 150 元加購 40 元活動為例，教你試算加購商品毛利、加購率、每日增加毛利與活動是否值得做。",
+      "用餐飲店常見的滿 150 元加購 40 元活動為例，教你試算加購商品毛利、加購率、每日增加毛利，判斷滿額加購會不會賺。",
     keywords: [
       "滿150加購40",
       "滿額加購",
@@ -335,7 +335,7 @@ export const addOnPromotionExamplePost: BlogPost = {
     ],
     category: "餐飲促銷活動",
     date: "2026 年 7 月 1 日",
-    openGraphTitle: "滿 150 元加購 40 元划算嗎？餐飲店滿額加購活動怎麼算",
+    openGraphTitle: "滿額加購活動怎麼算？滿 150 元加購 40 元划算嗎",
     openGraphDescription:
       "用簡單範例試算滿額加購活動是否划算，包含加購毛利、毛利率、加購率與每日增加毛利。",
     relatedPostSlugs: [

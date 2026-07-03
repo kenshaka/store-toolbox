@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
-import { toolsByCategory } from "@/lib/tools";
+import { tools, toolsByCategory } from "@/lib/tools";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "餐飲開店成本、毛利率與外送抽成試算工具",
+  title: "小店成本、售價與利潤計算工具｜開店小工具箱",
   description:
-    "免費餐飲開店試算工具，整理餐廳開店成本估算器、餐飲毛利率計算器、外送平台抽成計算、滿額加購活動計算、損益兩平計算器與人事成本占比計算。",
+    "免費小店經營試算工具，幫餐廳、小吃店、飲料店與小型商家快速計算開店成本、餐飲成本、商品售價、毛利率、外送抽成、促銷活動與人事成本。",
 };
 
 export default function Home() {
@@ -20,17 +20,51 @@ export default function Home() {
     <main className="bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-5xl px-6 py-16">
         <p className="mb-4 text-sm font-semibold text-orange-700">
-          給小店老闆的實用試算工具
+          給小店老闆的免費試算工具
         </p>
 
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          餐飲開店成本、毛利率與外送抽成試算工具
+          幫小店老闆快速算成本、售價、利潤與開店預算
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-          幫餐廳、小吃店、飲料店快速使用餐飲毛利率計算器、餐廳開店成本估算器、外送平台抽成計算、滿額加購活動計算、損益兩平計算器與人事成本占比計算，
-          讓你在做定價、促銷、外送上架或開店前先知道數字是否合理。
+          不確定餐點要賣多少、開店要準備多少錢、每天要賣幾筆才不虧，
+          或外送抽成、打折促銷、人事成本會不會吃掉利潤？開店小工具箱把小店經營常見問題整理成簡單計算器，讓你先用數字做基本判斷。
         </p>
+
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">
+            不知道要用哪個工具？
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-stone-900">
+            先從你想解決的問題開始
+          </h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {tools.map((tool) => (
+              <TrackedLink
+                key={tool.href}
+                href={tool.href}
+                eventName="select_tool"
+                eventParams={{
+                  tool_id: tool.toolId,
+                  tool_name: tool.title,
+                  link_location: "home_intent",
+                }}
+                className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:border-orange-200 hover:bg-orange-50"
+              >
+                <h3 className="text-lg font-bold text-stone-900">
+                  {tool.plainQuestion}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-stone-600">
+                  {tool.homeDescription}
+                </p>
+                <p className="mt-4 text-sm font-bold text-orange-700">
+                  {tool.ctaLabel} →
+                </p>
+              </TrackedLink>
+            ))}
+          </div>
+        </section>
 
         <div className="mt-10 grid gap-6">
           {toolsByCategory.map((category) => (
@@ -94,23 +128,22 @@ export default function Home() {
         <div className="mt-14 rounded-2xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">這個網站可以幫你做什麼？</h2>
           <p className="mt-4 leading-7 text-stone-700">
-            商店在做定價、促銷或開店規劃時，除了看「客人會不會買」，還要計算「毛利、固定成本和人事成本撐不撐得住」。
-            開店小工具箱會把常見的經營問題變成簡單的計算器，讓你在投入成本或推出活動前先有基本判斷。
+            很多小店問題一開始不會叫「損益兩平」或「活動損益」，而是「要賣多少才不虧」、
+            「成本要怎麼算」、「打折會不會賠錢」。本站用白話問題引導你找到對應工具，
+            再用毛利、固定成本、營業額與人事成本做初步試算。
           </p>
         </div>
 
         <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
-          <p className="text-sm font-semibold text-orange-700">
-            適合誰使用
-          </p>
+          <p className="text-sm font-semibold text-orange-700">適合誰使用</p>
           <h2 className="mt-2 text-2xl font-bold">
-            給餐飲店、小吃店、飲料店與小型商店的簡單營運工具
+            給餐飲店、小吃店、飲料店、攤商與小型商家的簡單營運工具
           </h2>
 
           <p className="mt-4 leading-7 text-stone-700">
-            如果你正在設計滿額加購、折扣促銷、菜單定價、外送平台售價、開店預算或排班人力，
+            如果你正在估餐飲成本、商品售價、開店預算、外送平台價格、促銷活動或排班人力，
             可以先用這些免費工具快速試算。網站目前特別適合小吃店、飲料店、外帶店、攤商、
-            餐飲創業者，以及想在投入成本前先確認毛利與營運壓力的小店老闆。
+            餐飲創業者，以及想在投入成本前先確認利潤與現金壓力的小店老闆。
           </p>
         </section>
 
@@ -121,7 +154,7 @@ export default function Home() {
                 最新開店文章
               </p>
               <h2 className="mt-2 text-2xl font-bold">
-                餐飲活動怎麼算才不會虧？
+                成本、售價與利潤怎麼算才不會只靠感覺？
               </h2>
             </div>
 
@@ -134,8 +167,8 @@ export default function Home() {
           </div>
 
           <p className="mt-4 leading-7 text-stone-700">
-            從餐飲毛利率怎麼算、餐廳開店成本估算、外送平台抽成計算、菜單漲價到滿額加購活動計算，整理常見的試算範例與公式，
-            幫助你避免定價、促銷或開店預算只憑感覺。
+            從餐飲成本怎麼算、餐點售價怎麼訂、開店要準備多少錢、外送抽成後剩多少，
+            到打折活動會不會賠錢，整理常見的試算範例與公式，幫助你避免定價、促銷或開店預算只憑感覺。
           </p>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -166,9 +199,7 @@ export default function Home() {
         <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-semibold text-orange-700">
-                常見問題
-              </p>
+              <p className="text-sm font-semibold text-orange-700">常見問題</p>
               <h2 className="mt-2 text-2xl font-bold">
                 使用工具前，可以先了解試算限制
               </h2>

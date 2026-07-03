@@ -11,7 +11,7 @@ function RestaurantPromotionCostContent() {
       </p>
 
       <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight">
-        餐飲店活動成本怎麼抓？折扣、加購、贈品活動試算方式
+        促銷活動成本怎麼算？折扣、加購、贈品活動試算方式
       </h1>
 
       <p className="mt-5 text-lg leading-8 text-stone-700">
@@ -175,7 +175,7 @@ function RestaurantPromotionCostContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用折扣活動損益計算器
+              用折扣活動損益計算器算打折會不會虧
             </TrackedLink>
 
             <TrackedLink
@@ -188,7 +188,7 @@ function RestaurantPromotionCostContent() {
               }}
               className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用滿額加購活動計算器
+              用滿額加購活動計算器算加購毛利
             </TrackedLink>
           </div>
         </section>
@@ -246,9 +246,9 @@ function RestaurantPromotionCostContent() {
 
 export const restaurantPromotionCostPost: BlogPost = {
   slug: "restaurant-promotion-cost",
-  title: "餐飲店活動成本怎麼抓？折扣、加購、贈品活動試算方式",
+  title: "促銷活動成本怎麼算？折扣、加購、贈品活動試算方式",
   description:
-    "整理餐飲店做折扣、滿額加購與贈品活動前應該試算的成本項目，幫助店家比較活動前後毛利是否划算。",
+    "整理餐飲店做折扣、滿額加購與贈品活動前應該試算的成本項目，幫助店家比較促銷活動會不會賠錢、活動前後毛利是否划算。",
   keywords: [
     "滿額加購活動計算",
     "折扣活動損益計算",
@@ -262,7 +262,7 @@ export const restaurantPromotionCostPost: BlogPost = {
   ],
   category: "餐飲促銷活動",
   date: "2026 年 7 月 2 日",
-  openGraphTitle: "餐飲店活動成本怎麼抓？折扣、加購、贈品活動試算方式",
+  openGraphTitle: "促銷活動成本怎麼算？折扣、加購、贈品活動試算方式",
   openGraphDescription:
     "用折扣、滿額加購和贈品活動範例，說明餐飲店活動成本與活動前後毛利怎麼試算。",
   relatedPostSlugs: [

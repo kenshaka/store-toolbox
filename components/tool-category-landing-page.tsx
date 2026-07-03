@@ -24,17 +24,20 @@ export default function ToolCategoryLandingPage({
               首頁
             </Link>
             <span>/</span>
-            <Link href="/tools" className="hover:text-orange-700 hover:underline">
+            <Link
+              href="/tools"
+              className="hover:text-orange-700 hover:underline"
+            >
               工具總覽
             </Link>
             <span>/</span>
-            <span className="font-semibold text-stone-700">{page.title}工具</span>
+            <span className="font-semibold text-stone-700">
+              {page.title}工具
+            </span>
           </div>
 
           <header className="mt-8 rounded-3xl bg-white p-8 shadow-sm">
-            <p className="text-sm font-semibold text-orange-700">
-              工具分類
-            </p>
+            <p className="text-sm font-semibold text-orange-700">工具分類</p>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
               {page.title}工具
             </h1>
@@ -61,7 +64,10 @@ export default function ToolCategoryLandingPage({
             </div>
           </header>
 
-          <section id="tools" className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+          <section
+            id="tools"
+            className="mt-8 rounded-3xl bg-white p-6 shadow-sm"
+          >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm font-semibold text-orange-700">
@@ -91,6 +97,9 @@ export default function ToolCategoryLandingPage({
                   <p className="mt-3 text-sm leading-6 text-stone-700">
                     {tool.description}
                   </p>
+                  <p className="mt-4 rounded-2xl bg-white p-4 text-sm font-semibold leading-6 text-stone-700">
+                    {tool.plainQuestion}
+                  </p>
 
                   <div className="mt-5 flex flex-wrap gap-3">
                     <TrackedLink
@@ -103,13 +112,13 @@ export default function ToolCategoryLandingPage({
                       }}
                       className="inline-flex rounded-full bg-stone-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-orange-700"
                     >
-                      使用工具
+                      {tool.ctaLabel}
                     </TrackedLink>
                     <Link
                       href={tool.articleHref}
                       className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-bold text-orange-700 transition hover:bg-orange-50"
                     >
-                      看教學文章
+                      看算法文章
                     </Link>
                   </div>
                 </article>
@@ -197,15 +206,16 @@ export default function ToolCategoryLandingPage({
           </section>
 
           <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-orange-700">
-              常見問題
-            </p>
+            <p className="text-sm font-semibold text-orange-700">常見問題</p>
             <h2 className="mt-2 text-2xl font-bold text-stone-900">
               {page.title}工具常見問題
             </h2>
             <div className="mt-6 grid gap-4">
               {page.faqs.map((faq) => (
-                <article key={faq.question} className="rounded-2xl bg-stone-100 p-5">
+                <article
+                  key={faq.question}
+                  className="rounded-2xl bg-stone-100 p-5"
+                >
                   <h3 className="font-bold text-stone-900">{faq.question}</h3>
                   <p className="mt-3 text-sm leading-6 text-stone-700">
                     {faq.answer}
@@ -218,11 +228,9 @@ export default function ToolCategoryLandingPage({
           <section className="mt-8 rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-2xl font-bold">
-                  還不確定該用哪一個工具？
-                </h2>
+                <h2 className="text-2xl font-bold">還不確定該用哪一個工具？</h2>
                 <p className="mt-3 leading-7 text-stone-300">
-                  可以回到工具總覽，從單品定價、活動促銷、通路成本與整店經營四個方向重新選擇。
+                  可以回到工具總覽，從「成本怎麼算、售價怎麼訂、活動會不會虧、每天要賣多少」這些白話問題重新選擇。
                 </p>
               </div>
               <Link

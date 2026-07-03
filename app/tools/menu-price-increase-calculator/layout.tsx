@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tools/menu-price-increase-calculator",
   },
-  title: "菜單漲價試算器｜餐飲漲價後毛利率與銷量試算",
+  title: "菜單漲價怎麼算？成本上漲後售價與毛利試算",
   description:
-    "免費菜單漲價試算器，輸入目前售價、成本上漲後成本、預計調漲金額與每日銷量，快速估算餐飲漲價後毛利率、每日毛利與銷量打平點。",
+    "想知道成本上漲後要不要漲價？免費菜單漲價試算器可輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，估算漲價後毛利與銷量打平點。",
   keywords: [
     "菜單漲價試算器",
     "餐飲漲價計算",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "飲料店漲價",
   ],
   openGraph: {
-    title: "菜單漲價試算器｜開店小工具箱",
+    title: "菜單漲價怎麼算？｜開店小工具箱",
     description:
       "輸入售價、成本、漲價金額與預估銷量，快速試算菜單漲價後毛利是否改善。",
     type: "website",

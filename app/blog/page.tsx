@@ -8,23 +8,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/blog",
   },
-  title: "餐飲開店與成本試算文章｜毛利率、外送抽成、促銷活動",
+  title: "小店成本、售價與利潤怎麼算｜開店經營文章",
   description:
-    "整理餐飲毛利率怎麼算、餐廳開店成本估算、外送平台抽成計算、滿額加購活動計算、折扣活動損益與菜單漲價的實用教學。",
+    "整理小店老闆常見問題：餐飲成本怎麼算、餐點售價怎麼訂、開店要準備多少錢、打折會不會賠錢、外送抽成後剩多少。",
   keywords: [
+    "成本怎麼算",
+    "售價怎麼算",
+    "利潤怎麼算",
+    "開店要準備多少錢",
+    "打折會不會賠錢",
+    "外送抽成怎麼算",
     "餐飲經營",
-    "餐飲毛利",
-    "滿額加購",
-    "折扣活動",
-    "餐飲促銷",
     "小吃店經營",
     "飲料店經營",
-    "開店教學",
   ],
   openGraph: {
-    title: "餐飲經營文章｜開店小工具箱",
+    title: "小店成本、售價與利潤文章｜開店小工具箱",
     description:
-      "整理餐飲毛利、滿額加購、折扣活動、外送抽成、菜單漲價與開店成本試算的實用文章。",
+      "整理成本怎麼算、售價怎麼訂、開店要準備多少錢、打折會不會賠錢與外送抽成的實用文章。",
     type: "website",
     locale: "zh_TW",
     siteName: "開店小工具箱",
@@ -52,12 +53,12 @@ export default function BlogPage() {
           </p>
 
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            餐飲開店與成本試算文章
+            小店成本、售價與利潤怎麼算
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            整理餐廳、小吃店、飲料店常見的營運問題，
-            包含餐飲毛利率怎麼算、餐廳開店成本估算、滿額加購活動計算、折扣活動損益、菜單漲價與外送平台抽成計算，
+            整理餐廳、小吃店、飲料店與小型商家常見的營運問題，
+            包含餐飲成本怎麼算、餐點售價怎麼訂、開店要準備多少錢、每天要賣多少才不虧、打折會不會賠錢與外送抽成後剩多少，
             幫助小店老闆在定價、促銷、外送上架或開店規劃前先把數字算清楚。
           </p>
         </div>
@@ -85,7 +86,7 @@ export default function BlogPage() {
               </p>
 
               <p className="mt-5 text-sm font-bold text-orange-700">
-                閱讀文章 →
+                看這篇怎麼算 →
               </p>
             </Link>
           ))}
@@ -93,18 +94,18 @@ export default function BlogPage() {
 
         <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">
-            文章看完後，可以直接搭配工具試算
+            看完問題說明後，可以直接用工具試算
           </h2>
 
           <p className="mt-4 leading-7 text-stone-700">
-            每篇文章都會盡量連回對應的試算工具。如果你想先從工具開始，也可以回到工具總覽，依照單品定價、活動促銷、通路成本與整店經營選擇適合的工具。
+            每篇文章都會盡量連回對應的試算工具。如果你想先從問題開始，也可以回到工具總覽，從「成本怎麼算、售價怎麼訂、開店要準備多少錢、打折會不會賠錢」選擇適合的工具。
           </p>
 
           <Link
             href="/tools"
             className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
           >
-            查看餐飲開店試算工具
+            查看小店成本與利潤試算工具
           </Link>
         </section>
       </section>

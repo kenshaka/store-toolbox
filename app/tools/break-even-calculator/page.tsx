@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("breakEvenCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -41,8 +44,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -82,12 +84,18 @@ export default function BreakEvenCalculatorPage() {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
-      const sharedMonthlyRent = getSharedNumberParam(searchParams, "monthlyRent");
+      const sharedMonthlyRent = getSharedNumberParam(
+        searchParams,
+        "monthlyRent",
+      );
       if (sharedMonthlyRent !== null) {
         setMonthlyRent(sharedMonthlyRent);
       }
 
-      const sharedMonthlyLabor = getSharedNumberParam(searchParams, "monthlyLabor");
+      const sharedMonthlyLabor = getSharedNumberParam(
+        searchParams,
+        "monthlyLabor",
+      );
       if (sharedMonthlyLabor !== null) {
         setMonthlyLabor(sharedMonthlyLabor);
       }
@@ -97,31 +105,45 @@ export default function BreakEvenCalculatorPage() {
         setUtilities(sharedUtilities);
       }
 
-      const sharedOtherFixedCosts = getSharedNumberParam(searchParams, "otherFixedCosts");
+      const sharedOtherFixedCosts = getSharedNumberParam(
+        searchParams,
+        "otherFixedCosts",
+      );
       if (sharedOtherFixedCosts !== null) {
         setOtherFixedCosts(sharedOtherFixedCosts);
       }
 
-      const sharedAverageOrderValue = getSharedNumberParam(searchParams, "averageOrderValue");
+      const sharedAverageOrderValue = getSharedNumberParam(
+        searchParams,
+        "averageOrderValue",
+      );
       if (sharedAverageOrderValue !== null) {
         setAverageOrderValue(sharedAverageOrderValue);
       }
 
-      const sharedGrossMarginRate = getSharedNumberParam(searchParams, "grossMarginRate");
+      const sharedGrossMarginRate = getSharedNumberParam(
+        searchParams,
+        "grossMarginRate",
+      );
       if (sharedGrossMarginRate !== null) {
         setGrossMarginRate(sharedGrossMarginRate);
       }
 
-      const sharedOperatingDays = getSharedNumberParam(searchParams, "operatingDays");
+      const sharedOperatingDays = getSharedNumberParam(
+        searchParams,
+        "operatingDays",
+      );
       if (sharedOperatingDays !== null) {
         setOperatingDays(sharedOperatingDays);
       }
 
-      const sharedTargetMonthlyProfit = getSharedNumberParam(searchParams, "targetMonthlyProfit");
+      const sharedTargetMonthlyProfit = getSharedNumberParam(
+        searchParams,
+        "targetMonthlyProfit",
+      );
       if (sharedTargetMonthlyProfit !== null) {
         setTargetMonthlyProfit(sharedTargetMonthlyProfit);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -169,8 +191,7 @@ export default function BreakEvenCalculatorPage() {
     const marginRate = grossMarginRate / 100;
     const safeOperatingDays = operatingDays > 0 ? operatingDays : 1;
 
-    const breakEvenMonthlyRevenue =
-      marginRate > 0 ? fixedCost / marginRate : 0;
+    const breakEvenMonthlyRevenue = marginRate > 0 ? fixedCost / marginRate : 0;
     const breakEvenDailyRevenue = breakEvenMonthlyRevenue / safeOperatingDays;
     const breakEvenDailyOrders =
       averageOrderValue > 0
@@ -181,7 +202,9 @@ export default function BreakEvenCalculatorPage() {
       marginRate > 0 ? (fixedCost + targetMonthlyProfit) / marginRate : 0;
     const targetDailyRevenue = targetMonthlyRevenue / safeOperatingDays;
     const targetDailyOrders =
-      averageOrderValue > 0 ? Math.ceil(targetDailyRevenue / averageOrderValue) : 0;
+      averageOrderValue > 0
+        ? Math.ceil(targetDailyRevenue / averageOrderValue)
+        : 0;
 
     const fixedCostPerDay = fixedCost / safeOperatingDays;
     const grossProfitPerOrder = averageOrderValue * marginRate;
@@ -231,7 +254,6 @@ export default function BreakEvenCalculatorPage() {
     operatingDays,
     targetMonthlyProfit,
   ]);
-
 
   const assumptionItems = [
     { label: "每月租金", value: formatMoney(monthlyRent) },
@@ -284,18 +306,30 @@ export default function BreakEvenCalculatorPage() {
             開店損益試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            損益兩平計算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入每月租金、人事、水電、固定支出、平均客單價與毛利率，
-            快速估算餐廳、小吃店、飲料店每月要做到多少營業額、每天要賣幾筆訂單才不虧。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入營運資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="break_even"
               description="先用一間小型餐飲店的固定成本範例，快速估算每月與每日損益兩平門檻。"
@@ -386,7 +420,10 @@ export default function BreakEvenCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="break_even" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="break_even"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -421,13 +458,9 @@ export default function BreakEvenCalculatorPage() {
                 </p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
-              <CopyResultButton
-                text={resultSummaryText}
-                toolId="break_even"
-              />
+              <CopyResultButton text={resultSummaryText} toolId="break_even" />
 
               <CopyCalculatorLinkButton
                 toolId="break_even"

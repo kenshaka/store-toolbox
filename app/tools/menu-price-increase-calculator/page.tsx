@@ -9,6 +9,9 @@ import { CopyResultButton } from "@/components/copy-result-button";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
+import { getToolByKey } from "@/lib/tools";
+
+const tool = getToolByKey("menuPriceIncreaseCalculator");
 
 type NumberInputProps = {
   label: string;
@@ -40,8 +43,7 @@ function NumberInput({
 }: NumberInputProps) {
   const inputMode = suffix === "%" ? "decimal" : "numeric";
   const step = suffix === "%" ? "0.1" : "1";
-  const placeholder =
-    suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
+  const placeholder = suffix === "%" ? "請輸入百分比" : `請輸入${suffix}數值`;
 
   return (
     <label className="block">
@@ -79,12 +81,18 @@ export default function MenuPriceIncreaseCalculatorPage() {
     const timeoutId = window.setTimeout(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
-      const sharedCurrentPrice = getSharedNumberParam(searchParams, "currentPrice");
+      const sharedCurrentPrice = getSharedNumberParam(
+        searchParams,
+        "currentPrice",
+      );
       if (sharedCurrentPrice !== null) {
         setCurrentPrice(sharedCurrentPrice);
       }
 
-      const sharedCurrentCost = getSharedNumberParam(searchParams, "currentCost");
+      const sharedCurrentCost = getSharedNumberParam(
+        searchParams,
+        "currentCost",
+      );
       if (sharedCurrentCost !== null) {
         setCurrentCost(sharedCurrentCost);
       }
@@ -94,21 +102,29 @@ export default function MenuPriceIncreaseCalculatorPage() {
         setNewCost(sharedNewCost);
       }
 
-      const sharedIncreaseAmount = getSharedNumberParam(searchParams, "increaseAmount");
+      const sharedIncreaseAmount = getSharedNumberParam(
+        searchParams,
+        "increaseAmount",
+      );
       if (sharedIncreaseAmount !== null) {
         setIncreaseAmount(sharedIncreaseAmount);
       }
 
-      const sharedCurrentDailySales = getSharedNumberParam(searchParams, "currentDailySales");
+      const sharedCurrentDailySales = getSharedNumberParam(
+        searchParams,
+        "currentDailySales",
+      );
       if (sharedCurrentDailySales !== null) {
         setCurrentDailySales(sharedCurrentDailySales);
       }
 
-      const sharedEstimatedDailySales = getSharedNumberParam(searchParams, "estimatedDailySales");
+      const sharedEstimatedDailySales = getSharedNumberParam(
+        searchParams,
+        "estimatedDailySales",
+      );
       if (sharedEstimatedDailySales !== null) {
         setEstimatedDailySales(sharedEstimatedDailySales);
       }
-
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
@@ -149,7 +165,8 @@ export default function MenuPriceIncreaseCalculatorPage() {
 
   const result = useMemo(() => {
     const newPrice = currentPrice + increaseAmount;
-    const increaseRate = currentPrice > 0 ? (increaseAmount / currentPrice) * 100 : 0;
+    const increaseRate =
+      currentPrice > 0 ? (increaseAmount / currentPrice) * 100 : 0;
 
     const currentProfitPerItem = currentPrice - currentCost;
     const noIncreaseProfitPerItem = currentPrice - newCost;
@@ -169,7 +186,9 @@ export default function MenuPriceIncreaseCalculatorPage() {
     const monthlyProfitDifference = dailyProfitDifference * 30;
 
     const breakEvenDailySales =
-      newProfitPerItem > 0 ? Math.ceil(currentDailyProfit / newProfitPerItem) : 0;
+      newProfitPerItem > 0
+        ? Math.ceil(currentDailyProfit / newProfitPerItem)
+        : 0;
     const salesBuffer =
       newProfitPerItem > 0 ? estimatedDailySales - breakEvenDailySales : 0;
 
@@ -223,7 +242,6 @@ export default function MenuPriceIncreaseCalculatorPage() {
     estimatedDailySales,
   ]);
 
-
   const assumptionItems = [
     { label: "目前售價", value: formatMoney(currentPrice) },
     { label: "目前單品成本", value: formatMoney(currentCost) },
@@ -274,18 +292,30 @@ export default function MenuPriceIncreaseCalculatorPage() {
             餐飲定價試算工具
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            菜單漲價試算器
+            {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            輸入目前售價、目前成本、成本上漲後成本、預計調漲金額與每日銷量，
-            快速估算餐飲菜單漲價後毛利率、每日毛利與銷量打平點。
+            {tool.plainDescription}
           </p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {tool.searchIntents.map((intent) => (
+              <li
+                key={intent}
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+              >
+                {intent}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入漲價資料</h2>
-            <p className="mt-2 text-sm leading-6 text-stone-600">欄位右側會標示單位；不適用的金額、比例或數量可以填 0，手機輸入時會優先顯示數字鍵盤。</p>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              欄位右側會標示單位；不適用的金額、比例或數量可以填
+              0，手機輸入時會優先顯示數字鍵盤。
+            </p>
             <ApplyExampleButton
               toolId="menu_price_increase"
               description="先用「100 元餐點漲 10 元」的範例，快速查看漲價後毛利與銷量變化。"
@@ -356,7 +386,10 @@ export default function MenuPriceIncreaseCalculatorPage() {
               />
             </div>
 
-            <CalculatorResetButton toolId="menu_price_increase" onReset={resetCalculator} />
+            <CalculatorResetButton
+              toolId="menu_price_increase"
+              onReset={resetCalculator}
+            />
           </div>
 
           <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
@@ -447,7 +480,6 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 <p className="mt-3 text-sm leading-6">{result.verdictDetail}</p>
               </div>
 
-
               <CalculatorAssumptionList items={assumptionItems} />
 
               <CopyResultButton
@@ -480,9 +512,9 @@ export default function MenuPriceIncreaseCalculatorPage() {
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果餐點目前售價 100 元、成本 45 元，每份毛利是 55 元。
-              成本上漲後變成 52 元，若不漲價，每份毛利會降到 48 元。
-              如果調漲 10 元，漲價後售價變成 110 元，每份毛利會變成 58 元。
-              即使每日銷量從 80 份降到 72 份，每日毛利仍會從 4,400 元變成 4,176 元，
+              成本上漲後變成 52 元，若不漲價，每份毛利會降到 48 元。 如果調漲 10
+              元，漲價後售價變成 110 元，每份毛利會變成 58 元。 即使每日銷量從
+              80 份降到 72 份，每日毛利仍會從 4,400 元變成 4,176 元，
               代表這個漲幅可能還不夠補回銷量下降。
             </p>
           </div>
@@ -515,7 +547,8 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 Q1：漲價幅度要怎麼抓？
               </h3>
               <p className="mt-2 leading-7 text-stone-700">
-                可以先用成本上漲金額和目標毛利率反推，再用 5 元、10 元等顧客容易理解的價格級距測試。
+                可以先用成本上漲金額和目標毛利率反推，再用 5 元、10
+                元等顧客容易理解的價格級距測試。
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 p-5">

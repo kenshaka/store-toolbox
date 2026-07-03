@@ -16,7 +16,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
         <p className="text-sm font-semibold text-orange-700">延伸閱讀</p>
         <h2 className="mt-3 text-2xl font-bold">相關文章</h2>
         <p className="mt-3 leading-7 text-stone-700">
-          你也可以接著看這些主題，搭配本站工具一起檢查定價、毛利與活動設計。
+          你也可以接著看這些主題，搭配本站工具一起檢查成本、售價、利潤與活動設計。
         </p>
 
         <div className="mt-6 grid gap-4">
@@ -42,7 +42,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
               </p>
 
               <p className="mt-4 text-sm font-bold text-orange-700">
-                閱讀文章 →
+                看這篇怎麼算 →
               </p>
             </Link>
           ))}

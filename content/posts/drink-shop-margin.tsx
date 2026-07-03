@@ -11,7 +11,7 @@ function DrinkShopMarginContent() {
       </p>
 
       <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight">
-        飲料店毛利怎麼算？原物料、杯材、平台抽成要一起看
+        飲料店成本怎麼算？原物料、杯材、平台抽成要一起看
       </h1>
 
       <p className="mt-5 text-lg leading-8 text-stone-700">
@@ -23,7 +23,7 @@ function DrinkShopMarginContent() {
       <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
-          飲料店毛利要用「售價 − 原物料成本 − 杯材成本 − 其他直接成本」來看。
+          飲料店成本要用「售價 − 原物料成本 − 杯材成本 − 其他直接成本」來看。
           例如一杯飲料賣 65 元，原物料 18 元、杯材 5 元，單杯毛利是 42 元，
           毛利率約 64.6%。如果外送平台再抽 30%，平台費用約 19.5 元，抽成後毛利會降到 22.5 元。
         </p>
@@ -42,7 +42,7 @@ function DrinkShopMarginContent() {
           </p>
 
           <p className="mt-4">
-            所以飲料店毛利要以「單杯完整直接成本」來看，而不是只看主要原料。
+            所以飲料店成本要以「單杯完整直接成本」來看，而不是只看主要原料。
           </p>
         </section>
 
@@ -163,7 +163,7 @@ function DrinkShopMarginContent() {
               }}
               className="inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
-              使用餐飲毛利率計算器
+              用餐飲毛利率計算器算售價與利潤
             </TrackedLink>
           </div>
         </section>
@@ -175,7 +175,7 @@ function DrinkShopMarginContent() {
 
           <div className="mt-5 space-y-5">
             <div className="rounded-2xl border border-stone-200 p-5">
-              <h3 className="font-bold text-stone-900">Q1：飲料店毛利率是不是一定比餐點高？</h3>
+              <h3 className="font-bold text-stone-900">Q1：飲料店成本率是不是一定比餐點高？</h3>
               <p className="mt-2">
                 不一定。飲料原料成本可能較低，但杯材、耗損、平台抽成和活動折扣都會影響實際毛利。
               </p>
@@ -200,7 +200,7 @@ function DrinkShopMarginContent() {
         <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
-            <li>飲料店毛利要把原物料、杯材、耗損和平台抽成都納入。</li>
+            <li>飲料店成本要把原物料、杯材、耗損和平台抽成都納入。</li>
             <li>售價 65 元、直接成本 23 元時，單杯毛利是 42 元。</li>
             <li>外送平台抽成會大幅壓縮抽成後毛利。</li>
             <li>配料加價可以提高客單價，但也要看耗損和出杯效率。</li>
@@ -221,12 +221,12 @@ function DrinkShopMarginContent() {
 
 export const drinkShopMarginPost: BlogPost = {
   slug: "drink-shop-margin",
-  title: "飲料店毛利怎麼算？原物料、杯材、平台抽成要一起看",
+  title: "飲料店成本怎麼算？原物料、杯材、平台抽成要一起看",
   description:
-    "用飲料店單杯成本範例，說明原物料、杯材、配料、平台抽成與促銷活動如何影響實際毛利。",
+    "用飲料店單杯成本範例，說明原物料、杯材、配料、平台抽成與促銷活動如何影響售價與實際毛利。",
   keywords: [
     "餐飲毛利率計算器",
-    "飲料店毛利",
+    "飲料店成本",
     "飲料店成本",
     "手搖飲毛利",
     "杯材成本",
@@ -236,9 +236,9 @@ export const drinkShopMarginPost: BlogPost = {
   ],
   category: "飲料店經營",
   date: "2026 年 7 月 2 日",
-  openGraphTitle: "飲料店毛利怎麼算？原物料、杯材、平台抽成要一起看",
+  openGraphTitle: "飲料店成本怎麼算？原物料、杯材、平台抽成要一起看",
   openGraphDescription:
-    "用單杯飲料範例試算飲料店毛利，包含原物料、杯材、配料和平台抽成。",
+    "用單杯飲料範例試算飲料店成本，包含原物料、杯材、配料和平台抽成。",
   relatedPostSlugs: [
     "restaurant-margin-how-to-calculate",
     "restaurant-margin-benchmark",
