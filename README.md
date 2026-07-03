@@ -2,7 +2,7 @@
 
 開店小工具箱是一個給餐飲店、小吃店、飲料店與準備開店者使用的免費營運試算工具網站。網站重點是讓小店老闆在定價、促銷、外送平台、開店預算、損益兩平與人事成本決策前，先用簡單數字把成本與毛利算清楚。
 
-正式站台：<https://store-toolbox.vercel.app>
+正式站台：<https://shoptool.tw>
 
 ## 專案定位
 
@@ -148,14 +148,14 @@ Measurement ID：`G-EQXRCDDHPT`
 部署到 Vercel 後，建議至少檢查：
 
 ```text
-https://store-toolbox.vercel.app/
-https://store-toolbox.vercel.app/tools
-https://store-toolbox.vercel.app/blog
-https://store-toolbox.vercel.app/faq
-https://store-toolbox.vercel.app/contact
-https://store-toolbox.vercel.app/sitemap.xml
-https://store-toolbox.vercel.app/robots.txt
-https://store-toolbox.vercel.app/manifest.webmanifest
+https://shoptool.tw/
+https://shoptool.tw/tools
+https://shoptool.tw/blog
+https://shoptool.tw/faq
+https://shoptool.tw/contact
+https://shoptool.tw/sitemap.xml
+https://shoptool.tw/robots.txt
+https://shoptool.tw/manifest.webmanifest
 ```
 
 也建議抽測 2～3 個工具頁：

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { posts } from "@/lib/posts";
 import { toolCategories, tools } from "@/lib/tools";
 
-const siteUrl = "https://store-toolbox.vercel.app";
+const siteUrl = "https://shoptool.tw";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolCategoryRoutes = toolCategories.map((category) => category.href);

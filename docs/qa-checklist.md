@@ -191,7 +191,7 @@ Footer：
 
 建議用 LINE、Threads、Facebook 或其他訊息工具貼上：
 
-- [ ] `https://store-toolbox.vercel.app/`
+- [ ] `https://shoptool.tw/`
 - [ ] 任一工具頁
 - [ ] 任一文章頁
 

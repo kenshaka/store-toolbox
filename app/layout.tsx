@@ -7,7 +7,7 @@ import SiteHeader from "../components/site-header";
 import "./globals.css";
 
 const gaMeasurementId = "G-EQXRCDDHPT";
-const siteUrl = new URL("https://store-toolbox.vercel.app");
+const siteUrl = new URL("https://shoptool.tw");
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,

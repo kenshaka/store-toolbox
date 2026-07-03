@@ -1,6 +1,6 @@
 # 開店小工具箱｜全站頁面盤點
 
-正式站台：<https://store-toolbox.vercel.app>
+正式站台：<https://shoptool.tw>
 
 此文件用來盤點第一階段頁面、用途與 SEO 狀態。若未來新增工具、文章或頁面，請同步更新此文件與 `app/sitemap.ts`。
 

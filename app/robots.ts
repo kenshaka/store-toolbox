@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://store-toolbox.vercel.app";
+const siteUrl = "https://shoptool.tw";
 
 export default function robots(): MetadataRoute.Robots {
   return {

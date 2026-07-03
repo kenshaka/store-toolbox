@@ -6,7 +6,7 @@ import {
 } from "@/lib/tools";
 import type { FaqItem, ToolCategorySlug, ToolKey } from "@/lib/tools";
 
-export const siteUrl = "https://store-toolbox.vercel.app";
+export const siteUrl = "https://shoptool.tw";
 
 const siteName = "開店小工具箱";
 const siteAlternateName = "開店工具箱";
