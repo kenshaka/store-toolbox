@@ -28,6 +28,9 @@ export default function SiteFooter() {
             <Link href="/contact" className="hover:text-orange-700 hover:underline">
               聯絡我們
             </Link>
+            <Link href="/advertising" className="hover:text-orange-700 hover:underline">
+              廣告揭露
+            </Link>
             <Link href="/privacy" className="hover:text-orange-700 hover:underline">
               隱私權政策
             </Link>

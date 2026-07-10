@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GoogleAdSenseScript from "@/components/google-adsense-script";
 import JsonLd from "@/components/json-ld";
 import Script from "next/script";
 import { getWebsiteStructuredData } from "@/lib/structured-data";
@@ -88,6 +89,7 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant-TW">
       <body className="bg-stone-50 text-stone-900 antialiased">
+        <GoogleAdSenseScript />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
           strategy="afterInteractive"

@@ -40,7 +40,7 @@ export default function TermsPage() {
           </h1>
 
           <p className="mt-4 text-sm text-stone-500">
-            最後更新日期：2026 年 7 月 2 日
+            最後更新日期：2026 年 7 月 11 日
           </p>
 
           <div className="mt-8 space-y-8 leading-8 text-stone-700">
@@ -136,12 +136,12 @@ export default function TermsPage() {
                 七、廣告與商業內容
               </h2>
               <p className="mt-3">
-                本網站未來可能顯示廣告、聯盟連結、推薦內容或其他商業合作資訊。
+                本網站可能顯示廣告、聯盟連結、推薦內容或其他商業合作資訊。
                 這些內容可能由第三方服務提供，並可能根據使用者瀏覽情況或網站內容顯示。
               </p>
               <p className="mt-3">
-                本網站會盡力維持內容的清楚與適當標示，但使用者仍應自行判斷廣告或第三方商品、
-                服務是否符合自身需求。
+                本網站會盡力維持內容的清楚與適當標示，但廣告內容可能由第三方服務或廣告主提供，
+                使用者仍應自行判斷廣告或第三方商品、服務是否符合自身需求。
               </p>
             </section>
 
@@ -212,7 +212,7 @@ export default function TermsPage() {
             <div className="rounded-2xl bg-stone-100 p-5 text-sm leading-7 text-stone-600">
               <p>
                 提醒：本頁內容為一般網站使用條款範本，並非法律意見。
-                若網站未來加入會員、付款、上傳檔案、使用者投稿、電子報、廣告投放、
+                若網站未來加入會員、付款、上傳檔案、使用者投稿、電子報、
                 聯盟行銷或跨境服務，建議依實際功能重新調整條款內容。
               </p>
             </div>

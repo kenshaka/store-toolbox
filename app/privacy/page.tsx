@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="mt-4 text-sm text-stone-500">
-            最後更新日期：2026 年 7 月 2 日
+            最後更新日期：2026 年 7 月 11 日
           </p>
 
           <div className="mt-8 space-y-8 leading-8 text-stone-700">
@@ -85,13 +85,17 @@ export default function PrivacyPage() {
                 四、Cookie 與類似技術
               </h2>
               <p className="mt-3">
-                本網站未來可能使用 Cookie 或類似技術，以便提供網站功能、分析流量、
-                改善使用體驗或顯示廣告。Cookie 是網站儲存在使用者瀏覽器中的小型文字檔案，
+                本網站可能使用 Cookie 或類似技術，以便提供網站功能、分析流量、
+                改善使用體驗、衡量內容成效或顯示廣告。Cookie 是網站儲存在使用者瀏覽器中的小型文字檔案，
                 可協助網站記住部分設定或辨識瀏覽器。
               </p>
               <p className="mt-3">
+                第三方廣告服務供應商可能會使用 Cookie、裝置識別碼或類似技術，
+                依使用者造訪本網站或其他網站的情況顯示一般或個人化廣告。
+              </p>
+              <p className="mt-3">
                 使用者可以透過瀏覽器設定封鎖、刪除或限制 Cookie。不過，停用部分 Cookie
-                可能會影響某些網站功能或廣告顯示。
+                可能會影響某些網站功能、流量分析或廣告顯示。
               </p>
             </section>
 
@@ -100,16 +104,23 @@ export default function PrivacyPage() {
                 五、第三方服務
               </h2>
               <p className="mt-3">
-                本網站未來可能使用第三方服務，例如網站流量分析、廣告投放、網站主機、
+                本網站可能使用第三方服務，例如網站流量分析、廣告投放、網站主機、
                 安全防護或錯誤監控服務。這些第三方服務可能依其自身隱私權政策處理相關資料。
               </p>
               <p className="mt-3">
-                如果本網站使用 Google Analytics，Google 可能會協助分析使用者如何瀏覽本網站，
+                本網站使用 Google Analytics 協助分析使用者如何瀏覽本網站，
                 例如頁面瀏覽、停留時間、裝置類型與流量來源等資訊。
               </p>
               <p className="mt-3">
-                如果本網站使用 Google AdSense 或其他廣告服務，第三方廣告供應商可能會使用
+                本網站可能使用 Google AdSense 或其他廣告服務。第三方廣告供應商可能會使用
                 Cookie 或類似技術，根據使用者造訪本網站或其他網站的情況顯示相關廣告。
+              </p>
+              <p className="mt-3">
+                關於本站廣告、合作內容與第三方廣告服務的說明，請參考
+                <Link href="/advertising" className="font-bold text-orange-700 hover:underline">
+                  廣告與合作揭露
+                </Link>
+                頁面。
               </p>
             </section>
 
@@ -123,7 +134,7 @@ export default function PrivacyPage() {
                 <li>分析網站流量與使用情況。</li>
                 <li>排除錯誤、維護網站安全與穩定性。</li>
                 <li>改善頁面內容、工具設計與使用者體驗。</li>
-                <li>在未來顯示廣告或衡量廣告成效。</li>
+                <li>顯示廣告或衡量廣告成效。</li>
               </ul>
             </section>
 
@@ -184,7 +195,7 @@ export default function PrivacyPage() {
             <div className="rounded-2xl bg-stone-100 p-5 text-sm leading-7 text-stone-600">
               <p>
                 提醒：本頁內容為一般網站隱私權政策範本，並非法律意見。
-                若網站未來加入會員系統、付款功能、表單、電子報、廣告服務或跨境服務，
+                若網站未來加入會員系統、付款功能、表單、電子報或跨境服務，
                 建議依實際功能重新調整本政策內容。
               </p>
             </div>
