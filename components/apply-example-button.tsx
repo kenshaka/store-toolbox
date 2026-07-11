@@ -21,7 +21,7 @@ export function ApplyExampleButton({
   }
 
   return (
-    <div className="mt-5 rounded-2xl border border-orange-100 bg-orange-50 p-4">
+    <div className="mt-5 rounded-2xl border border-orange-100 bg-orange-50/80 p-4 shadow-sm shadow-orange-950/5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm leading-6 text-stone-700">{description}</p>
         <button

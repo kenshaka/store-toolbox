@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function AddOnVsDiscountPromotionContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲促銷活動
       </p>
@@ -20,7 +20,7 @@ function AddOnVsDiscountPromotionContent() {
         兩種活動沒有絕對好壞，重點是要看毛利、客單價、加購率和現場執行壓力。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           如果你的目標是快速吸引新客，滿額折扣比較容易被理解；
@@ -69,9 +69,9 @@ function AddOnVsDiscountPromotionContent() {
             三、範例比較：滿 200 折 20 vs 滿 200 加購 40
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-stone-100">
+              <thead className="bg-orange-50/50">
                 <tr>
                   <th className="px-4 py-3 font-bold">活動類型</th>
                   <th className="px-4 py-3 font-bold">對毛利的影響</th>
@@ -79,12 +79,12 @@ function AddOnVsDiscountPromotionContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">滿 200 折 20</td>
                   <td className="px-4 py-3">每筆達標訂單少 20 元毛利</td>
                   <td className="px-4 py-3">吸引注意、提高轉換</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">滿 200 加購 40</td>
                   <td className="px-4 py-3">看加購商品成本與加購率</td>
                   <td className="px-4 py-3">提高客單價、增加品項曝光</td>
@@ -181,21 +181,21 @@ function AddOnVsDiscountPromotionContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q1：滿額折扣一定比較傷毛利嗎？</h3>
               <p className="mt-2">
                 不一定，但折扣會直接減少每筆訂單毛利。如果折扣能帶來足夠新增訂單或提高客單價，仍可能划算。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q2：滿額加購商品要選什麼？</h3>
               <p className="mt-2">
                 建議選毛利穩定、製作簡單、庫存好控管、客人容易理解的商品，例如飲品、小菜、甜點或加料。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q3：可以同時做折扣和加購嗎？</h3>
               <p className="mt-2">
                 可以，但要更小心試算。折扣會壓低毛利，加購會增加作業量，兩者同時做時要確認總毛利仍然合理。
@@ -204,7 +204,7 @@ function AddOnVsDiscountPromotionContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>滿額折扣容易理解，但會直接減少毛利。</li>

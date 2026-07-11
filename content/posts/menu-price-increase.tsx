@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function MenuPriceIncreaseContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲定價與毛利
       </p>
@@ -20,7 +20,7 @@ function MenuPriceIncreaseContent() {
         應該先用成本、毛利率、銷量變化和客單價一起試算。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           菜單漲價前，先確認每個品項目前毛利率、成本上漲金額和漲價後可能流失的銷量。
@@ -52,7 +52,7 @@ function MenuPriceIncreaseContent() {
             二、漲價幅度可以用目標毛利率反推
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               建議售價 = 新成本 ÷ 目標成本率
             </p>
@@ -90,28 +90,28 @@ function MenuPriceIncreaseContent() {
             四、哪些品項應該優先漲價？
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-stone-100">
+              <thead className="bg-orange-50/50">
                 <tr>
                   <th className="px-4 py-3 font-bold">品項狀況</th>
                   <th className="px-4 py-3 font-bold">處理建議</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">成本上升明顯</td>
                   <td className="px-4 py-3">優先檢查是否需要漲價或調整份量</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">高銷量但毛利偏低</td>
                   <td className="px-4 py-3">小幅調價可能對總毛利幫助很大</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">外送平台商品</td>
                   <td className="px-4 py-3">要把平台抽成和包材重新算進去</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">招牌引流品</td>
                   <td className="px-4 py-3">可謹慎調整，避免影響來客印象</td>
                 </tr>
@@ -181,21 +181,21 @@ function MenuPriceIncreaseContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q1：菜單要一次全部漲價嗎？</h3>
               <p className="mt-2">
                 不一定。可以先調整成本壓力最大、毛利最低或外送影響最大的品項。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q2：漲價後銷量下降怎麼辦？</h3>
               <p className="mt-2">
                 先看每日總毛利是否改善。如果毛利改善但銷量小降，可能仍是健康調整；若總毛利下降，就要重新評估。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q3：可以用套餐代替漲價嗎？</h3>
               <p className="mt-2">
                 可以，但要確認套餐的總毛利。套餐不是只看售價提高，也要看加進去的商品成本。
@@ -204,7 +204,7 @@ function MenuPriceIncreaseContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>菜單漲價前要先算目前毛利和成本上漲金額。</li>

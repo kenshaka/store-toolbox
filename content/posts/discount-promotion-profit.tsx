@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function DiscountPromotionProfitContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲促銷活動
       </p>
@@ -20,7 +20,7 @@ function DiscountPromotionProfitContent() {
         但如果折扣太深或成本沒算清楚，最後可能只是賣得更忙，卻沒有多賺。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           折扣活動不能只看折扣後賣出多少份，而是要比較「原本每日毛利」和「活動後每日毛利」。
@@ -63,35 +63,35 @@ function DiscountPromotionProfitContent() {
             單品成本是 40 元。原本每天大約賣 50 份，活動後預估每天賣 80 份。
           </p>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-stone-200">
-                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">
                     商品原價
                   </th>
                   <td className="px-4 py-3">100 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     活動售價
                   </th>
                   <td className="px-4 py-3">80 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     單品成本
                   </th>
                   <td className="px-4 py-3">40 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     原本每日銷量
                   </th>
                   <td className="px-4 py-3">50 份</td>
                 </tr>
                 <tr>
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     活動後預估每日銷量
                   </th>
                   <td className="px-4 py-3">80 份</td>
@@ -106,7 +106,7 @@ function DiscountPromotionProfitContent() {
             三、先算原本每份毛利和活動每份毛利
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               原本每份毛利 = 商品原價 − 單品成本
             </p>
@@ -133,7 +133,7 @@ function DiscountPromotionProfitContent() {
             四、原本每日毛利和活動每日毛利怎麼算？
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               原本每日毛利 = 原本每份毛利 × 原本每日銷量
             </p>
@@ -149,7 +149,7 @@ function DiscountPromotionProfitContent() {
             </p>
           </div>
 
-          <div className="mt-4 rounded-2xl bg-orange-50 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
             <p className="font-bold text-orange-900">
               這個範例中，活動後每日毛利從 3,000 元變成 3,200 元，每天多 200 元毛利。
             </p>
@@ -170,7 +170,7 @@ function DiscountPromotionProfitContent() {
             打折活動最重要的問題之一是：活動後要賣幾份，才能跟原本每日毛利一樣？
           </p>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               打平所需銷量 = 原本每日毛利 ÷ 活動每份毛利
             </p>
@@ -256,7 +256,7 @@ function DiscountPromotionProfitContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：折扣活動一定會降低毛利嗎？
               </h3>
@@ -266,7 +266,7 @@ function DiscountPromotionProfitContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：折扣活動打平銷量怎麼算？
               </h3>
@@ -276,7 +276,7 @@ function DiscountPromotionProfitContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：什麼商品比較適合拿來打折？
               </h3>
@@ -286,7 +286,7 @@ function DiscountPromotionProfitContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：折扣活動和滿額加購哪個比較好？
               </h3>
@@ -298,7 +298,7 @@ function DiscountPromotionProfitContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">
             本文重點整理
           </h2>

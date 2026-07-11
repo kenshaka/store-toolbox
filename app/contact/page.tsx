@@ -58,9 +58,9 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={getContactStructuredData(contactEmail)} />
-      <main className="bg-stone-50 text-stone-900">
+      <main className="bg-[#fffaf3] text-stone-950">
         <section className="mx-auto max-w-5xl px-6 py-12">
-          <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
             <p className="text-sm font-semibold text-orange-700">
               Contact
             </p>
@@ -91,7 +91,7 @@ export default function ContactPage() {
           </div>
 
           <section className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
               <h2 className="text-2xl font-bold">
                 適合來信的情況
               </h2>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 {contactReasons.map((reason) => (
                   <li
                     key={reason}
-                    className="rounded-2xl bg-stone-100 p-4 text-sm leading-6 text-stone-700"
+                    className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-4 text-sm leading-6 text-stone-700"
                   >
                     {reason}
                   </li>
@@ -108,7 +108,7 @@ export default function ContactPage() {
               </ul>
             </div>
 
-            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
               <h2 className="text-2xl font-bold">
                 來信時建議附上
               </h2>
@@ -117,7 +117,7 @@ export default function ContactPage() {
                 {emailTips.map((tip) => (
                   <li
                     key={tip}
-                    className="rounded-2xl bg-stone-100 p-4 text-sm leading-6 text-stone-700"
+                    className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-4 text-sm leading-6 text-stone-700"
                   >
                     {tip}
                   </li>
@@ -126,7 +126,7 @@ export default function ContactPage() {
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold">
               關於試算結果與專業建議
             </h2>
@@ -137,7 +137,7 @@ export default function ContactPage() {
             </p>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-stone-900 p-6 text-white shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10 sm:p-8">
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm font-semibold text-orange-300">

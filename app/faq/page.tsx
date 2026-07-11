@@ -92,9 +92,9 @@ export default function FaqPage() {
   return (
     <>
       <JsonLd data={getGeneralFaqStructuredData(faqs)} />
-      <main className="bg-stone-50 text-stone-900">
+      <main className="bg-[#fffaf3] text-stone-950">
         <section className="mx-auto max-w-5xl px-6 py-12">
-          <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
             <p className="text-sm font-semibold text-orange-700">
               FAQ
             </p>
@@ -113,7 +113,7 @@ export default function FaqPage() {
             {faqs.map((faq, index) => (
               <section
                 key={faq.question}
-                className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5"
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-sm font-bold text-orange-700">
@@ -132,7 +132,7 @@ export default function FaqPage() {
             ))}
           </div>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold">
               還有其他問題？
             </h2>

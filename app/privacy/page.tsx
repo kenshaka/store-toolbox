@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-900">
+    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+        <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
           <p className="text-sm font-semibold text-orange-700">
             Privacy Policy
           </p>
@@ -192,7 +192,7 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <div className="rounded-2xl bg-stone-100 p-5 text-sm leading-7 text-stone-600">
+            <div className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5 text-sm leading-7 text-stone-600">
               <p>
                 提醒：本頁內容為一般網站隱私權政策範本，並非法律意見。
                 若網站未來加入會員系統、付款功能、表單、電子報或跨境服務，

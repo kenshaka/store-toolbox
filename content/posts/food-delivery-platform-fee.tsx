@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function FoodDeliveryPlatformFeeContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         外送平台與成本
       </p>
@@ -20,7 +20,7 @@ function FoodDeliveryPlatformFeeContent() {
         可能會出現營業額增加，但每份商品實際留下的毛利變少。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           外送抽成可以用「售價 × 平台抽成率」估算。假設商品售價 120 元、食材包材成本 45 元、
@@ -51,7 +51,7 @@ function FoodDeliveryPlatformFeeContent() {
             二、外送抽成基本公式
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               平台抽成金額 = 商品售價 × 平台抽成率
             </p>
@@ -71,27 +71,27 @@ function FoodDeliveryPlatformFeeContent() {
             三、範例：120 元餐點上外送後剩多少毛利？
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-stone-200">
-                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">商品售價</th>
+                <tr className="border-b border-orange-100/80">
+                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">商品售價</th>
                   <td className="px-4 py-3">120 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">食材成本</th>
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">食材成本</th>
                   <td className="px-4 py-3">38 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">包材成本</th>
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">包材成本</th>
                   <td className="px-4 py-3">7 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">平台抽成 30%</th>
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">平台抽成 30%</th>
                   <td className="px-4 py-3">36 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-stone-100 px-4 py-3 font-bold">抽成後毛利</th>
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">抽成後毛利</th>
                   <td className="px-4 py-3 font-bold">39 元</td>
                 </tr>
               </tbody>
@@ -169,21 +169,21 @@ function FoodDeliveryPlatformFeeContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q1：外送抽成要算在成本裡嗎？</h3>
               <p className="mt-2">
                 要。外送抽成是每筆外送訂單都會發生的變動成本，會直接影響單品毛利。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q2：外送價可以和內用價不同嗎？</h3>
               <p className="mt-2">
                 實務上很多店會做不同通路價格，但仍要注意平台規則、競爭價格和顧客接受度。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q3：上外送平台一定比較賺嗎？</h3>
               <p className="mt-2">
                 不一定。外送平台可能帶來新訂單，但如果抽成和活動費用太高，每份商品毛利可能大幅下降。
@@ -192,7 +192,7 @@ function FoodDeliveryPlatformFeeContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>外送抽成是每筆外送訂單都會發生的變動成本。</li>

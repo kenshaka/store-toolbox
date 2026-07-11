@@ -35,9 +35,9 @@ const suggestedTools = [
 
 export default function NotFound() {
   return (
-    <main className="bg-stone-50 text-stone-900">
+    <main className="bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-5xl px-6 py-16">
-        <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm sm:p-10">
+        <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-8 shadow-sm shadow-orange-950/5 sm:p-10">
           <p className="text-sm font-semibold text-orange-700">404</p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
             找不到這個頁面
@@ -51,7 +51,7 @@ export default function NotFound() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md"
+                className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md"
               >
                 <h2 className="text-lg font-bold text-stone-900">
                   {link.title}
@@ -64,7 +64,7 @@ export default function NotFound() {
           </div>
         </div>
 
-        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <p className="text-sm font-semibold text-orange-700">
             常用工具入口
           </p>

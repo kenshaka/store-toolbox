@@ -57,12 +57,12 @@ export default function ToolsPage() {
   return (
     <>
       <JsonLd data={getToolsIndexStructuredData()} />
-      <main className="bg-stone-50 text-stone-900">
+      <main className="bg-[#fffaf3] text-stone-950">
         <section className="mx-auto max-w-5xl px-6 py-12">
           <div>
-            <p className="text-sm font-semibold text-orange-700">Tools</p>
+            <p className="brand-eyebrow">Tools</p>
 
-            <h1 className="mt-3 text-4xl font-bold tracking-tight">
+            <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
               不知道成本、售價或利潤怎麼算？先從這裡選工具
             </h1>
 
@@ -73,8 +73,8 @@ export default function ToolsPage() {
             </p>
           </div>
 
-          <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-orange-700">
+          <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+            <p className="brand-eyebrow">
               你可能正在找
             </p>
             <h2 className="mt-2 text-2xl font-bold text-stone-900">
@@ -91,7 +91,7 @@ export default function ToolsPage() {
                     tool_name: tool.title,
                     link_location: "tools_intent",
                   }}
-                  className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:border-orange-200 hover:bg-orange-50"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:border-orange-200 hover:bg-orange-50"
                 >
                   <h3 className="text-lg font-bold text-stone-900">
                     {tool.plainQuestion}
@@ -110,10 +110,10 @@ export default function ToolsPage() {
           <div className="mt-10 grid gap-8">
             {toolsByCategory.map((category) => (
               <section key={category.slug}>
-                <div className="mb-5 rounded-3xl bg-white p-6 shadow-sm">
+                <div className="mb-5 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <p className="text-sm font-semibold text-orange-700">
+                      <p className="brand-eyebrow">
                         工具分類
                       </p>
                       <h2 className="mt-2 text-3xl font-bold text-stone-900">
@@ -142,11 +142,11 @@ export default function ToolsPage() {
                   {category.tools.map((tool) => (
                     <section
                       key={tool.href}
-                      className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+                      className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5"
                     >
                       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                         <div>
-                          <p className="text-sm font-semibold text-orange-700">
+                          <p className="brand-eyebrow">
                             {tool.category}
                           </p>
 
@@ -181,7 +181,7 @@ export default function ToolsPage() {
                           </div>
                         </div>
 
-                        <div className="rounded-2xl bg-stone-100 p-5 lg:w-80">
+                        <div className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5 lg:w-80">
                           <p className="text-sm font-bold text-stone-900">
                             常見搜尋說法
                           </p>
@@ -208,14 +208,14 @@ export default function ToolsPage() {
             ))}
           </div>
 
-          <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <h2 className="text-2xl font-bold">哪些問題適合先用工具試算？</h2>
 
             <ul className="mt-5 grid gap-4 md:grid-cols-2">
               {useCases.map((useCase) => (
                 <li
                   key={useCase}
-                  className="rounded-2xl bg-stone-100 p-5 text-sm leading-6 text-stone-700"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5 text-sm leading-6 text-stone-700"
                 >
                   {useCase}
                 </li>
@@ -223,7 +223,7 @@ export default function ToolsPage() {
             </ul>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+          <section className="mt-8 rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
             <h2 className="text-2xl font-bold">工具結果僅供初步試算</h2>
             <p className="mt-4 leading-7 text-stone-300">
               本站工具適合用來快速估算成本、售價、毛利、促銷、外送抽成與開店預算。

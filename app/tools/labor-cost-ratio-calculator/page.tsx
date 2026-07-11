@@ -295,13 +295,13 @@ export default function LaborCostRatioCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-900">
+    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="text-sm font-semibold text-orange-700">
+          <p className="brand-eyebrow">
             人事成本試算工具
           </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -311,7 +311,7 @@ export default function LaborCostRatioCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
               >
                 {intent}
               </li>
@@ -320,7 +320,7 @@ export default function LaborCostRatioCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <h2 className="text-2xl font-bold">輸入人事資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -424,7 +424,7 @@ export default function LaborCostRatioCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -465,7 +465,7 @@ export default function LaborCostRatioCalculatorPage() {
         </div>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-3">
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <p className="text-sm text-stone-500">正職成本</p>
             <p className="mt-2 text-2xl font-bold">
               {formatMoney(result.fullTimeCost)}
@@ -475,7 +475,7 @@ export default function LaborCostRatioCalculatorPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <p className="text-sm text-stone-500">兼職成本</p>
             <p className="mt-2 text-2xl font-bold">
               {formatMoney(result.partTimeCost)}
@@ -485,7 +485,7 @@ export default function LaborCostRatioCalculatorPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <p className="text-sm text-stone-500">與目標預算差距</p>
             <p className="mt-2 text-2xl font-bold">
               {formatMoney(result.laborBudgetGap)}
@@ -496,7 +496,7 @@ export default function LaborCostRatioCalculatorPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+        <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">判斷建議：{result.verdict}</h2>
           <p className="mt-4 leading-7 text-stone-700">
             {result.verdictDetail}
@@ -509,7 +509,7 @@ export default function LaborCostRatioCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-8 rounded-3xl bg-orange-50 p-6 shadow-sm">
+        <section className="mt-8 rounded-3xl border border-orange-100 bg-orange-50/80 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold text-orange-950">
             也可以搭配其他工具
           </h2>

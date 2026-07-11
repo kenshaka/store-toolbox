@@ -35,9 +35,9 @@ export const metadata: Metadata = {
 
 export default function AdvertisingPage() {
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-900">
+    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+        <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
           <p className="text-sm font-semibold text-orange-700">
             Advertising Disclosure
           </p>

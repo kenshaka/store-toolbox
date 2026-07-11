@@ -23,7 +23,7 @@ function clearCalculatorSearchParams() {
 export function CalculatorResetButton({
   toolId,
   onReset,
-  className = "mt-5 w-full rounded-full border border-stone-300 px-5 py-3 text-sm font-bold text-stone-700 transition hover:border-orange-300 hover:bg-orange-50 hover:text-orange-800",
+  className = "mt-5 w-full rounded-full border border-orange-100 bg-white/70 px-5 py-3 text-sm font-bold text-stone-700 transition hover:border-orange-300 hover:bg-orange-50 hover:text-orange-800",
 }: CalculatorResetButtonProps) {
   function handleReset() {
     onReset();

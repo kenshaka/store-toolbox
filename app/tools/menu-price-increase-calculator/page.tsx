@@ -285,13 +285,13 @@ export default function MenuPriceIncreaseCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-900">
+    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="text-sm font-semibold text-orange-700">
+          <p className="brand-eyebrow">
             餐飲定價試算工具
           </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -301,7 +301,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
               >
                 {intent}
               </li>
@@ -310,7 +310,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <h2 className="text-2xl font-bold">輸入漲價資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -392,7 +392,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -495,7 +495,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
           </aside>
         </div>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">計算公式</h2>
 
           <div className="mt-5 space-y-3 text-stone-700">
@@ -508,7 +508,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
             <p>打平所需每日銷量 = 目前每日毛利 ÷ 漲價後每份毛利</p>
           </div>
 
-          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-6 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果餐點目前售價 100 元、成本 45 元，每份毛利是 55 元。
@@ -525,8 +525,8 @@ export default function MenuPriceIncreaseCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
-          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <p className="brand-eyebrow">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
           <p className="mt-4 leading-7 text-stone-700">
             搭配菜單漲價情境，了解成本上升、毛利率、銷量變化與客單價調整該怎麼一起評估。
@@ -539,10 +539,10 @@ export default function MenuPriceIncreaseCalculatorPage() {
           </Link>
         </section>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">常見問題</h2>
           <div className="mt-5 grid gap-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：漲價幅度要怎麼抓？
               </h3>
@@ -551,7 +551,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 元等顧客容易理解的價格級距測試。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：漲價後銷量下降就代表失敗嗎？
               </h3>
@@ -559,7 +559,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 不一定。要看每日總毛利是否改善。如果每份毛利提高夠多，少賣一些仍可能比原本更賺。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：所有品項都要一起漲價嗎？
               </h3>
@@ -567,7 +567,7 @@ export default function MenuPriceIncreaseCalculatorPage() {
                 不一定。可以先調整成本壓力最大、毛利最低或外送影響最大的品項，避免一次改太多造成顧客反彈。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：漲價可以搭配套餐或加購嗎？
               </h3>

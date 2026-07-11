@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function RestaurantMarginHowToCalculateContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲定價與毛利
       </p>
@@ -21,7 +21,7 @@ function RestaurantMarginHowToCalculateContent() {
         很容易發生營業額看起來不錯，但實際利潤很薄的情況。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           餐飲毛利率的基本公式是：毛利率 = 商品毛利 ÷ 商品售價 × 100%。
@@ -54,7 +54,7 @@ function RestaurantMarginHowToCalculateContent() {
             二、餐飲毛利率公式
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               總直接成本 = 食材成本 + 包材成本
             </p>
@@ -81,23 +81,23 @@ function RestaurantMarginHowToCalculateContent() {
             假設你有一份餐點，資料如下：
           </p>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-stone-200">
-                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">
                     商品售價
                   </th>
                   <td className="px-4 py-3">100 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     食材成本
                   </th>
                   <td className="px-4 py-3">35 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     包材成本
                   </th>
                   <td className="px-4 py-3">5 元</td>
@@ -106,7 +106,7 @@ function RestaurantMarginHowToCalculateContent() {
             </table>
           </div>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               總直接成本 = 35 元 + 5 元 = 40 元
             </p>
@@ -156,7 +156,7 @@ function RestaurantMarginHowToCalculateContent() {
             如果外送平台抽成 30%，平台抽成金額就是：
           </p>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               平台抽成 = 商品售價 × 平台抽成比例
             </p>
@@ -169,7 +169,7 @@ function RestaurantMarginHowToCalculateContent() {
             抽成後毛利會變成：
           </p>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               抽成後毛利 = 商品售價 − 食材成本 − 包材成本 − 平台抽成
             </p>
@@ -178,7 +178,7 @@ function RestaurantMarginHowToCalculateContent() {
             </p>
           </div>
 
-          <div className="mt-4 rounded-2xl bg-orange-50 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
             <p className="font-bold text-orange-900">
               原本毛利 60 元，加入 30% 平台抽成後，只剩 30 元。
             </p>
@@ -273,7 +273,7 @@ function RestaurantMarginHowToCalculateContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：餐飲毛利和淨利差在哪裡？
               </h3>
@@ -284,7 +284,7 @@ function RestaurantMarginHowToCalculateContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：包材成本一定要算進去嗎？
               </h3>
@@ -294,7 +294,7 @@ function RestaurantMarginHowToCalculateContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：外送平台商品要另外定價嗎？
               </h3>
@@ -304,7 +304,7 @@ function RestaurantMarginHowToCalculateContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：毛利率越高越好嗎？
               </h3>
@@ -316,7 +316,7 @@ function RestaurantMarginHowToCalculateContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">
             本文重點整理
           </h2>

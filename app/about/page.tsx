@@ -51,9 +51,9 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={getAboutStructuredData()} />
-      <main className="bg-stone-50 text-stone-900">
+      <main className="bg-[#fffaf3] text-stone-950">
         <section className="mx-auto max-w-5xl px-6 py-12">
-          <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
             <p className="text-sm font-semibold text-orange-700">
               About
             </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
           </div>
 
           <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px]">
-            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
               <h2 className="text-2xl font-bold">
                 這個網站可以幫你做什麼？
               </h2>
@@ -87,7 +87,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm sm:p-8">
+            <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10 sm:p-8">
               <h2 className="text-2xl font-bold">
                 目前網站定位
               </h2>
@@ -101,7 +101,7 @@ export default function AboutPage() {
             </aside>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold">
               適合誰使用？
             </h2>
@@ -110,7 +110,7 @@ export default function AboutPage() {
               {audiences.map((audience) => (
                 <li
                   key={audience}
-                  className="rounded-2xl bg-stone-100 p-5 text-sm leading-6 text-stone-700"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5 text-sm leading-6 text-stone-700"
                 >
                   {audience}
                 </li>
@@ -118,7 +118,7 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold">
               目前提供的工具
             </h2>
@@ -134,7 +134,7 @@ export default function AboutPage() {
                     tool_name: tool.title,
                     link_location: "about_page",
                   }}
-                  className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:shadow-md"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:-translate-y-1 hover:shadow-md"
                 >
                   <h3 className="font-bold text-stone-900">
                     {tool.title}
@@ -150,7 +150,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold">
               文章內容的定位
             </h2>
@@ -172,7 +172,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-orange-50 p-6 shadow-sm sm:p-8">
+          <section className="mt-8 rounded-3xl border border-orange-100 bg-orange-50/80 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
             <h2 className="text-2xl font-bold text-orange-950">
               使用前提醒
             </h2>

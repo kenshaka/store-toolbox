@@ -11,8 +11,8 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
   }
 
   return (
-    <section className="bg-stone-50 px-6 pb-12 text-stone-900">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+    <section className="bg-[#fffaf3] px-6 pb-12 text-stone-950">
+      <div className="mx-auto max-w-4xl rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
         <p className="text-sm font-semibold text-orange-700">延伸閱讀</p>
         <h2 className="mt-3 text-2xl font-bold">相關文章</h2>
         <p className="mt-3 leading-7 text-stone-700">
@@ -24,7 +24,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="rounded-2xl border border-stone-200 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"
+              className="rounded-2xl border border-orange-100/80 bg-white/60 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"
             >
               <div className="flex flex-wrap items-center gap-3 text-sm text-stone-500">
                 <span className="rounded-full bg-orange-50 px-3 py-1 font-semibold text-orange-700">

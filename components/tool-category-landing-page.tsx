@@ -17,7 +17,7 @@ export default function ToolCategoryLandingPage({
   return (
     <>
       <JsonLd data={getToolCategoryStructuredData(categorySlug, page.faqs)} />
-      <main className="bg-stone-50 text-stone-900">
+      <main className="bg-[#fffaf3] text-stone-950">
         <section className="mx-auto max-w-5xl px-6 py-12">
           <div className="flex flex-wrap items-center gap-2 text-sm text-stone-500">
             <Link href="/" className="hover:text-orange-700 hover:underline">
@@ -36,7 +36,7 @@ export default function ToolCategoryLandingPage({
             </span>
           </div>
 
-          <header className="mt-8 rounded-3xl bg-white p-8 shadow-sm">
+          <header className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-8 shadow-sm shadow-orange-950/5">
             <p className="text-sm font-semibold text-orange-700">工具分類</p>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
               {page.title}工具
@@ -66,7 +66,7 @@ export default function ToolCategoryLandingPage({
 
           <section
             id="tools"
-            className="mt-8 rounded-3xl bg-white p-6 shadow-sm"
+            className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5"
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -86,7 +86,7 @@ export default function ToolCategoryLandingPage({
               {page.tools.map((tool) => (
                 <article
                   key={tool.href}
-                  className="rounded-2xl border border-stone-200 bg-stone-50 p-5"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5"
                 >
                   <p className="text-xs font-semibold text-orange-700">
                     {tool.category}
@@ -97,7 +97,7 @@ export default function ToolCategoryLandingPage({
                   <p className="mt-3 text-sm leading-6 text-stone-700">
                     {tool.description}
                   </p>
-                  <p className="mt-4 rounded-2xl bg-white p-4 text-sm font-semibold leading-6 text-stone-700">
+                  <p className="mt-4 rounded-2xl border border-orange-100/80 bg-white/95 p-4 text-sm font-semibold leading-6 text-stone-700">
                     {tool.plainQuestion}
                   </p>
 
@@ -127,7 +127,7 @@ export default function ToolCategoryLandingPage({
           </section>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <section className="rounded-3xl bg-white p-6 shadow-sm">
+            <section className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
               <p className="text-sm font-semibold text-orange-700">
                 適合哪些店家
               </p>
@@ -138,7 +138,7 @@ export default function ToolCategoryLandingPage({
                 {page.suitableFor.map((item) => (
                   <li
                     key={item}
-                    className="rounded-2xl bg-stone-100 p-4 text-sm leading-6 text-stone-700"
+                    className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-4 text-sm leading-6 text-stone-700"
                   >
                     {item}
                   </li>
@@ -146,7 +146,7 @@ export default function ToolCategoryLandingPage({
               </ul>
             </section>
 
-            <section className="rounded-3xl bg-white p-6 shadow-sm">
+            <section className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
               <p className="text-sm font-semibold text-orange-700">
                 使用順序建議
               </p>
@@ -157,7 +157,7 @@ export default function ToolCategoryLandingPage({
                 {page.useSteps.map((step, index) => (
                   <li
                     key={step}
-                    className="flex gap-3 rounded-2xl bg-stone-100 p-4 text-sm leading-6 text-stone-700"
+                    className="flex gap-3 rounded-2xl border border-orange-100/80 bg-orange-50/35 p-4 text-sm leading-6 text-stone-700"
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-900 text-xs font-bold text-white">
                       {index + 1}
@@ -169,7 +169,7 @@ export default function ToolCategoryLandingPage({
             </section>
           </div>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm font-semibold text-orange-700">
@@ -192,7 +192,7 @@ export default function ToolCategoryLandingPage({
                 <Link
                   key={article.href}
                   href={article.href}
-                  className="rounded-2xl border border-stone-200 p-5 transition hover:border-orange-200 hover:bg-orange-50"
+                  className="rounded-2xl border border-orange-100/80 bg-white/60 p-5 transition hover:border-orange-200 hover:bg-orange-50"
                 >
                   <p className="text-xs font-semibold text-stone-500">
                     對應工具：{article.toolTitle}
@@ -205,7 +205,7 @@ export default function ToolCategoryLandingPage({
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <p className="text-sm font-semibold text-orange-700">常見問題</p>
             <h2 className="mt-2 text-2xl font-bold text-stone-900">
               {page.title}工具常見問題
@@ -214,7 +214,7 @@ export default function ToolCategoryLandingPage({
               {page.faqs.map((faq) => (
                 <article
                   key={faq.question}
-                  className="rounded-2xl bg-stone-100 p-5"
+                  className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5"
                 >
                   <h3 className="font-bold text-stone-900">{faq.question}</h3>
                   <p className="mt-3 text-sm leading-6 text-stone-700">
@@ -225,7 +225,7 @@ export default function ToolCategoryLandingPage({
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+          <section className="mt-8 rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-2xl font-bold">還不確定該用哪一個工具？</h2>

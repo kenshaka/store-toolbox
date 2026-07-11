@@ -88,7 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant-TW">
-      <body className="bg-stone-50 text-stone-900 antialiased">
+      <body className="bg-[#fffaf3] text-stone-950 antialiased">
         <GoogleAdSenseScript />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}

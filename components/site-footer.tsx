@@ -2,47 +2,49 @@ import Link from "next/link";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-white">
+    <footer className="border-t border-orange-100/80 bg-[#fffaf3]">
       <div className="mx-auto max-w-6xl px-6 py-8">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-bold text-stone-900">開店小工具箱</p>
-            <p className="mt-1 text-sm text-stone-500">
-              餐飲毛利、外送抽成、開店成本、損益兩平與促銷活動的簡單試算工具。
-            </p>
+        <div className="rounded-3xl border border-orange-100/80 bg-white/70 p-6 shadow-sm shadow-orange-950/5">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-bold text-stone-950">開店小工具箱</p>
+              <p className="mt-1 text-sm text-stone-500">
+                餐飲毛利、外送抽成、開店成本、損益兩平與促銷活動的簡單試算工具。
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 text-sm text-stone-500">
+              <Link href="/tools" className="hover:text-orange-700 hover:underline">
+                工具總覽
+              </Link>
+              <Link href="/blog" className="hover:text-orange-700 hover:underline">
+                餐飲文章
+              </Link>
+              <Link href="/about" className="hover:text-orange-700 hover:underline">
+                關於本站
+              </Link>
+              <Link href="/faq" className="hover:text-orange-700 hover:underline">
+                常見問題
+              </Link>
+              <Link href="/contact" className="hover:text-orange-700 hover:underline">
+                聯絡我們
+              </Link>
+              <Link href="/advertising" className="hover:text-orange-700 hover:underline">
+                廣告揭露
+              </Link>
+              <Link href="/privacy" className="hover:text-orange-700 hover:underline">
+                隱私權政策
+              </Link>
+              <Link href="/terms" className="hover:text-orange-700 hover:underline">
+                使用條款
+              </Link>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-4 text-sm text-stone-500">
-            <Link href="/tools" className="hover:text-orange-700 hover:underline">
-              工具總覽
-            </Link>
-            <Link href="/blog" className="hover:text-orange-700 hover:underline">
-              餐飲文章
-            </Link>
-            <Link href="/about" className="hover:text-orange-700 hover:underline">
-              關於本站
-            </Link>
-            <Link href="/faq" className="hover:text-orange-700 hover:underline">
-              常見問題
-            </Link>
-            <Link href="/contact" className="hover:text-orange-700 hover:underline">
-              聯絡我們
-            </Link>
-            <Link href="/advertising" className="hover:text-orange-700 hover:underline">
-              廣告揭露
-            </Link>
-            <Link href="/privacy" className="hover:text-orange-700 hover:underline">
-              隱私權政策
-            </Link>
-            <Link href="/terms" className="hover:text-orange-700 hover:underline">
-              使用條款
-            </Link>
-          </div>
+          <p className="mt-6 text-xs text-stone-400">
+            © 2026 開店小工具箱。本網站工具僅供試算參考，實際經營結果仍需依現場狀況判斷。
+          </p>
         </div>
-
-        <p className="mt-6 text-xs text-stone-400">
-          © 2026 開店小工具箱。本網站工具僅供試算參考，實際經營結果仍需依現場狀況判斷。
-        </p>
       </div>
     </footer>
   );

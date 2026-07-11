@@ -233,13 +233,13 @@ export default function RestaurantMarginCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-900">
+    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="text-sm font-semibold text-orange-700">
+          <p className="brand-eyebrow">
             餐飲定價試算工具
           </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -249,7 +249,7 @@ export default function RestaurantMarginCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
+                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
               >
                 {intent}
               </li>
@@ -258,7 +258,7 @@ export default function RestaurantMarginCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
             <h2 className="text-2xl font-bold">輸入商品資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -330,7 +330,7 @@ export default function RestaurantMarginCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
+          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -406,7 +406,7 @@ export default function RestaurantMarginCalculatorPage() {
           </aside>
         </div>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">計算公式</h2>
 
           <div className="mt-5 space-y-3 text-stone-700">
@@ -418,7 +418,7 @@ export default function RestaurantMarginCalculatorPage() {
             <p>目標毛利建議售價 = 總直接成本 ÷ 目標成本率</p>
           </div>
 
-          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-6 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果一份餐點售價 100 元，食材成本 35 元、包材成本 5 元，
@@ -434,8 +434,8 @@ export default function RestaurantMarginCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
-          <p className="text-sm font-semibold text-orange-700">相關文章</p>
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <p className="brand-eyebrow">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
           <p className="mt-4 leading-7 text-stone-700">
             用定價範例了解食材成本、包材成本、平台抽成與目標毛利率如何影響商品售價。
@@ -448,10 +448,10 @@ export default function RestaurantMarginCalculatorPage() {
           </Link>
         </section>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">常見問題</h2>
           <div className="mt-5 grid gap-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：餐飲毛利率和淨利率差在哪？
               </h3>
@@ -459,7 +459,7 @@ export default function RestaurantMarginCalculatorPage() {
                 毛利率只看商品售價扣掉直接成本後的比例；淨利率還要再扣掉人事、租金、水電、設備、行銷與稅務等成本。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：包材成本要算進去嗎？
               </h3>
@@ -467,7 +467,7 @@ export default function RestaurantMarginCalculatorPage() {
                 建議要算。外帶與外送商品常常會用到餐盒、杯子、袋子、封膜與醬料盒，不算包材會高估毛利率。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：外送平台抽成要怎麼算？
               </h3>
@@ -476,7 +476,7 @@ export default function RestaurantMarginCalculatorPage() {
                 30%，平台抽成金額就是 30 元。
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：毛利率太低怎麼改善？
               </h3>

@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function RestaurantPromotionChecklistContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲促銷活動
       </p>
@@ -20,7 +20,7 @@ function RestaurantPromotionChecklistContent() {
         可能只是讓店更忙卻沒有更賺。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           設計促銷活動前，先確認 5 件事：活動目標、單品毛利、活動後毛利、需要增加的訂單量、
@@ -172,21 +172,21 @@ function RestaurantPromotionChecklistContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q1：新店開幕一定要打折嗎？</h3>
               <p className="mt-2">
                 不一定。也可以用加購、試吃、套餐或會員回訪券，避免一開始就讓客人只記得低價。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q2：活動時間要多長？</h3>
               <p className="mt-2">
                 第一版建議時間短一點，方便測試數字。確認毛利、出餐和客單價都健康，再延長或放大。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q3：滿額加購和折扣哪個比較好？</h3>
               <p className="mt-2">
                 通常加購比較有機會提高客單價，但還是要看加購商品成本、加購率和活動門檻是否合理。
@@ -195,7 +195,7 @@ function RestaurantPromotionChecklistContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>促銷活動要先有明確目標，不要只為了降價。</li>

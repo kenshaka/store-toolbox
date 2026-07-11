@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf3;
+  --foreground: #1c1917;
+  --brand-orange: #c2410c;
+  --brand-orange-dark: #9a3412;
+  --brand-cream: #fff7ed;
+  --brand-paper: #fffaf3;
+  --brand-line: #fed7aa;
 }
 
 @theme inline {
@@ -12,15 +17,54 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 237, 213, 0.75), transparent 30rem),
+    linear-gradient(180deg, #fffaf3 0%, #faf7f0 45%, #fffaf3 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #fed7aa;
+  color: #431407;
+}
+
+@layer components {
+  .brand-eyebrow {
+    @apply text-sm font-semibold text-orange-700;
+  }
+
+  .brand-surface {
+    @apply border border-orange-100/80 bg-white/95 shadow-sm shadow-orange-950/5;
+  }
+
+  .brand-soft-surface {
+    @apply border border-orange-100/80 bg-orange-50/35 shadow-sm shadow-orange-950/5;
+  }
+
+  .brand-dark-surface {
+    @apply bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 text-white shadow-sm shadow-orange-950/10;
+  }
+
+  .brand-card-hover {
+    @apply transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50/70 hover:shadow-md hover:shadow-orange-950/5;
+  }
+
+  .brand-link {
+    @apply font-bold text-orange-700 hover:text-orange-800 hover:underline;
+  }
+
+  .brand-pill {
+    @apply rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-xs font-bold text-orange-800;
+  }
 }

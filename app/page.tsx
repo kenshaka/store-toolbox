@@ -17,22 +17,30 @@ export default function Home() {
   const latestPosts = posts.slice(-6).reverse();
 
   return (
-    <main className="bg-stone-50 text-stone-900">
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <p className="mb-4 text-sm font-semibold text-orange-700">
-          給小店老闆的免費試算工具
-        </p>
+    <main className="bg-[#fffaf3] text-stone-950">
+      <section className="mx-auto max-w-5xl px-6 py-14 sm:py-16">
+        <div className="rounded-[2rem] border border-orange-100/80 bg-white/70 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+          <p className="brand-pill w-fit">
+            給小店老闆的免費試算工具
+          </p>
 
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          幫小店老闆快速算成本、售價、利潤與開店預算
-        </h1>
+          <h1 className="mt-5 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950 sm:text-5xl sm:leading-tight">
+            幫小店老闆快速算成本、售價、利潤與開店預算
+          </h1>
 
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-          不確定餐點要賣多少、開店要準備多少錢、每天要賣幾筆才不虧，
-          或外送抽成、打折促銷、人事成本會不會吃掉利潤？開店小工具箱把小店經營常見問題整理成簡單計算器，讓你先用數字做基本判斷。
-        </p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
+            不確定餐點要賣多少、開店要準備多少錢、每天要賣幾筆才不虧，
+            或外送抽成、打折促銷、人事成本會不會吃掉利潤？開店小工具箱把小店經營常見問題整理成簡單計算器，讓你先用數字做基本判斷。
+          </p>
 
-        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <div className="mt-6 flex flex-wrap gap-2 text-sm font-semibold text-stone-700">
+            <span className="rounded-full bg-orange-50 px-3 py-2 text-orange-800 ring-1 ring-orange-100">免登入</span>
+            <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-800 ring-1 ring-amber-100">免費使用</span>
+            <span className="rounded-full bg-stone-100 px-3 py-2 text-stone-700 ring-1 ring-stone-200">輸入數字即可試算</span>
+          </div>
+        </div>
+
+        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <p className="text-sm font-semibold text-orange-700">
             不知道要用哪個工具？
           </p>
@@ -50,7 +58,7 @@ export default function Home() {
                   tool_name: tool.title,
                   link_location: "home_intent",
                 }}
-                className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:border-orange-200 hover:bg-orange-50"
+                className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50/80 hover:shadow-sm hover:shadow-orange-950/5"
               >
                 <h3 className="text-lg font-bold text-stone-900">
                   {tool.plainQuestion}
@@ -70,7 +78,7 @@ export default function Home() {
           {toolsByCategory.map((category) => (
             <section
               key={category.slug}
-              className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+              className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5"
             >
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
@@ -91,7 +99,7 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <span className="w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-bold text-stone-700">
+                <span className="w-fit rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-sm font-bold text-orange-800">
                   {category.tools.length} 個工具
                 </span>
               </div>
@@ -107,7 +115,7 @@ export default function Home() {
                       tool_name: tool.title,
                       link_location: "home_card",
                     }}
-                    className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md"
+                    className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:-translate-y-1 hover:border-orange-200 hover:bg-orange-50/80 hover:shadow-md hover:shadow-orange-950/5"
                   >
                     <p className="text-xs font-semibold text-orange-700">
                       {tool.category}
@@ -125,7 +133,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-14 rounded-2xl bg-white p-6 shadow-sm">
+        <div className="mt-14 rounded-2xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold">這個網站可以幫你做什麼？</h2>
           <p className="mt-4 leading-7 text-stone-700">
             很多小店問題一開始不會叫「損益兩平」或「活動損益」，而是「要賣多少才不虧」、
@@ -134,7 +142,7 @@ export default function Home() {
           </p>
         </div>
 
-        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <p className="text-sm font-semibold text-orange-700">適合誰使用</p>
           <h2 className="mt-2 text-2xl font-bold">
             給餐飲店、小吃店、飲料店、攤商與小型商家的簡單營運工具
@@ -147,7 +155,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-orange-700">
@@ -176,10 +184,10 @@ export default function Home() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="rounded-2xl border border-stone-200 p-5 transition hover:border-orange-200 hover:bg-orange-50"
+                className="rounded-2xl border border-orange-100/80 bg-white/60 p-5 transition hover:border-orange-200 hover:bg-orange-50"
               >
                 <div className="flex flex-wrap items-center gap-3 text-xs text-stone-500">
-                  <span className="rounded-full bg-stone-100 px-3 py-1 font-semibold text-stone-700">
+                  <span className="rounded-full bg-orange-50 px-3 py-1 font-semibold text-orange-700 ring-1 ring-orange-100">
                     {post.category}
                   </span>
                   <span>{post.date}</span>
@@ -196,7 +204,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-orange-700">常見問題</p>
@@ -210,14 +218,14 @@ export default function Home() {
 
             <Link
               href="/faq"
-              className="inline-flex w-fit rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+              className="inline-flex w-fit rounded-full bg-stone-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
             >
               查看常見問題
             </Link>
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-stone-900 p-6 text-white shadow-sm">
+        <section className="mt-8 rounded-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
           <h2 className="text-2xl font-bold">使用前提醒</h2>
           <p className="mt-4 leading-7 text-stone-300">
             本站工具適合用來做活動、定價與開店前的初步試算，實際經營仍需考慮人事、租金、水電、

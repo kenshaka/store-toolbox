@@ -9,7 +9,7 @@ type CalculatorAssumptionListProps = {
 
 export function CalculatorAssumptionList({ items }: CalculatorAssumptionListProps) {
   return (
-    <div className="rounded-2xl bg-white/10 p-4">
+    <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
       <p className="text-sm font-semibold text-stone-200">目前試算假設</p>
       <dl className="mt-3 grid gap-2 text-sm text-stone-300">
         {items.map((item) => (

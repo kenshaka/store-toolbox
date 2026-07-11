@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function AddOnPromotionExampleContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲促銷活動
       </p>
@@ -20,7 +20,7 @@ function AddOnPromotionExampleContent() {
         但真正重要的是：加購商品本身有沒有毛利？加購率夠不夠？活動做完到底是多賺，還是只是更忙？
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           如果加購價 40 元、商品成本 18 元，單份加購毛利就是 22 元，
@@ -61,29 +61,29 @@ function AddOnPromotionExampleContent() {
             假設你設計一個活動：
           </p>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-stone-200">
-                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">
                     滿額門檻
                   </th>
                   <td className="px-4 py-3">單筆消費滿 150 元</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     加購商品
                   </th>
                   <td className="px-4 py-3">飲品一瓶</td>
                 </tr>
-                <tr className="border-b border-stone-200">
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                <tr className="border-b border-orange-100/80">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     加購價
                   </th>
                   <td className="px-4 py-3">40 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-stone-100 px-4 py-3 font-bold">
+                  <th className="bg-orange-50/50 px-4 py-3 font-bold">
                     商品成本
                   </th>
                   <td className="px-4 py-3">18 元</td>
@@ -102,7 +102,7 @@ function AddOnPromotionExampleContent() {
             三、每份加購毛利怎麼算？
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               每份加購毛利 = 加購價 − 商品成本
             </p>
@@ -122,7 +122,7 @@ function AddOnPromotionExampleContent() {
             四、加購商品毛利率怎麼算？
           </h2>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               加購商品毛利率 = 每份加購毛利 ÷ 加購價 × 100%
             </p>
@@ -146,7 +146,7 @@ function AddOnPromotionExampleContent() {
             假設你的店每天有 80 筆訂單，預估有 30% 的客人會加購。
           </p>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               預估每日加購單數 = 每日訂單數 × 加購率
             </p>
@@ -166,7 +166,7 @@ function AddOnPromotionExampleContent() {
             如果用 30 天粗估，這個活動每月可能增加：
           </p>
 
-          <div className="mt-4 rounded-2xl bg-orange-50 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
             <p className="text-2xl font-black text-orange-900">
               528 元 × 30 天 = 15,840 元
             </p>
@@ -250,7 +250,7 @@ function AddOnPromotionExampleContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：滿額加購商品毛利率多少才合理？
               </h3>
@@ -260,7 +260,7 @@ function AddOnPromotionExampleContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：滿額門檻應該設在多少？
               </h3>
@@ -270,7 +270,7 @@ function AddOnPromotionExampleContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：加購率要怎麼估？
               </h3>
@@ -280,7 +280,7 @@ function AddOnPromotionExampleContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：滿額加購適合所有餐飲店嗎？
               </h3>
@@ -292,7 +292,7 @@ function AddOnPromotionExampleContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">
             本文重點整理
           </h2>

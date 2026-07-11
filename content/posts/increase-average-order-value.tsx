@@ -3,9 +3,9 @@ import type { BlogPost } from "@/lib/post-types";
 
 function IncreaseAverageOrderValueContent() {
   return (
-<main className="bg-stone-50 text-stone-900">
+<main className="bg-[#fffaf3] text-stone-950">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         客單價與加購策略
       </p>
@@ -20,7 +20,7 @@ function IncreaseAverageOrderValueContent() {
         要設計出顧客覺得順手、店家也有毛利的組合。
       </p>
 
-      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
+      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           提高客單價常見方法包含滿額加購、套餐組合、升級份量、第二件優惠和高毛利配品。
@@ -51,9 +51,9 @@ function IncreaseAverageOrderValueContent() {
             二、三種常見提高客單價方式
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-stone-100">
+              <thead className="bg-orange-50/50">
                 <tr>
                   <th className="px-4 py-3 font-bold">方式</th>
                   <th className="px-4 py-3 font-bold">適合情境</th>
@@ -61,17 +61,17 @@ function IncreaseAverageOrderValueContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">滿額加購</td>
                   <td className="px-4 py-3">希望客人多買一項高毛利商品</td>
                   <td className="px-4 py-3">加購率與加購商品毛利</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">套餐組合</td>
                   <td className="px-4 py-3">主餐搭配飲料、小菜或甜點</td>
                   <td className="px-4 py-3">套餐總毛利是否高於單點</td>
                 </tr>
-                <tr className="border-t border-stone-200">
+                <tr className="border-t border-orange-100/80">
                   <td className="px-4 py-3">升級份量</td>
                   <td className="px-4 py-3">大杯、大份、加料、加麵</td>
                   <td className="px-4 py-3">升級價差是否高於額外成本</td>
@@ -139,7 +139,7 @@ function IncreaseAverageOrderValueContent() {
             接著比較活動前後每日毛利，而不是只看營業額。
           </p>
 
-          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
+          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
             <p className="font-bold text-stone-900">
               新增每日毛利 = 每日訂單數 × 加購率 × 單份加購毛利
             </p>
@@ -182,21 +182,21 @@ function IncreaseAverageOrderValueContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q1：提高客單價一定要做滿額活動嗎？</h3>
               <p className="mt-2">
                 不一定。套餐、加料、升級份量、會員加購都可以提高客單價，重點是毛利要健康。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q2：滿額門檻要怎麼抓？</h3>
               <p className="mt-2">
                 可以先看目前平均客單價，門檻通常要略高於平均客單價，才有機會推動客人多買。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200 p-5">
+            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
               <h3 className="font-bold text-stone-900">Q3：加購商品要選便宜的嗎？</h3>
               <p className="mt-2">
                 不一定要最便宜，而是要成本清楚、毛利穩定、出餐快速，且顧客覺得有吸引力。
@@ -205,7 +205,7 @@ function IncreaseAverageOrderValueContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl bg-stone-100 p-5">
+        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>提高客單價要同時看營業額和毛利。</li>
