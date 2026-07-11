@@ -4,6 +4,8 @@ import RelatedPosts from "@/components/related-posts";
 import { getBlogPostStructuredData } from "@/lib/structured-data";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostMetadata, getRelatedPosts, posts } from "@/lib/posts";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -45,6 +47,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <JsonLd data={getBlogPostStructuredData(post)} />
       <PostContent />
+      <AdSenseSlot
+        slot={adsenseSlots.articleBottom}
+        className="mx-auto mb-8 max-w-4xl"
+      />
       <RelatedPosts posts={relatedPosts} />
     </>
   );

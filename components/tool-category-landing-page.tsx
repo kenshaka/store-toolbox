@@ -4,6 +4,8 @@ import TrackedLink from "@/components/tracked-link";
 import { getToolCategoryStructuredData } from "@/lib/structured-data";
 import { getToolCategoryPage } from "@/lib/tool-category-pages";
 import type { ToolCategorySlug } from "@/lib/tools";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 type ToolCategoryLandingPageProps = {
   categorySlug: ToolCategorySlug;
@@ -125,6 +127,11 @@ export default function ToolCategoryLandingPage({
               ))}
             </div>
           </section>
+
+          <AdSenseSlot
+            slot={adsenseSlots.categoryAfterTools}
+            className="mt-8"
+          />
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             <section className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">

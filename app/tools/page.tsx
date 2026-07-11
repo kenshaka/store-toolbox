@@ -4,6 +4,8 @@ import JsonLd from "@/components/json-ld";
 import TrackedLink from "@/components/tracked-link";
 import { getToolsIndexStructuredData } from "@/lib/structured-data";
 import { tools, toolsByCategory } from "@/lib/tools";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 export const metadata: Metadata = {
   alternates: {
@@ -106,6 +108,11 @@ export default function ToolsPage() {
               ))}
             </div>
           </section>
+
+          <AdSenseSlot
+            slot={adsenseSlots.toolsIndexAfterIntent}
+            className="mt-10"
+          />
 
           <div className="mt-10 grid gap-8">
             {toolsByCategory.map((category) => (

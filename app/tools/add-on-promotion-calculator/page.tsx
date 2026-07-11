@@ -10,6 +10,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("addOnPromotionCalculator");
 
@@ -424,6 +426,11 @@ export default function AddOnPromotionCalculatorPage() {
           </p>
         </section>
 
+
+        <AdSenseSlot
+          slot={adsenseSlots.toolAfterContent}
+          className="mt-8"
+        />
         <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
           <p className="brand-eyebrow">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>

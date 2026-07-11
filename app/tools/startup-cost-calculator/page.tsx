@@ -10,6 +10,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("startupCostCalculator");
 
@@ -517,6 +519,11 @@ export default function StartupCostCalculatorPage() {
           </p>
         </section>
 
+
+        <AdSenseSlot
+          slot={adsenseSlots.toolAfterContent}
+          className="mt-8"
+        />
         <section className="mt-8 rounded-3xl border border-orange-100 bg-orange-50/80 p-6 shadow-sm shadow-orange-950/5">
           <h2 className="text-2xl font-bold text-orange-950">
             也可以搭配其他工具

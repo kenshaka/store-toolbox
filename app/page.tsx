@@ -3,6 +3,8 @@ import Link from "next/link";
 import TrackedLink from "@/components/tracked-link";
 import { posts } from "@/lib/posts";
 import { tools, toolsByCategory } from "@/lib/tools";
+import { AdSenseSlot } from "@/components/adsense-slot";
+import { adsenseSlots } from "@/lib/adsense-slots";
 
 export const metadata: Metadata = {
   alternates: {
@@ -73,6 +75,11 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <AdSenseSlot
+          slot={adsenseSlots.homeAfterIntent}
+          className="mt-10"
+        />
 
         <div className="mt-10 grid gap-6">
           {toolsByCategory.map((category) => (
