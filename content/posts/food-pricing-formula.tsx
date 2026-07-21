@@ -1,11 +1,13 @@
 import TrackedLink from "@/components/tracked-link";
+import ArticlePracticalGuide from "@/components/article-practical-guide";
+import { articlePracticalGuides } from "@/lib/article-practical-guides";
 import type { BlogPost } from "@/lib/post-types";
 
 function FoodPricingFormulaContent() {
   return (
-<main className="bg-[#fffaf3] text-stone-950">
+<main className="bg-stone-50 text-stone-900">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲定價與毛利
       </p>
@@ -21,7 +23,7 @@ function FoodPricingFormulaContent() {
         這篇用簡單範例說明餐點售價可以怎麼從成本和目標毛利率反推。
       </p>
 
-      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
+      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           小吃店定價可以先用公式「建議售價 = 總直接成本 ÷ 目標成本率」。
@@ -58,23 +60,23 @@ function FoodPricingFormulaContent() {
             假設你要賣一份雞肉飯，可以先用下面方式整理：
           </p>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-orange-100/80">
-                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">米飯與雞肉</th>
+                <tr className="border-b border-stone-200">
+                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">米飯與雞肉</th>
                   <td className="px-4 py-3">28 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">配菜與調味</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">配菜與調味</th>
                   <td className="px-4 py-3">7 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">外帶包材</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">外帶包材</th>
                   <td className="px-4 py-3">5 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">總直接成本</th>
+                  <th className="bg-stone-100 px-4 py-3 font-bold">總直接成本</th>
                   <td className="px-4 py-3 font-bold">40 元</td>
                 </tr>
               </tbody>
@@ -92,7 +94,7 @@ function FoodPricingFormulaContent() {
             三、用成本率反推售價
           </h2>
 
-          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
             <p className="font-bold text-stone-900">
               建議售價 = 總直接成本 ÷ 目標成本率
             </p>
@@ -180,7 +182,7 @@ function FoodPricingFormulaContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q1：小吃店毛利率應該抓多少？</h3>
               <p className="mt-2">
                 沒有單一標準，要看品項、商圈、租金和人事結構。實務上可以先用不同毛利率情境試算，
@@ -188,7 +190,7 @@ function FoodPricingFormulaContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q2：競爭店比較便宜，我還能照公式定價嗎？</h3>
               <p className="mt-2">
                 公式是底線檢查，不是唯一答案。如果市場價格較低，可能要回頭調整份量、成本、菜單組合，
@@ -196,7 +198,7 @@ function FoodPricingFormulaContent() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q3：內用和外帶要不同價格嗎？</h3>
               <p className="mt-2">
                 可以考慮。外帶通常有包材成本，外送還有平台抽成。如果成本結構差很多，
@@ -206,7 +208,9 @@ function FoodPricingFormulaContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+        <ArticlePracticalGuide {...articlePracticalGuides.foodPricingFormula} />
+
+        <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>小吃店定價要先算完整直接成本，不能只看主食材。</li>
@@ -245,6 +249,7 @@ export const foodPricingFormulaPost: BlogPost = {
   ],
   category: "餐飲定價與毛利",
   date: "2026 年 7 月 2 日",
+  updatedDate: "2026 年 7 月 21 日",
   openGraphTitle: "餐點售價怎麼算？小吃店用成本、毛利率反推售價",
   openGraphDescription:
     "整理小吃店定價公式，教你用總直接成本、目標成本率與毛利率反推餐點售價。",

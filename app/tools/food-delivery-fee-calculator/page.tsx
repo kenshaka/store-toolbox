@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ToolDecisionGuide from "@/components/tool-decision-guide";
+import { toolDecisionGuides } from "@/lib/tool-decision-guides";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
@@ -10,8 +12,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
-import { AdSenseSlot } from "@/components/adsense-slot";
-import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("foodDeliveryFeeCalculator");
 
@@ -287,13 +287,13 @@ export default function FoodDeliveryFeeCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
+    <main className="min-h-screen bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="brand-eyebrow">
+          <p className="text-sm font-semibold text-orange-700">
             外送平台成本試算工具
           </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -303,7 +303,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
               >
                 {intent}
               </li>
@@ -312,7 +312,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入外送資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -404,7 +404,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -500,7 +500,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
           </aside>
         </div>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">計算公式</h2>
 
           <div className="mt-5 space-y-3 text-stone-700">
@@ -515,7 +515,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
             <p>每日外送毛利 = 每筆外送毛利 × 預估每日外送訂單數</p>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果內用售價 120 元、外送平台售價 150 元，食材成本 38 元、包材成本
@@ -531,13 +531,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
           </p>
         </section>
 
-
-        <AdSenseSlot
-          slot={adsenseSlots.toolAfterContent}
-          className="mt-8"
-        />
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
-          <p className="brand-eyebrow">相關文章</p>
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
           <p className="mt-4 leading-7 text-stone-700">
             搭配外送平台抽成情境，了解平台抽成、包材成本、外送定價與活動補貼該怎麼一起評估。
@@ -550,10 +545,10 @@ export default function FoodDeliveryFeeCalculatorPage() {
           </Link>
         </section>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">常見問題</h2>
           <div className="mt-5 grid gap-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：外送平台抽成要算進成本嗎？
               </h3>
@@ -561,7 +556,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 要。平台抽成是每筆外送訂單都會發生的變動成本，會直接吃掉單品毛利。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：外送價格一定要比內用價格高嗎？
               </h3>
@@ -569,7 +564,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 不一定，但如果平台抽成比例高、包材成本也高，外送價完全等同內用價時，毛利通常會明顯下降。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：平台活動折扣要另外算嗎？
               </h3>
@@ -577,7 +572,7 @@ export default function FoodDeliveryFeeCalculatorPage() {
                 要。如果折扣、免運補貼或平台活動費用由店家負擔，就應該在平台抽成之外再扣除。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：外送訂單增加就一定比較賺嗎？
               </h3>
@@ -587,6 +582,8 @@ export default function FoodDeliveryFeeCalculatorPage() {
             </div>
           </div>
         </section>
+
+        <ToolDecisionGuide {...toolDecisionGuides.foodDeliveryFeeCalculator} />
       </section>
     </main>
   );

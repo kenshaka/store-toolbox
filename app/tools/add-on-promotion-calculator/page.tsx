@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ToolDecisionGuide from "@/components/tool-decision-guide";
+import { toolDecisionGuides } from "@/lib/tool-decision-guides";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
@@ -10,8 +12,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
-import { AdSenseSlot } from "@/components/adsense-slot";
-import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("addOnPromotionCalculator");
 
@@ -231,13 +231,13 @@ export default function AddOnPromotionCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
+    <main className="min-h-screen bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="brand-eyebrow">
+          <p className="text-sm font-semibold text-orange-700">
             餐飲促銷試算工具
           </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -247,7 +247,7 @@ export default function AddOnPromotionCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
               >
                 {intent}
               </li>
@@ -255,7 +255,7 @@ export default function AddOnPromotionCalculatorPage() {
           </ul>
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -337,7 +337,7 @@ export default function AddOnPromotionCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -399,7 +399,7 @@ export default function AddOnPromotionCalculatorPage() {
           </aside>
         </div>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">計算公式</h2>
 
           <div className="mt-5 space-y-3 text-stone-700">
@@ -410,7 +410,7 @@ export default function AddOnPromotionCalculatorPage() {
             <p>預估每月增加毛利 = 預估每日增加毛利 × 30 天</p>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果你設定「滿 150 元，加 40 元可加購一瓶飲料」， 而每瓶成本是 18
@@ -426,13 +426,8 @@ export default function AddOnPromotionCalculatorPage() {
           </p>
         </section>
 
-
-        <AdSenseSlot
-          slot={adsenseSlots.toolAfterContent}
-          className="mt-8"
-        />
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
-          <p className="brand-eyebrow">相關文章</p>
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
           <p className="mt-4 leading-7 text-stone-700">
             搭配實際活動範例，了解加購商品毛利、加購率與每日增加毛利該怎麼評估。
@@ -445,10 +440,10 @@ export default function AddOnPromotionCalculatorPage() {
           </Link>
         </section>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">常見問題</h2>
           <div className="mt-5 grid gap-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：滿額加購活動適合所有餐飲店嗎？
               </h3>
@@ -456,7 +451,7 @@ export default function AddOnPromotionCalculatorPage() {
                 不一定。若加購商品毛利太低、製作流程太複雜，或尖峰時段會拖慢出餐速度，就要先小規模測試。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：加購率要怎麼估算？
               </h3>
@@ -465,7 +460,7 @@ export default function AddOnPromotionCalculatorPage() {
                 做保守、中間、樂觀三種情境。活動上線後，再用實際訂單紀錄修正。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：加購商品成本要包含哪些？
               </h3>
@@ -473,7 +468,7 @@ export default function AddOnPromotionCalculatorPage() {
                 建議至少包含食材、杯瓶、包材、封膜、袋子與直接耗材。成本算得越完整，試算結果越接近真實狀況。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：滿額門檻要怎麼設定？
               </h3>
@@ -484,6 +479,8 @@ export default function AddOnPromotionCalculatorPage() {
             </div>
           </div>
         </section>
+
+        <ToolDecisionGuide {...toolDecisionGuides.addOnPromotionCalculator} />
       </section>
     </main>
   );

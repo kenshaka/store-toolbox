@@ -1,11 +1,13 @@
 import TrackedLink from "@/components/tracked-link";
+import ArticlePracticalGuide from "@/components/article-practical-guide";
+import { articlePracticalGuides } from "@/lib/article-practical-guides";
 import type { BlogPost } from "@/lib/post-types";
 
 function DrinkShopMarginContent() {
   return (
-<main className="bg-[#fffaf3] text-stone-950">
+<main className="bg-stone-50 text-stone-900">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         飲料店經營
       </p>
@@ -20,7 +22,7 @@ function DrinkShopMarginContent() {
         如果只算茶湯或牛奶成本，很容易高估單杯毛利。
       </p>
 
-      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
+      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           飲料店成本要用「售價 − 原物料成本 − 杯材成本 − 其他直接成本」來看。
@@ -51,27 +53,27 @@ function DrinkShopMarginContent() {
             二、範例：一杯 65 元飲料的毛利
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-orange-100/80">
-                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">售價</th>
+                <tr className="border-b border-stone-200">
+                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">售價</th>
                   <td className="px-4 py-3">65 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">茶湯、鮮奶、配料</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">茶湯、鮮奶、配料</th>
                   <td className="px-4 py-3">18 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">杯子、封膜、吸管</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">杯子、封膜、吸管</th>
                   <td className="px-4 py-3">5 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">總直接成本</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">總直接成本</th>
                   <td className="px-4 py-3">23 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">單杯毛利</th>
+                  <th className="bg-stone-100 px-4 py-3 font-bold">單杯毛利</th>
                   <td className="px-4 py-3 font-bold">42 元</td>
                 </tr>
               </tbody>
@@ -94,7 +96,7 @@ function DrinkShopMarginContent() {
             平台費用約 19.5 元。原本單杯毛利 42 元，扣掉平台費用後只剩 22.5 元。
           </p>
 
-          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
             <p className="font-bold text-stone-900">
               抽成後毛利 = 售價 − 直接成本 − 平台抽成
             </p>
@@ -174,21 +176,21 @@ function DrinkShopMarginContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q1：飲料店成本率是不是一定比餐點高？</h3>
               <p className="mt-2">
                 不一定。飲料原料成本可能較低，但杯材、耗損、平台抽成和活動折扣都會影響實際毛利。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q2：杯材成本很小，真的要算嗎？</h3>
               <p className="mt-2">
                 要。杯材每杯可能只有幾元，但飲料店銷量高，長期累積會明顯影響毛利。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q3：外送商品一定要調高價格嗎？</h3>
               <p className="mt-2">
                 不一定，但一定要先試算。若平台抽成後毛利太低，可以考慮外送專屬價格、套餐或限制活動品項。
@@ -197,7 +199,9 @@ function DrinkShopMarginContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+        <ArticlePracticalGuide {...articlePracticalGuides.drinkShopMargin} />
+
+        <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>飲料店成本要把原物料、杯材、耗損和平台抽成都納入。</li>
@@ -236,6 +240,7 @@ export const drinkShopMarginPost: BlogPost = {
   ],
   category: "飲料店經營",
   date: "2026 年 7 月 2 日",
+  updatedDate: "2026 年 7 月 21 日",
   openGraphTitle: "飲料店成本怎麼算？原物料、杯材、平台抽成要一起看",
   openGraphDescription:
     "用單杯飲料範例試算飲料店成本，包含原物料、杯材、配料和平台抽成。",

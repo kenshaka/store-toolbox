@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ToolDecisionGuide from "@/components/tool-decision-guide";
+import { toolDecisionGuides } from "@/lib/tool-decision-guides";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
@@ -10,8 +12,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
-import { AdSenseSlot } from "@/components/adsense-slot";
-import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("discountProfitCalculator");
 
@@ -267,13 +267,13 @@ export default function DiscountProfitCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
+    <main className="min-h-screen bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="brand-eyebrow">
+          <p className="text-sm font-semibold text-orange-700">
             商店促銷試算工具
           </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -283,7 +283,7 @@ export default function DiscountProfitCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
               >
                 {intent}
               </li>
@@ -292,7 +292,7 @@ export default function DiscountProfitCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入活動資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -364,7 +364,7 @@ export default function DiscountProfitCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -457,7 +457,7 @@ export default function DiscountProfitCalculatorPage() {
           </aside>
         </div>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">計算公式</h2>
 
           <div className="mt-5 space-y-3 text-stone-700">
@@ -469,7 +469,7 @@ export default function DiscountProfitCalculatorPage() {
             <p>打平所需銷量 = 原本每日毛利 ÷ 活動每份毛利</p>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-6 rounded-2xl bg-stone-100 p-5">
             <h3 className="font-bold">範例</h3>
             <p className="mt-3 leading-7 text-stone-700">
               如果商品原價 100 元、成本 40 元，原本每份毛利是 60 元。 活動價改成
@@ -485,13 +485,8 @@ export default function DiscountProfitCalculatorPage() {
           </p>
         </section>
 
-
-        <AdSenseSlot
-          slot={adsenseSlots.toolAfterContent}
-          className="mt-8"
-        />
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
-          <p className="brand-eyebrow">相關文章</p>
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-orange-700">相關文章</p>
           <h2 className="mt-2 text-2xl font-bold">延伸閱讀</h2>
           <p className="mt-4 leading-7 text-stone-700">
             用打折範例了解活動價、單品成本、銷量增加與打平銷量如何影響每日毛利。
@@ -504,10 +499,10 @@ export default function DiscountProfitCalculatorPage() {
           </Link>
         </section>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">常見問題</h2>
           <div className="mt-5 grid gap-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q1：打折後銷量增加就一定比較賺嗎？
               </h3>
@@ -515,7 +510,7 @@ export default function DiscountProfitCalculatorPage() {
                 不一定。若每份毛利下降太多，即使銷量增加，每日總毛利也可能比原本更低。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q2：活動價低於成本可以嗎？
               </h3>
@@ -523,7 +518,7 @@ export default function DiscountProfitCalculatorPage() {
                 一般不建議。除非是清庫存、引流或搭配其他高毛利商品，否則低於成本會讓每一份銷售都造成損失。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q3：需要多賣幾份才打平？
               </h3>
@@ -531,7 +526,7 @@ export default function DiscountProfitCalculatorPage() {
                 可以用原本每日毛利除以活動每份毛利，得到活動後至少要賣出的份數，再和原本銷量比較。
               </p>
             </div>
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">
                 Q4：折扣活動適合用在什麼情況？
               </h3>
@@ -541,6 +536,8 @@ export default function DiscountProfitCalculatorPage() {
             </div>
           </div>
         </section>
+
+        <ToolDecisionGuide {...toolDecisionGuides.discountProfitCalculator} />
       </section>
     </main>
   );

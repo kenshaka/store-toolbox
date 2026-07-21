@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ToolDecisionGuide from "@/components/tool-decision-guide";
+import { toolDecisionGuides } from "@/lib/tool-decision-guides";
 import { ApplyExampleButton } from "@/components/apply-example-button";
 import { CalculatorAssumptionList } from "@/components/calculator-assumption-list";
 import { CalculatorResetButton } from "@/components/calculator-reset-button";
@@ -10,8 +12,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getSharedNumberParam } from "@/lib/calculator-share-params";
 import { trackEvent } from "@/lib/gtag";
 import { getToolByKey } from "@/lib/tools";
-import { AdSenseSlot } from "@/components/adsense-slot";
-import { adsenseSlots } from "@/lib/adsense-slots";
 
 const tool = getToolByKey("breakEvenCalculator");
 
@@ -301,13 +301,13 @@ export default function BreakEvenCalculatorPage() {
   ].join("\n");
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] text-stone-950">
+    <main className="min-h-screen bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div>
-          <p className="brand-eyebrow">
+          <p className="text-sm font-semibold text-orange-700">
             開店損益試算工具
           </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-950">
+          <h1 className="mt-3 text-4xl font-bold tracking-tight">
             {tool.plainTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
@@ -317,7 +317,7 @@ export default function BreakEvenCalculatorPage() {
             {tool.searchIntents.map((intent) => (
               <li
                 key={intent}
-                className="rounded-full border border-orange-100 bg-white/80 px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm shadow-orange-950/5"
+                className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-stone-700 shadow-sm"
               >
                 {intent}
               </li>
@@ -326,7 +326,7 @@ export default function BreakEvenCalculatorPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_420px]">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">輸入營運資料</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">
               欄位右側會標示單位；不適用的金額、比例或數量可以填
@@ -428,7 +428,7 @@ export default function BreakEvenCalculatorPage() {
             />
           </div>
 
-          <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10">
+          <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm">
             <h2 className="text-2xl font-bold">試算結果</h2>
 
             <div className="mt-6 space-y-4">
@@ -473,7 +473,7 @@ export default function BreakEvenCalculatorPage() {
         </div>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-3">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <p className="text-sm text-stone-500">每筆平均毛利</p>
             <p className="mt-2 text-2xl font-bold">
               {formatMoney(result.grossProfitPerOrder)}
@@ -483,7 +483,7 @@ export default function BreakEvenCalculatorPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <p className="text-sm text-stone-500">每日固定成本壓力</p>
             <p className="mt-2 text-2xl font-bold">
               {formatMoney(result.fixedCostPerDay)}
@@ -493,7 +493,7 @@ export default function BreakEvenCalculatorPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+          <div className="rounded-3xl bg-white p-6 shadow-sm">
             <p className="text-sm text-stone-500">目標利潤每日訂單</p>
             <p className="mt-2 text-2xl font-bold">
               {formatNumber(result.targetDailyOrders)} 筆
@@ -505,7 +505,7 @@ export default function BreakEvenCalculatorPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">判斷建議：{result.verdict}</h2>
           <p className="mt-4 leading-7 text-stone-700">
             {result.verdictDetail}
@@ -516,12 +516,7 @@ export default function BreakEvenCalculatorPage() {
           </p>
         </section>
 
-
-        <AdSenseSlot
-          slot={adsenseSlots.toolAfterContent}
-          className="mt-8"
-        />
-        <section className="mt-8 rounded-3xl border border-orange-100 bg-orange-50/80 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-8 rounded-3xl bg-orange-50 p-6 shadow-sm">
           <h2 className="text-2xl font-bold text-orange-950">
             也可以搭配其他工具
           </h2>
@@ -540,6 +535,8 @@ export default function BreakEvenCalculatorPage() {
             </Link>
           </div>
         </section>
+
+        <ToolDecisionGuide {...toolDecisionGuides.breakEvenCalculator} />
       </section>
     </main>
   );

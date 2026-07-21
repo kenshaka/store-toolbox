@@ -45,7 +45,7 @@ export default function BlogPage() {
   return (
     <>
       <JsonLd data={getBlogIndexStructuredData(posts)} />
-      <main className="bg-[#fffaf3] text-stone-950">
+      <main className="bg-stone-50 text-stone-900">
       <section className="mx-auto max-w-5xl px-6 py-12">
         <div>
           <p className="text-sm font-semibold text-orange-700">
@@ -68,13 +68,16 @@ export default function BlogPage() {
             <Link
               key={article.slug}
               href={`/blog/${article.slug}`}
-              className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 transition hover:-translate-y-1 hover:shadow-md"
+              className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <div className="flex flex-wrap items-center gap-3 text-sm text-stone-500">
                 <span className="rounded-full bg-orange-50 px-3 py-1 font-semibold text-orange-700">
                   {article.category}
                 </span>
                 <span>{article.date}</span>
+                {article.updatedDate ? (
+                  <span>最後檢視：{article.updatedDate}</span>
+                ) : null}
               </div>
 
               <h2 className="mt-4 text-2xl font-bold text-stone-900">
@@ -92,7 +95,7 @@ export default function BlogPage() {
           ))}
         </div>
 
-        <section className="mt-10 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5">
+        <section className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">
             看完問題說明後，可以直接用工具試算
           </h2>

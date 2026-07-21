@@ -1,11 +1,13 @@
 import TrackedLink from "@/components/tracked-link";
+import ArticlePracticalGuide from "@/components/article-practical-guide";
+import { articlePracticalGuides } from "@/lib/article-practical-guides";
 import type { BlogPost } from "@/lib/post-types";
 
 function RestaurantPromotionCostContent() {
   return (
-<main className="bg-[#fffaf3] text-stone-950">
+<main className="bg-stone-50 text-stone-900">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲促銷活動
       </p>
@@ -20,7 +22,7 @@ function RestaurantPromotionCostContent() {
         都會改變單筆訂單毛利。活動做得好可以提高客單價，做錯則可能只是讓店家更忙。
       </p>
 
-      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
+      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           活動成本要分成三類：直接折扣成本、贈品或加購商品成本、額外人力與包材成本。
@@ -51,9 +53,9 @@ function RestaurantPromotionCostContent() {
             二、三種常見活動成本
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-orange-50/50">
+              <thead className="bg-stone-100">
                 <tr>
                   <th className="px-4 py-3 font-bold">活動類型</th>
                   <th className="px-4 py-3 font-bold">主要成本</th>
@@ -61,17 +63,17 @@ function RestaurantPromotionCostContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">折扣活動</td>
                   <td className="px-4 py-3">折扣金額</td>
                   <td className="px-4 py-3">銷量要增加多少才打平</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">滿額加購</td>
                   <td className="px-4 py-3">加購商品成本</td>
                   <td className="px-4 py-3">加購率與加購毛利</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">贈品活動</td>
                   <td className="px-4 py-3">贈品成本、包材、人力</td>
                   <td className="px-4 py-3">是否帶來足夠新訂單或回購</td>
@@ -91,7 +93,7 @@ function RestaurantPromotionCostContent() {
             如果活動價變成 85 元，每份毛利剩 45 元，每賣一份就比原本少 15 元毛利。
           </p>
 
-          <div className="mt-4 rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+          <div className="mt-4 rounded-2xl bg-stone-100 p-5">
             <p className="font-bold text-stone-900">
               折扣損失 = 原本每份毛利 − 活動每份毛利
             </p>
@@ -199,21 +201,21 @@ function RestaurantPromotionCostContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q1：活動成本要算人力嗎？</h3>
               <p className="mt-2">
                 如果活動會明顯增加備料、出餐、包裝或客服時間，就應該把人力壓力納入判斷。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q2：活動一定要賺錢才值得做嗎？</h3>
               <p className="mt-2">
                 不一定。有些活動目標是新品曝光或拉新客，但即使如此，也要知道自己付出了多少成本。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q3：活動後要看哪些數字？</h3>
               <p className="mt-2">
                 至少看訂單數、客單價、活動品項銷量、活動後每日毛利、加購率和是否影響出餐效率。
@@ -222,7 +224,9 @@ function RestaurantPromotionCostContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+        <ArticlePracticalGuide {...articlePracticalGuides.restaurantPromotionCost} />
+
+        <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>活動成本不只是折扣金額，也包含商品成本、包材、人力和平台費用。</li>
@@ -262,6 +266,7 @@ export const restaurantPromotionCostPost: BlogPost = {
   ],
   category: "餐飲促銷活動",
   date: "2026 年 7 月 2 日",
+  updatedDate: "2026 年 7 月 21 日",
   openGraphTitle: "促銷活動成本怎麼算？折扣、加購、贈品活動試算方式",
   openGraphDescription:
     "用折扣、滿額加購和贈品活動範例，說明餐飲店活動成本與活動前後毛利怎麼試算。",

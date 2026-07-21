@@ -1,11 +1,13 @@
 import TrackedLink from "@/components/tracked-link";
+import ArticlePracticalGuide from "@/components/article-practical-guide";
+import { articlePracticalGuides } from "@/lib/article-practical-guides";
 import type { BlogPost } from "@/lib/post-types";
 
 function RestaurantMarginBenchmarkContent() {
   return (
-<main className="bg-[#fffaf3] text-stone-950">
+<main className="bg-stone-50 text-stone-900">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲定價與毛利
       </p>
@@ -20,7 +22,7 @@ function RestaurantMarginBenchmarkContent() {
         比起追求某個固定數字，更重要的是知道每個品項毛利是否足以支撐人事、租金、平台費和促銷活動。
       </p>
 
-      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
+      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           餐飲毛利率要看品項特性和通路。高毛利品項可以支撐活動和組合銷售，
@@ -51,9 +53,9 @@ function RestaurantMarginBenchmarkContent() {
             二、不同品項可以用不同毛利目標
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-orange-50/50">
+              <thead className="bg-stone-100">
                 <tr>
                   <th className="px-4 py-3 font-bold">品項類型</th>
                   <th className="px-4 py-3 font-bold">觀察重點</th>
@@ -61,22 +63,22 @@ function RestaurantMarginBenchmarkContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">主餐、便當、麵飯</td>
                   <td className="px-4 py-3">毛利金額、出餐效率</td>
                   <td className="px-4 py-3">要能支撐基本營運</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">飲料、小菜、加購品</td>
                   <td className="px-4 py-3">毛利率、加購率</td>
                   <td className="px-4 py-3">適合提高客單價</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">招牌或引流品</td>
                   <td className="px-4 py-3">來客數、回購率</td>
                   <td className="px-4 py-3">毛利可略低，但要有策略目的</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">外送商品</td>
                   <td className="px-4 py-3">平台抽成、包材成本</td>
                   <td className="px-4 py-3">不能直接沿用內用毛利率</td>
@@ -165,21 +167,21 @@ function RestaurantMarginBenchmarkContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q1：餐飲店一定要追求高毛利率嗎？</h3>
               <p className="mt-2">
                 不一定。高毛利率很好，但還要看銷量、製作效率和是否能支撐整體營運。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q2：平均毛利率有用嗎？</h3>
               <p className="mt-2">
                 有用，但不能只看平均。最好同時看各品項毛利率、毛利金額和銷售占比。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q3：毛利率低的招牌商品要調價嗎？</h3>
               <p className="mt-2">
                 要先看它是否能帶客、帶動加購或提升回購。如果沒有明確作用，就應該重新檢查成本和價格。
@@ -188,7 +190,9 @@ function RestaurantMarginBenchmarkContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+        <ArticlePracticalGuide {...articlePracticalGuides.restaurantMarginBenchmark} />
+
+        <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>餐飲毛利率沒有單一標準，要看品項角色和通路。</li>
@@ -227,6 +231,7 @@ export const restaurantMarginBenchmarkPost: BlogPost = {
   ],
   category: "餐飲定價與毛利",
   date: "2026 年 7 月 2 日",
+  updatedDate: "2026 年 7 月 21 日",
   openGraphTitle: "餐飲店毛利率多少才合理？不同品項毛利率怎麼看",
   openGraphDescription:
     "整理餐飲毛利率判斷方式，幫你從品項角色、通路抽成和毛利金額看懂菜單是否健康。",

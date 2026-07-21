@@ -1,11 +1,13 @@
 import TrackedLink from "@/components/tracked-link";
+import ArticlePracticalGuide from "@/components/article-practical-guide";
+import { articlePracticalGuides } from "@/lib/article-practical-guides";
 import type { BlogPost } from "@/lib/post-types";
 
 function RestaurantFoodCostItemsContent() {
   return (
-<main className="bg-[#fffaf3] text-stone-950">
+<main className="bg-stone-50 text-stone-900">
   <article className="mx-auto max-w-4xl px-6 py-12">
-    <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+    <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
       <p className="text-sm font-semibold text-orange-700">
         餐飲成本管理
       </p>
@@ -20,7 +22,7 @@ function RestaurantFoodCostItemsContent() {
         如果成本項目沒有整理清楚，定價、毛利率和促銷活動都容易失真。
       </p>
 
-      <div className="mt-8 rounded-2xl border border-orange-100 bg-orange-50/80 p-5">
+      <div className="mt-8 rounded-2xl bg-orange-50 p-5">
         <p className="font-bold text-orange-900">快速結論</p>
         <p className="mt-3 leading-7 text-orange-950">
           餐點成本至少要分成「每份會發生的直接成本」和「整間店共同承擔的營運成本」。
@@ -51,9 +53,9 @@ function RestaurantFoodCostItemsContent() {
             二、餐點直接成本通常包含哪些？
           </h2>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
-              <thead className="bg-orange-50/50">
+              <thead className="bg-stone-100">
                 <tr>
                   <th className="px-4 py-3 font-bold">成本項目</th>
                   <th className="px-4 py-3 font-bold">常見內容</th>
@@ -61,22 +63,22 @@ function RestaurantFoodCostItemsContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">食材成本</td>
                   <td className="px-4 py-3">主料、配料、調味料</td>
                   <td className="px-4 py-3">用實際份量，不要只看進貨總額</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">包材成本</td>
                   <td className="px-4 py-3">餐盒、杯子、袋子、餐具</td>
                   <td className="px-4 py-3">外帶和外送通常比內用高</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">耗損成本</td>
                   <td className="px-4 py-3">備料損耗、退貨、失誤重做</td>
                   <td className="px-4 py-3">可用比例加回單品成本</td>
                 </tr>
-                <tr className="border-t border-orange-100/80">
+                <tr className="border-t border-stone-200">
                   <td className="px-4 py-3">通路費用</td>
                   <td className="px-4 py-3">平台抽成、金流費、活動補貼</td>
                   <td className="px-4 py-3">不同通路可以分開定價</td>
@@ -95,27 +97,27 @@ function RestaurantFoodCostItemsContent() {
             假設一份便當售價 110 元，直接成本可以先這樣估：
           </p>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-orange-100/80">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-stone-200">
             <table className="w-full border-collapse bg-white text-left text-sm">
               <tbody>
-                <tr className="border-b border-orange-100/80">
-                  <th className="w-1/2 bg-orange-50/50 px-4 py-3 font-bold">主菜與配菜</th>
+                <tr className="border-b border-stone-200">
+                  <th className="w-1/2 bg-stone-100 px-4 py-3 font-bold">主菜與配菜</th>
                   <td className="px-4 py-3">38 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">米飯、醬料與湯品</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">米飯、醬料與湯品</th>
                   <td className="px-4 py-3">9 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">餐盒、提袋、餐具</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">餐盒、提袋、餐具</th>
                   <td className="px-4 py-3">6 元</td>
                 </tr>
-                <tr className="border-b border-orange-100/80">
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">耗損預留</th>
+                <tr className="border-b border-stone-200">
+                  <th className="bg-stone-100 px-4 py-3 font-bold">耗損預留</th>
                   <td className="px-4 py-3">3 元</td>
                 </tr>
                 <tr>
-                  <th className="bg-orange-50/50 px-4 py-3 font-bold">總直接成本</th>
+                  <th className="bg-stone-100 px-4 py-3 font-bold">總直接成本</th>
                   <td className="px-4 py-3 font-bold">56 元</td>
                 </tr>
               </tbody>
@@ -192,21 +194,21 @@ function RestaurantFoodCostItemsContent() {
           </h2>
 
           <div className="mt-5 space-y-5">
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q1：耗損成本要怎麼抓？</h3>
               <p className="mt-2">
                 可以先用過去一段時間的報廢、退貨、備料損耗估一個比例，再平均分攤到主要品項。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q2：租金要放進每份餐點嗎？</h3>
               <p className="mt-2">
                 不一定要逐份拆，但毛利總額必須足夠支付租金。單品毛利太低時，固定成本壓力會很明顯。
               </p>
             </div>
 
-            <div className="rounded-2xl border border-orange-100/80 bg-white/60 p-5">
+            <div className="rounded-2xl border border-stone-200 p-5">
               <h3 className="font-bold text-stone-900">Q3：不同通路可以不同成本嗎？</h3>
               <p className="mt-2">
                 可以，而且建議分開看。內用、外帶、外送的包材、平台費和活動成本常常不同。
@@ -215,7 +217,9 @@ function RestaurantFoodCostItemsContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5">
+        <ArticlePracticalGuide {...articlePracticalGuides.restaurantFoodCostItems} />
+
+        <section className="rounded-2xl bg-stone-100 p-5">
           <h2 className="text-2xl font-bold text-stone-900">本文重點整理</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             <li>餐點成本要同時看食材、包材、耗損和通路費用。</li>
@@ -255,6 +259,7 @@ export const restaurantFoodCostItemsPost: BlogPost = {
   ],
   category: "餐飲成本管理",
   date: "2026 年 7 月 2 日",
+  updatedDate: "2026 年 7 月 21 日",
   openGraphTitle: "餐飲成本怎麼算？餐點成本包含食材、包材、人力和平台費用",
   openGraphDescription:
     "用餐飲店常見成本項目拆解單品成本，幫你看懂定價和毛利率背後真正要算的費用。",

@@ -40,6 +40,37 @@ export const metadata: Metadata = {
   },
 };
 
+const methodologySteps = [
+  {
+    title: "先定義問題與欄位",
+    description:
+      "每個工具先說明要解決的經營問題，再界定售價、直接成本、固定成本、毛利率、抽成與營業天數等欄位口徑。",
+  },
+  {
+    title: "使用可追溯的基本公式",
+    description:
+      "工具以成本、售價、毛利、營業額與占比之間的基本數學關係計算，並在頁面中公開公式、假設與適用限制。",
+  },
+  {
+    title: "加入示範情境與判讀",
+    description:
+      "示範數字會清楚標示為教學情境，不包裝成真實店家成果；重點是說明結果應如何判斷，以及下一步要檢查哪些資料。",
+  },
+  {
+    title: "依實際回饋持續修正",
+    description:
+      "若公式、欄位說明或文章內容有錯誤，會依回報重新檢查並更新。重要內容會標示最後檢視日期。",
+  },
+];
+
+const editorialPrinciples = [
+  "不捏造店家訪談、營業成果或無法驗證的成功案例。",
+  "不把示範數字寫成所有餐飲店都適用的唯一標準。",
+  "明確區分毛利、淨利、直接成本、固定成本與通路費用。",
+  "文章以解決實際經營問題為優先，不為了增加頁數重複改寫相同內容。",
+  "涉及會計、稅務、法律、勞動法令或投資決策時，提醒使用者另尋合格專業人員。",
+];
+
 const audiences = [
   "正在設計促銷活動的餐飲店、小吃店與飲料店。",
   "想確認商品定價、食材成本與包材成本是否合理的小店老闆。",
@@ -51,9 +82,9 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={getAboutStructuredData()} />
-      <main className="bg-[#fffaf3] text-stone-950">
+      <main className="bg-stone-50 text-stone-900">
         <section className="mx-auto max-w-5xl px-6 py-12">
-          <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-10">
+          <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
             <p className="text-sm font-semibold text-orange-700">
               About
             </p>
@@ -70,7 +101,7 @@ export default function AboutPage() {
           </div>
 
           <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px]">
-            <div className="rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
+            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
               <h2 className="text-2xl font-bold">
                 這個網站可以幫你做什麼？
               </h2>
@@ -87,7 +118,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <aside className="rounded-3xl bg-gradient-to-br from-stone-950 via-stone-900 to-orange-950 p-6 text-white shadow-sm shadow-orange-950/10 sm:p-8">
+            <aside className="rounded-3xl bg-stone-900 p-6 text-white shadow-sm sm:p-8">
               <h2 className="text-2xl font-bold">
                 目前網站定位
               </h2>
@@ -101,7 +132,7 @@ export default function AboutPage() {
             </aside>
           </section>
 
-          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
+          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-2xl font-bold">
               適合誰使用？
             </h2>
@@ -110,7 +141,7 @@ export default function AboutPage() {
               {audiences.map((audience) => (
                 <li
                   key={audience}
-                  className="rounded-2xl border border-orange-100/80 bg-orange-50/50 p-5 text-sm leading-6 text-stone-700"
+                  className="rounded-2xl bg-stone-100 p-5 text-sm leading-6 text-stone-700"
                 >
                   {audience}
                 </li>
@@ -118,7 +149,7 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
+          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-2xl font-bold">
               目前提供的工具
             </h2>
@@ -134,7 +165,7 @@ export default function AboutPage() {
                     tool_name: tool.title,
                     link_location: "about_page",
                   }}
-                  className="rounded-2xl border border-orange-100/80 bg-orange-50/35 p-5 transition hover:-translate-y-1 hover:shadow-md"
+                  className="rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:shadow-md"
                 >
                   <h3 className="font-bold text-stone-900">
                     {tool.title}
@@ -150,7 +181,68 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl border border-orange-100/80 bg-white/95 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
+          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+            <p className="text-sm font-semibold text-orange-700">
+              計算方法與內容流程
+            </p>
+            <h2 className="mt-2 text-2xl font-bold">
+              工具與文章是怎麼整理的？
+            </h2>
+
+            <p className="mt-4 max-w-3xl leading-7 text-stone-700">
+              本站不只提供計算結果，也會說明欄位口徑、公式、示範情境、常見誤區與工具限制。
+              目的是讓使用者知道數字從哪裡來，而不是把計算器當成無法檢查的黑盒子。
+            </p>
+
+            <ol className="mt-6 grid gap-4 md:grid-cols-2">
+              {methodologySteps.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="rounded-2xl border border-stone-200 bg-stone-50 p-5"
+                >
+                  <p className="text-sm font-bold text-orange-700">
+                    步驟 {index + 1}
+                  </p>
+                  <h3 className="mt-2 font-bold text-stone-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-stone-700">
+                    {step.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_340px]">
+            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+              <h2 className="text-2xl font-bold">內容編輯原則</h2>
+              <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-7 text-stone-700">
+                {editorialPrinciples.map((principle) => (
+                  <li key={principle}>{principle}</li>
+                ))}
+              </ul>
+            </div>
+
+            <aside className="rounded-3xl bg-orange-50 p-6 shadow-sm sm:p-8">
+              <h2 className="text-2xl font-bold text-orange-950">
+                發現公式或內容有問題？
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-orange-950">
+                請提供頁面網址、你輸入的數字、預期結果與實際結果。本站會先重現問題，再確認是公式、欄位說明或顯示方式需要修正。
+              </p>
+              <TrackedLink
+                href="/contact"
+                eventName="click_nav"
+                eventParams={{ nav_item: "內容回報", destination: "/contact" }}
+                className="mt-5 inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700"
+              >
+                回報內容或工具問題
+              </TrackedLink>
+            </aside>
+          </section>
+
+          <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-2xl font-bold">
               文章內容的定位
             </h2>
@@ -172,7 +264,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="mt-8 rounded-3xl border border-orange-100 bg-orange-50/80 p-6 shadow-sm shadow-orange-950/5 sm:p-8">
+          <section className="mt-8 rounded-3xl bg-orange-50 p-6 shadow-sm sm:p-8">
             <h2 className="text-2xl font-bold text-orange-950">
               使用前提醒
             </h2>

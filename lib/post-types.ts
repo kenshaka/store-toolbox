@@ -7,6 +7,7 @@ export type BlogPost = {
   keywords: string[];
   category: string;
   date: string;
+  updatedDate?: string;
   openGraphTitle: string;
   openGraphDescription: string;
   relatedPostSlugs?: string[];

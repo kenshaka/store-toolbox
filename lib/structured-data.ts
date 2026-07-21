@@ -136,6 +136,7 @@ export function getBlogIndexStructuredData(blogPosts: BlogPost[]) {
 export function getBlogPostStructuredData(post: BlogPost) {
   const path = `/blog/${post.slug}`;
   const publishedDate = parseTraditionalChineseDate(post.date);
+  const modifiedDate = parseTraditionalChineseDate(post.updatedDate ?? post.date);
 
   return [
     getBreadcrumbJsonLd([
@@ -155,7 +156,7 @@ export function getBlogPostStructuredData(post: BlogPost) {
         "@id": absoluteUrl(path),
       },
       datePublished: publishedDate,
-      dateModified: publishedDate,
+      dateModified: modifiedDate,
       inLanguage: "zh-Hant-TW",
       author: publisher,
       publisher,
